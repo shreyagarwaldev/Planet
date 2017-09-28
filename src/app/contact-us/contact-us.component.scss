@@ -1,0 +1,137 @@
+.contact-us {
+    height: 100%;
+    width: 100%;
+}
+
+.contact-us {
+    margin-top: 10rem;
+    text-align: center;
+    input {
+        height: 5rem;
+        padding: 1rem;
+        font-size: 1.8rem;
+        &:required {
+            outline: none;
+        }
+    }
+    h1 {
+        font-size: 4.5rem;
+        color: #26181D;
+    }
+    .message {
+        height: 20rem;
+        vertical-align: top;
+    }
+    .message,
+    .subject {
+        width: 64rem;
+    }
+}
+
+.static-info {
+    font-size: 2.3rem;
+    width: 100%;
+    color: #26181D;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-wrapper {
+    text-align: center;
+    display: inline-block;
+}
+
+.form-group {
+    width: 60rem;
+    text-align: left;
+    .alert {
+        width: inherit;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.name-group,
+.mail-number-group {
+    display: flex;
+}
+
+.message-box,
+.subject-box {
+    .alert {
+        width: 60rem;
+    }
+}
+
+.message-dialog {
+    height: 20%;
+    width: 30%;
+    background: #26181D;
+    position: absolute;
+    top: 45%;
+    left: 35%;
+    color: white;
+    box-shadow: 0 0 0.7px grey;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    .wrapper {
+        position: relative;
+        top: 30%;
+        .text {
+            display: block;
+            padding: 1rem;
+        }
+        .ok-btn {
+            background: #73656A;
+            color: white;
+            width: 30%;
+        }
+    }
+}
+
+#message {
+    height: 20rem;
+    font-size: 1.8rem;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+    /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+}
+
+.submit-btn {
+    width: 25rem;
+    margin-top: 2rem;
+    height: 4rem;
+    margin-bottom: 5rem;
+    &:disabled {
+        background-color: #eee;
+        color: #aaa;
+        cursor: auto;
+    }
+}
+
+@media (max-width: 955px) {
+    .form-wrapper {
+        width: 100%;
+    }
+    .form-group {
+        width: 100%;
+    }
+    .name-group,
+    .subject-box,
+    .message-box,
+    .mail-number-group {
+        width: 90%;
+        margin: 2rem;
+    }
+    .contact-us {
+        margin-top: 5rem;
+    }
+}

@@ -1,0 +1,96 @@
+<navi-bar [showName]="true"></navi-bar>
+
+<div class="header-img">
+    <object class="detail-img" [data]="this.workshopRepository.globalConstants.resolveImageUrl(workshopDetails.imageLink)" alt="workshop image" type="image/png">
+        <img class="detail-img" [src]="this.workshopRepository.globalConstants.resolveLocalImageUrl(workshopDetails.imageLink)" alt="workshop image"/>
+    </object>
+</div>
+
+<div class="wsd-name">{{workshopDetails.name}}</div>
+
+<div class="details-container">
+    <div>
+        <div class="detail-tabs">
+
+            <!--Tab headings-->
+            <div class="tab">
+                <button class="tablinks" *ngFor="let tab of tabs; let i=index;" [ngClass]="{'active': tab.showTab}" (click)="openTabs(i)">{{tab.label}}</button>
+            </div>
+
+            <!--Description tab-->
+            <div id="{{tabs[0].label}}" [hidden]="!tabs[0].showTab" class="tabcontent">
+                <p [innerHTML]="workshopDetails.description"></p>
+            </div>
+
+            <!--Gallery tab-->
+            <div id="{{tabs[1].label}}" [hidden]="!tabs[1].showTab" class="tabcontent">
+                <img class="gallery-image hover-shadow cursor" *ngFor="let image of imagesLink;let i = index" [src]="image.imageLink" alt="workshop image"
+                    (click)="openModal(i+1)" />
+            </div>
+
+            <!--Photographer tab-->
+            <div id="{{tabs[2].label}}" [hidden]="!tabs[2].showTab" class="tabcontent">
+                <div class="photographer-information" *ngFor="let photographer of workshopDetails.photographers;">
+                    <div class="profile-photo">
+                        <object class="profile-img" [data]="this.workshopRepository.globalConstants.resolveLocalImageUrl(photographer.profilePhotoLink)" type="image/png" alt="workshop image">
+                            <img class="profile-img" [src]="this.workshopRepository.globalConstants.resolveImageUrl(photographer.profilePhotoLink)" alt="workshop image"/>
+                        </object>
+                    </div>
+                    <h4>
+                        <span>{{photographer.firstName}}</span>
+                        <span>{{photographer.lastName}}</span>
+                    </h4>
+                    <div class="detail-location" *ngIf="photographer.locationName !== null && photographer.locationName !== ''">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <span>{{photographer.locationName}}</span>
+                    </div>
+                    <div class="website-link">
+                        <a href="{{photographer?.websiteLink}}" target="_blank"><i class="fa fa-external-link"></i> Website</a>
+                    </div>
+                    <p [innerHTML]="photographer.moreInfo"></p>
+                </div>
+            </div>
+        </div>
+
+        <!--Workshop highlights-->
+        <div class="highlights">
+            <div class="wsd-location">
+                <h2 class="highlight-headings">Location</h2>
+                <i class="fa fa-map-marker"></i>
+                <span>{{workshopDetails.locationName}}</span>
+            </div>
+            <div class="wsd-price">
+                <h2 class="highlight-headings">Price</h2>
+                <i class="fa fa-usd"></i><span *ngIf="workshopDetails.minCost !== workshopDetails.maxCost">{{workshopDetails.minCost}} - </span><span>{{workshopDetails.maxCost}}</span>
+            </div>
+            <div class="wsd-dates">
+                <h2 class="highlight-headings">Workshop Link(s)</h2>
+                <div class="dates-information" *ngFor="let detail of workshopDetails.multiWorkshopDetails;">
+                    <a href="{{detail.link}}" target="_blank">
+                        <i class="fa fa-calendar"></i>
+                        <span>{{this.formatDate(detail.startDate)}} - {{this.formatDate(detail.endDate)}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--Image gallery modal-->
+        <div id="myModal" [ngClass]="{'hide-modal': hideModal}" class="image-modal">
+            <span class="close cursor" (click)="closeModal()">&times;</span>
+            <div class="image-modal-content">
+                <div *ngFor="let image of imagesLink;" class="slides" [ngClass]="{'hideImage': image.hideImage}">
+                    <img [src]="image.imageLink" class="modal-image">
+                </div>
+            </div>
+
+            <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+            <a class="next" (click)="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+
+</div>
+<div>
+    <div class="footer">
+        <footer></footer>
+    </div>
+</div>
