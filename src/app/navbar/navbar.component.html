@@ -1,0 +1,23 @@
+<nav class="nav-container">
+  <a href="" class="company-icon">
+    <img class="image" src="/assets/img/icon.png" alt="workshop image">
+    <span *ngIf="showName" class="company-name">Pixelated Planet</span>
+  </a>
+  <div class="navbar-header">
+    <button *ngIf="showFilters" type="button" class="filter-header btn" (click)="toggleFilter()">
+          <div>Filters <i class="fa fa-filter" aria-hidden="true"></i></div>
+    </button>
+    <button type="button" class="navbar-toggle" (click)="toggleNavbar()">
+      <div><i class="fa fa-bars" aria-hidden="true"></i></div>
+    </button>
+
+  </div>
+
+  <div class="navbar-collapse" [ngClass]="{'hideNavbar': hideNavbar}">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="/workshops">WORKSHOPS</a></li>
+      <li><a href="/about">ABOUT</a></li>
+      <li><a href="/contact">CONTACT</a></li>
+    </ul>
+  </div>
+</nav>

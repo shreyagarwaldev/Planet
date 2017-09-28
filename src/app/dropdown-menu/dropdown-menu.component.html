@@ -1,0 +1,9 @@
+<div class="dropdown-container">
+    <button (click)="toggleDropdown()">
+        <span>{{buttonLabel}}</span>
+        <i class="fa fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-list" (click)="overlay()" [class.hide-dropdown]="isCollapsed">
+        <div (click)="selectValue(data.label)" class="data-list" *ngFor="let data of dataModel;">{{data.label}}</div>
+    </div>
+</div>

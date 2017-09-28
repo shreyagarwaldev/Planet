@@ -1,0 +1,45 @@
+.date-picker-container /deep/ {
+    display: flex;
+    input {
+        height: 3rem;
+        width: 8rem;
+        margin-top: .2rem;
+    }
+    .from-date,
+    .to-date {
+        width: 13.5rem;
+        text-align: center;
+        margin: 1.4rem 1rem 0 1rem;
+        height: 3.6rem;
+        input {
+            width: 10rem;
+            height: 3.6rem;
+            text-align: center;
+            background-color: transparent;
+            &::placeholder {
+                font-family: 'Comfortaa', cursive;
+            }
+        }
+        .btnpicker,
+        .btnclear {
+            width: 1.7rem;
+        }
+    }
+}
+
+@media (max-width: 1050px) {
+    .date-picker-container /deep/ {
+        margin-bottom: 1.5rem;
+        display: inline-block;
+        .from-date,
+        .to-date {
+            position: relative;
+            display: inline-block;
+            width: 70%;
+            input {
+                text-align: center;
+                width: 100%;
+            }
+        }
+    }
+}

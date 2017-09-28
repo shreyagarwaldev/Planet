@@ -1,0 +1,62 @@
+.suggestions {
+    z-index: 99;
+    width: auto;
+    background-color: white;
+    box-shadow: 0 0 0.7px grey;
+    position: absolute;
+    color: #15424E;
+    text-align: left;
+    left: 0;
+    ul {
+        padding: 0;
+        margin: 1rem;
+        max-height: 30rem;
+        overflow: auto;
+    }
+    li {
+        list-style: none;
+        cursor: pointer;
+        padding: .5rem;
+        white-space: nowrap;
+        width: auto;
+    }
+}
+
+.dropdown-container {
+    margin: 1.4rem 1rem 1rem 0;
+    height: 3.6rem;
+    width: 13.5rem;
+    button {
+        width: 100%;
+        height: 6rem;
+        border: none;
+        background-color: transparent;
+    }
+}
+
+.filter-input {
+    color: #333333;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    border: none;
+    padding-left: .5rem;
+    text-align: center
+}
+
+@media (max-width: 1050px) {
+    .suggestions {
+        margin-left: 1rem;
+        width: 100%;
+        li {
+            white-space: inherit;
+        }
+    }
+    .filter-input {
+        width: 70%;
+    }
+    .dropdown-container {
+        margin: 0;
+        width: 100%;
+    }
+}

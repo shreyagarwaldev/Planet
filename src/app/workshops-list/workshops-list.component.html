@@ -1,0 +1,41 @@
+<div [class.list-in-ws-page]="!!activePage" class="workshop-list">
+    <div *ngIf="asyncData?.length > 0">
+        <article class="entity" *ngFor="let data of asyncData">
+            <a [href]="createWorkshopDetailsUrl(data.workshopId, data.name)">
+                <div class="inner">
+                    <object class="image" [data]="this.workshopRepository.globalConstants.resolveImageUrl(data.imageLink)" type="image/png">
+                        <img class="image" [src]="this.workshopRepository.globalConstants.resolveLocalImageUrl(data.imageLink)" alt="workshop image" />
+                    </object>
+                    <h1 class="name truncate" title="{{ data.name }}">
+                        {{ data.name }}
+                    </h1>
+                    <hr>
+                    <div class="location">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <span>{{data.locationName}}</span>
+                    </div>
+                    <div class="date">
+                        <span>{{this.formatDate(data.startDateFirst)}}</span>
+                        <span *ngIf="data.startDateFirst != data.endDateFirst">-</span>
+                        <span *ngIf="data.startDateFirst != data.endDateFirst"> {{this.formatDate(data.endDateFirst)}} </span>
+                    </div>
+                    <div class="price" *ngIf="data.minCost == data.maxCost">{{data.costCurrency}} {{data.minCost}}</div>
+                    <div class="price" *ngIf="data.minCost < data.maxCost">{{data.costCurrency}} {{data.minCost}}-{{data.maxCost}}</div>
+                </div>
+            </a>
+        </article>
+        <div *ngIf="itemsPerPage > 4" class="ws-pages">
+            <a class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': activePage <=1 }" [href]="createPageLink(activePage-1)">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            <i class="fa fa-chevron-left" aria-hidden="true"></i><span>Previous</span></a>
+            <a class="page-numbers" [ngClass]="{'active-page': activePage == page}" *ngFor="let page of pageNumbers;" [href]="createPageLink(page)">{{page}}</a>
+            <a class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': activePage == pageNumbers.length }" [href]="createPageLink(activePage-1+2)"><span>Next</span>
+            <span class="chevron-wrapper"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+            <i class="fa fa-chevron-right" aria-hidden="true"></i></span></a>
+        </div>
+    </div>
+
+    <div class="no-result-msg" *ngIf="asyncData?.length == 0">
+        Sorry, we found 0 results. Please try different filters.
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="date-picker-container">
+    <div class="from-date">
+        <my-date-picker (dateChanged)="onFromDateChanged($event)" name="from-date" [placeholder]="fromDateLabel" [options]="fromDatePickerOptions" [selDate]="selFromDate"></my-date-picker>
+    </div>
+    <div class="to-date">
+       <my-date-picker (dateChanged)="onToDateChanged($event)" name="to-date" [placeholder]="toDateLabel" [options]="toDatePickerOptions" [selDate]="selToDate"></my-date-picker>
+    </div>
+</div>

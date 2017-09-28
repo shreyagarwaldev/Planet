@@ -1,0 +1,58 @@
+.filters,
+.list {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.filters {
+    position: fixed;
+    z-index: 999;
+    background-color: transparent;
+    height: auto;
+    width: 90rem;
+    padding-bottom: .3rem;
+    left: 5rem;
+}
+
+.list {
+    top: 10rem;
+    overflow-x: hidden;
+    min-height: 80%;
+    position: relative;
+}
+
+.ws-container nav.navbar.navbar-default {
+    background-color: white;
+    border: none;
+}
+
+.ws-container .navbar-default .navbar-nav .active a {
+    background-color: transparent;
+}
+
+@media (max-width: 1050px) {
+    .filters {
+        position: fixed;
+        background-color: #26181D;
+        height: 100%;
+        width: 100%;
+        top: 5rem;
+        padding-bottom: 2rem;
+        left: 0;
+        z-index: 99;
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+    }
+    .list {
+        top: 5rem;
+        position: relative;
+    }
+    .hideFilter {
+        display: none;
+    }
+    .footer {
+        position: relative;
+        bottom: 0;
+    }
+}

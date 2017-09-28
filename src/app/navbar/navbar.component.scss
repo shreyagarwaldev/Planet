@@ -1,0 +1,158 @@
+.top-bar-title {
+    font-family: 'Coiny', cursive;
+    font-size: 22px;
+    color: #ffffff;
+}
+
+.nav-menu a {
+    color: #ffffff;
+}
+
+.company-icon {
+    float: left;
+    margin-left: 2rem;
+    margin-top: 1.1rem;
+    text-decoration: none;
+    vertical-align: bottom;
+}
+
+.company-name {
+    display: block;
+    margin-top: 1rem;
+    margin-left: 4.5rem;
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Comfortaa', cursive;
+}
+
+.fa-bars {
+    border: 1px solid white;
+    padding-left: .4rem;
+    padding-right: .4rem;
+    border-radius: 4px;
+}
+
+.filter-header {
+    display: none;  
+    font-family: 'Comfortaa', cursive;
+}
+
+.navbar-toggle {
+    display: none;
+}
+
+nav {
+    position: fixed;
+    margin: 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 6rem;
+    background-color: #26181D;
+    border: none;
+    font-size: 1.2rem;
+    img {
+        width: 3rem;
+        height: 3rem;
+        float: left;
+    }
+    .navbar-nav a {
+        background-color: transparent;
+        color: white;
+    }
+    ul {
+        padding-top: .8rem;
+        font-size: 1.16rem;
+        font-family: 'Comfortaa', cursive;
+    }
+}
+
+@media (max-width: 1050px) {
+    nav {
+        height: 5rem;
+        ul {
+            width: 100%;
+        }
+    }
+    .navbar-toggle {
+        display: block;
+        padding-bottom: 0;
+        color: white;
+    }
+    .filter-header {
+        display: inline-block;
+        color: white;
+        margin-top: 1rem;
+        padding-left: 1rem;
+        background: transparent;
+        margin-left: 2rem;
+    }
+    .navbar-collapse {
+        background-color: #26181D;
+        text-align: center;
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        width: 100%;
+        position: absolute;
+        top: 5rem;
+    }
+    .hideNavbar {
+        display: none;
+    }
+    .navbar-header {
+        float: none;
+        width: 100%;
+    }
+    .navbar-nav>li {
+        float: none!important;
+    }
+}
+
+@media (min-width: 1050px) and (max-width: 1260px) {
+    nav {
+        ul {
+            width: 100%;
+        }
+    }
+    .hideNavbar {
+        display: none;
+    }
+    .navbar-collapse {
+        background-color: #26181D;
+        text-align: center;
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        width: 100%;
+        position: absolute;
+        top: 5rem;
+    }
+    .navbar-header {
+        float: none;
+        width: 100%;
+    }
+    .navbar-toggle {
+        display: block;
+        padding-bottom: 0;
+        color: white;
+        margin-top: 1.5rem;
+        float: right;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none!important;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in {
+        display: block !important;
+    }
+}

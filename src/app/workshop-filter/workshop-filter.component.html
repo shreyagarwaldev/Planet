@@ -1,0 +1,26 @@
+<div class="filters-container">
+    <div class="dropdown-filter">
+        <dropdown (selectionChanged)="updateCategoryList($event)" [dataModel]="categories"></dropdown>
+    </div>
+
+    <div class="autocomplete-filter">
+        <autocomplete (selectionChanged)="updateLocation($event)"></autocomplete>
+    </div>
+
+    <div class="date-picker">
+        <date-picker (selectedFromChanged)="getFromDate($event)" (selectedToChanged)="getToDate($event)"></date-picker>
+    </div>
+
+    <div class="price-filter">
+        <input #minPriceInput type="number" min="0" step="100" placeholder="Min. price" (blur)="updateMinPrice(minPriceInput.value)"
+            (oninput)="updateMinPrice(minPriceInput.value)" (onchange)="updateMinPrice(minPriceInput.value)" (change)="updateMinPrice(minPriceInput.value)"
+            [value]="minPriceValue"
+        />
+        <input #maxPriceInput type="number" min="0" step="100" placeholder="Max. price" (blur)="updateMaxPrice(maxPriceInput.value)"
+            (oninput)="updateMaxPrice(maxPriceInput.value)" (onchange)="updateMaxPrice(maxPriceInput.value)" (change)="updateMaxPrice(maxPriceInput.value)"
+            [value]="maxPriceValue"
+        />
+    </div>
+
+    <button class="get-list-btn" (click)="toggleFilter()"><span>Filter</span>  <i class="fa fa-filter" aria-hidden="true"></i></button>
+</div>
