@@ -10,6 +10,7 @@ morgan.log
 /tsd_typings/
 /compiled/
 /src/assets/img/workshops/
+/dist/browser/assets/img/workshops/
 
 # Node #
 npm-debug.log
