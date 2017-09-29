@@ -9,6 +9,7 @@ morgan.log
 /typings/
 /tsd_typings/
 /compiled/
+/src/assets/img/
 
 # Node #
 npm-debug.log
