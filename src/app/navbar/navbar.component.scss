@@ -33,7 +33,7 @@
 }
 
 .filter-header {
-    display: none;  
+    display: none;
     font-family: 'Comfortaa', cursive;
 }
 
@@ -104,8 +104,11 @@ nav {
         float: none;
         width: 100%;
     }
-    .navbar-nav>li {
-        float: none!important;
+    .navbar-nav {
+        margin: 0;
+        li {
+            float: none!important;
+        }
     }
 }
 

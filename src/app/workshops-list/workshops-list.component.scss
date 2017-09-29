@@ -7,7 +7,7 @@
 }
 
 .ws-pages /deep/ {
-    margin-top: 3rem;
+    margin: 3rem 0;
     ul li {
         display: inline;
         background: #dddddd;
@@ -74,7 +74,7 @@ h1.name {
     position: absolute;
     right: 1rem;
     bottom: 2rem;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 hr {
@@ -90,7 +90,7 @@ hr {
     color: #594B50;
     text-align: left;
     padding-left: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 .location {
@@ -130,7 +130,7 @@ hr {
     color: #73656A;
     padding-top: 10rem;
     font-size: 2rem;
-    font-family: 'Open Sans', sans-serif;   
+    font-family: 'Open Sans', sans-serif;
 }
 
 .disabled {
@@ -144,6 +144,9 @@ a.active-page.page-numbers {
 }
 
 @media (max-width: 955px) {
+    .page-numbers {
+        padding: .5rem;
+    }
     .entity {
         width: auto;
         max-width: 30rem;
