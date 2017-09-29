@@ -24,6 +24,7 @@ export class WorkshopDetailsComponent {
     private slideIndex: number;
     private sub: any;
     tabs: ITabs[];
+    workshopId:string;
 
     workshopRepository : WorkshopRepository;
     private previousActiveTab: ITabs;
@@ -52,11 +53,10 @@ export class WorkshopDetailsComponent {
 
     ngOnInit() {
         this.hideModal = true;
-        let workshopId: string;
         this.sub = this.route.params.subscribe(params => {
-            workshopId = params['id'];
+            this.workshopId = params['id'];
         });
-        this.getWorkshopDetail(workshopId);
+        this.getWorkshopDetail(this.workshopId);
         this.initializeTabs();
     }
 
@@ -109,6 +109,14 @@ export class WorkshopDetailsComponent {
             imgObj.hideImage = true;
             this.imagesLink.push(imgObj);
         });
+    }
+
+    getCoverImageCDNLink() {
+        return this.workshopRepository.globalConstants.resolveImageUrl(`/img/Cover/${this.workshopId}.jpg`);
+    }
+
+    getCoverImageLocalLink() {
+        return this.workshopRepository.globalConstants.resolveLocalImageUrl(`/img/Cover/${this.workshopId}.jpg`);
     }
 
     formatDate(date) {

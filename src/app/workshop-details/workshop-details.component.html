@@ -1,8 +1,8 @@
 <navi-bar [showName]="true"></navi-bar>
 
 <div class="header-img">
-    <object class="detail-img" [data]="this.workshopRepository.globalConstants.resolveImageUrl(workshopDetails.imageLink)" alt="workshop image" type="image/png">
-        <img class="detail-img" [src]="this.workshopRepository.globalConstants.resolveLocalImageUrl(workshopDetails.imageLink)" alt="workshop image"/>
+    <object class="detail-img" [data]="getCoverImageCDNLink()" alt="workshop image" type="image/png">
+        <img class="detail-img" [src]="getCoverImageLocalLink()" alt="workshop image"/>
     </object>
 </div>
 
@@ -32,9 +32,7 @@
             <div id="{{tabs[2].label}}" [hidden]="!tabs[2].showTab" class="tabcontent">
                 <div class="photographer-information" *ngFor="let photographer of workshopDetails.photographers;">
                     <div class="profile-photo">
-                        <object class="profile-img" [data]="this.workshopRepository.globalConstants.resolveLocalImageUrl(photographer.profilePhotoLink)" type="image/png" alt="workshop image">
-                            <img class="profile-img" [src]="this.workshopRepository.globalConstants.resolveImageUrl(photographer.profilePhotoLink)" alt="workshop image"/>
-                        </object>
+                        <img class="profile-img" [src]="this.workshopRepository.globalConstants.resolveImageUrl(photographer.profilePhotoLink)" alt="workshop image"/>
                     </div>
                     <h4>
                         <span>{{photographer.firstName}}</span>
