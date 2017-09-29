@@ -118,6 +118,9 @@
 }
 
 @media (max-width: 955px) {
+    .static-info {
+        font-size: 2rem;
+    }
     .form-wrapper {
         width: 100%;
     }
@@ -132,6 +135,21 @@
         margin: 2rem;
     }
     .contact-us {
-        margin-top: 5rem;
+        margin-top: 8rem;
+        h1 {
+            font-size: 3.3rem;
+        }
+    }
+    .message-dialog {
+        height: 10rem;
+        width: 20rem;
+        top: 60%;
+        left: 20%;
+        .wrapper {
+            top: 0;
+        }
+    }
+    .ok-btn {
+        width: 40%;
     }
 }

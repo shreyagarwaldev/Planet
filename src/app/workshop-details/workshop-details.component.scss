@@ -125,6 +125,8 @@ div.tab {
     right: 0;
     top: 0;
     bottom: 0;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .wsd-name {
@@ -171,7 +173,6 @@ div.tab {
 .image-modal {
     position: fixed;
     z-index: 1;
-    /* padding-top: 5rem; */
     left: 0;
     top: 5rem;
     width: 100%;
@@ -286,8 +287,6 @@ div.tab {
     clear: both;
 }
 
-@media (min-width: 955px) and (max-width: 1140px) {}
-
 @media (max-width: 955px) {
     #Gallery {
         padding-left: 0;
@@ -303,15 +302,17 @@ div.tab {
     }
     div.tab {
         text-align: center;
+        margin-top: 2rem;
         button {
             width: 50%;
             display: block;
             margin: auto;
         }
     }
-    .tabContent {
+    .tabcontent {
         text-align: center;
         border-right: none;
+        padding: 0;
         p {
             text-align: justify;
             padding: 2rem;
@@ -323,12 +324,12 @@ div.tab {
         width: 100%;
         margin-left: 0;
         float: none;
-        margin-bottom: none;
+        margin-bottom: 2rem;
     }
     .highlights {
         margin-top: 0.2rem;
         width: 100%;
         text-align: center;
-        margin-left: 0; //position: inherit;
+        margin-left: 0;
     }
 }
