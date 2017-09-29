@@ -1,5 +1,5 @@
 <div class="dropdown-container">
-    <input id="country" type="text" class="filter-input" (keyup)=filter() placeholder="Type a location">
+    <input id="country" type="text" class="filter-input" [(ngModel)]=query (keyup)=filter() placeholder="Type a location">
     <div class="suggestions" *ngIf="filteredList.length > 0">
         <ul>
             <li *ngFor="let item of filteredList" (click)="select(item)">{{item}}</li>
