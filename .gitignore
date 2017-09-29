@@ -11,6 +11,7 @@ morgan.log
 /compiled/
 /src/assets/img/workshops/
 /dist/browser/assets/img/workshops/
+/dist/server/assets/img/workshops/
 
 # Node #
 npm-debug.log
