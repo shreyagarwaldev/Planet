@@ -31,9 +31,12 @@
 .static-info {
     font-size: 2.3rem;
     width: 100%;
-    color: #26181D;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    a {
+        color:#26181D;
+        text-decoration: none;
+    }
 }
 
 .form-wrapper {
