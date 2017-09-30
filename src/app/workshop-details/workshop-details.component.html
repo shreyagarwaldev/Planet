@@ -32,7 +32,8 @@
             <div id="{{tabs[2].label}}" [hidden]="!tabs[2].showTab" class="tabcontent">
                 <div class="photographer-information" *ngFor="let photographer of workshopDetails.photographers;">
                     <div class="profile-photo">
-                        <img class="profile-img" [src]="this.workshopRepository.globalConstants.resolveImageUrl(photographer.profilePhotoLink)" alt="workshop image"/>
+                        <img class="profile-img" [src]="this.workshopRepository.globalConstants.resolveImageUrl(photographer.profilePhotoLink)" alt="workshop image"
+                        />
                     </div>
                     <h4>
                         <span>{{photographer.firstName}}</span>
@@ -63,11 +64,13 @@
             </div>
             <div class="wsd-dates">
                 <h2 class="highlight-headings">Workshop Link(s)</h2>
-                <div class="dates-information" *ngFor="let detail of workshopDetails.multiWorkshopDetails;">
-                    <a href="{{detail.link}}" target="_blank">
+                <div class="dates-wrapper">
+                    <div class="dates-information" *ngFor="let detail of workshopDetails.multiWorkshopDetails;">
+                        <a href="{{detail.link}}" target="_blank">
                         <i class="fa fa-calendar"></i>
                         <span>{{this.formatDate(detail.startDate)}} - {{this.formatDate(detail.endDate)}}</span>
                     </a>
+                    </div>
                 </div>
             </div>
         </div>

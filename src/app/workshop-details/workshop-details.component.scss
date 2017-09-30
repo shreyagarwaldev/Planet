@@ -118,6 +118,10 @@ div.tab {
     }
 }
 
+.dates-wrapper {
+    display: inline-block;
+}
+
 .modal-image {
     position: absolute;
     margin: auto;
@@ -147,15 +151,11 @@ div.tab {
     display: inline-block;
     margin-top: 10.5rem;
     margin-left: 5rem;
-    a {
-        color: #73656A;
-    }
+
     div {
         font-size: 2rem;
         font-weight: 300;
-        color: #73656A;
         i {
-            color: #73656A;
             font-size: 1.6rem;
             margin-right: .5rem;
         }
@@ -298,7 +298,6 @@ div.tab {
     }
     .dates-information {
         text-align: left;
-        padding-left: 5rem;
     }
     div.tab {
         text-align: center;
@@ -313,6 +312,7 @@ div.tab {
         text-align: center;
         border-right: none;
         padding: 0;
+        height: auto;
         p {
             text-align: justify;
             padding: 2rem;
