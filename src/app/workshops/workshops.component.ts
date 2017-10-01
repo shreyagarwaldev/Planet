@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, Event, NavigationStart, NavigationEnd } from '@
 import { WorkshopsListComponent } from '../workshops-list/workshops-list.component'
 import { WorkshopFilterComponent } from '../workshop-filter/workshop-filter.component'
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
+import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 @Component({
     templateUrl: './workshops.component.html',
@@ -26,16 +27,22 @@ export class WorkshopsComponent {
 	@ViewChild(WorkshopsListComponent) workshopsListChildComp:WorkshopsListComponent;
 	@ViewChild(WorkshopFilterComponent) workshopsFilterChildComp:WorkshopFilterComponent;
 
-	constructor(private globalConstantsRepository:GlobalConstantsRepository, private route:ActivatedRoute, private router:Router)
+	constructor(
+        private globalConstantsRepository:GlobalConstantsRepository,
+        private route:ActivatedRoute,
+        private router:Router,
+        public gaService:GoogleAnalyticsService)
 	{
-		this.globalConstants = globalConstantsRepository;
+        this.globalConstants = globalConstantsRepository;
         this.hideFilter = true;
+
+        this.gaService.trackPageView('Workshops');
         
         router.events.subscribe(event => {
             if(event instanceof NavigationEnd)
                 {
-            this.setParameters();
-            this.updateUrl();
+                    this.setParameters();
+                    this.updateUrl();
                 }
         });
     }

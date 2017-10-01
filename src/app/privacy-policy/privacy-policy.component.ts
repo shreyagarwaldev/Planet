@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 @Component({
     templateUrl: './privacy-policy.component.html',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class PrivacyComponent {
-    constructor() {
+    constructor(gaService : GoogleAnalyticsService) {
+        gaService.trackPageView('PrivacyPolicy');
     }
 }

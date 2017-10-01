@@ -12,6 +12,9 @@ morgan.log
 /src/assets/img/workshops/
 /dist/browser/assets/img/workshops/
 /dist/server/assets/img/workshops/
+/src/assets/img/Tiles/
+/dist/server/assets/img/Tiles
+/dist/browser/assets/img/Tiles
 
 # Node #
 npm-debug.log

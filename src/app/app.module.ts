@@ -25,6 +25,7 @@ import { WorkshopDetailsComponent } from './workshop-details/workshop-details.co
 
 import { GlobalConstantsRepository } from './services/shared/globalConstantsRepository'
 import { WorkshopRepository } from './services/workshops/workshopRepository'
+import { GoogleAnalyticsService } from './services/analytics/googleAnalyticsService'
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { WorkshopRepository } from './services/workshops/workshopRepository'
     FormsModule,
     MyDatePickerModule
   ],
-  providers: [WorkshopRepository, GlobalConstantsRepository],
+  providers: [WorkshopRepository, GlobalConstantsRepository, GoogleAnalyticsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

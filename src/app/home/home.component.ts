@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { WorkshopsListComponent } from '../workshops-list/workshops-list.component'
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
+import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 @Component({
   selector: 'app-home',
@@ -13,8 +14,9 @@ export class HomeComponent implements OnInit {
 
   private globalConstants : GlobalConstantsRepository;
 
-  constructor(private globalConstantsRepository:GlobalConstantsRepository) {
+  constructor(private globalConstantsRepository:GlobalConstantsRepository, public gaService : GoogleAnalyticsService) {
     this.globalConstants = globalConstantsRepository;
+    this.gaService.trackPageView('Home');
   }
 
   ngOnInit() {
@@ -25,4 +27,7 @@ export class HomeComponent implements OnInit {
 		this.workshopsListChildComp.getWorkshopsData(query, 1, 4);
   }
 
+  onViewAllClick() {
+      this.gaService.trackEvent('ViewAll', 'Click');
+  }
 }
