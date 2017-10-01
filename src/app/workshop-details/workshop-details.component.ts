@@ -72,14 +72,12 @@ export class WorkshopDetailsComponent {
 
     createExternalLink(url: string)
     {
-        console.log(url);
         let encodedUri = encodeURI(url);
-        console.log(encodedUri);
         encodedUri = encodedUri.replace(new RegExp('/', 'g'), '%2F').replace(new RegExp(':', 'g'),'%3A')
                     .replace(new RegExp('[?]', 'g'),'%3F').replace(new RegExp(';','g'),'%3B').replace(new RegExp(',', 'g'),'%2C')
                     .replace(new RegExp('@','g'),'%40').replace(new RegExp('&', 'g'),'%26').replace(new RegExp('=', 'g'),'%3D')
                     .replace(new RegExp('[+]','g'),'%2B');
-        console.log(encodedUri);
+                    
         return `/page-redirect/${encodedUri}`;
     }
 
