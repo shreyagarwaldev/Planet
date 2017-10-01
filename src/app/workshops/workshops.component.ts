@@ -33,7 +33,7 @@ export class WorkshopsComponent {
         private router:Router,
         public gaService:GoogleAnalyticsService)
 	{
-		this.globalConstants = globalConstantsRepository;
+        this.globalConstants = globalConstantsRepository;
         this.hideFilter = true;
 
         this.gaService.trackPageView('Workshops');

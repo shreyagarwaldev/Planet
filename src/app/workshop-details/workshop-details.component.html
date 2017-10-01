@@ -43,7 +43,7 @@
                         <span>{{photographer.locationName}}</span>
                     </div>
                     <div class="website-link">
-                        <a href="{{photographer?.websiteLink}}" target="_blank"><i class="fa fa-external-link"></i> Website</a>
+                        <a href="{{photographer?.websiteLink}}" target="_blank" (click)="onPhotographerWebsiteClick(photographer.id)"><i class="fa fa-external-link"></i> Website</a>
                     </div>
                     <p [innerHTML]="photographer.moreInfo"></p>
                 </div>

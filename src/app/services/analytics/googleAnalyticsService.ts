@@ -19,8 +19,8 @@ export class GoogleAnalyticsService {
     public trackEvent(eventCategory: string, eventAction: string, eventLabel?: string, eventValue?: string)
     {
         var url = `${this.gaUrl}v=1&tid=${this.trackingId}&cid=555&t=event&ec=${eventCategory}&ea=${eventAction}`;
-        url += eventLabel && eventLabel != "" ? `&el=${eventLabel}` : '';
-        url += eventValue && eventValue != "" ? `&ev=${eventValue}` : '';
+        url += eventLabel && eventLabel !== "" ? `&el=${eventLabel}` : '';
+        url += eventValue && eventValue !== "" ? `&ev=${eventValue}` : '';
         this.http.post(url, '').toPromise().then();
     }
 }
