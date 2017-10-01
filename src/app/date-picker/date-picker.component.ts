@@ -41,7 +41,7 @@ export class DatePickerComponent {
       markCurrentDay: true,
       yearSelector: true,
       monthSelector: true,
-      disableUntil: this.previousDate
+      disableUntil: this.previousDate,
     };
 
     this.toDatePickerOptions = {
