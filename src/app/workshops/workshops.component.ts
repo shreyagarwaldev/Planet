@@ -4,6 +4,8 @@ import { WorkshopsListComponent } from '../workshops-list/workshops-list.compone
 import { WorkshopFilterComponent } from '../workshop-filter/workshop-filter.component'
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
 
+declare var gtag : any;
+
 @Component({
     templateUrl: './workshops.component.html',
     styleUrls: ['./workshops.component.scss']
@@ -88,6 +90,18 @@ export class WorkshopsComponent {
         this.query += this.maxPrice && this.maxPrice > 0 ? `&maxPrice=${this.maxPrice.toString()}` : ``;
         
 		if(this.query && this.pageNumber) {
+            // log gtag event
+            gtag('event', 'filter', {
+                'pageNumber' : `${this.pageNumber}`,
+                'startDate' : `${this.startDate}`,
+                'endDate' : `${this.endDate}`,
+                'location' : `${this.locationIdList}`,
+                'categoryList' : `${this.categoryList}`,
+                'minPrice' : `${this.minPrice}`,
+                'maxPrice' : `${this.maxPrice}`
+            });
+
+            // update list component
 			this.workshopsListChildComp.getWorkshopsData(this.query, this.pageNumber, this.workshopsPerPage);
 		}
     }

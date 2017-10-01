@@ -12,6 +12,8 @@ interface ITabs {
     showTab: boolean;
 }
 
+declare var gtag : any;
+
 @Component({
     templateUrl: './workshop-details.component.html',
     styleUrls: ['./workshop-details.component.scss']
@@ -66,6 +68,12 @@ export class WorkshopDetailsComponent {
     }
 
     getWorkshopDetail(workshopId: string) {
+        // log event
+        gtag('event', 'WorkshopDetailsRequested', {
+            'Id' : `${workshopId}`
+        });
+
+        // get details
         this.workshopRepository.getWorkshopDetails(workshopId)
             .then(data => {
                 this.workshopDetails = data;

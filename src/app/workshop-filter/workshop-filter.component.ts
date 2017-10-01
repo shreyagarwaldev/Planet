@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer, Output, EventEmitter, ViewChild } from '@angular/core';
 import { WorkshopRepository, ILocation, IPhotographer } from '../services/workshops/workshopRepository'
-// import { Angulartics2 } from 'angulartics2';
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component'
 import { DatePickerComponent } from '../date-picker/date-picker.component'
@@ -22,7 +21,6 @@ export class WorkshopFilterComponent {
   @Output() maxPriceFilterChanged = new EventEmitter();
   @Output() applyFilters = new EventEmitter();
   
-//   private angulartics2: Angulartics2;
 
   public cities: any[];
   public categories: any[];
@@ -138,14 +136,14 @@ export class WorkshopFilterComponent {
   }
 
   getFromDate(value: Date) {
+
+
     this.fromDate = value;
-	// this.angulartics2.eventTrack.next({ action: 'FromDateFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
     this.fromDateChanged.emit(this.fromDate);
   }
 
   getToDate(value: Date) {
     this.toDate = value;
-	// this.angulartics2.eventTrack.next({ action: 'ToDateFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
 	this.toDateChanged.emit(this.toDate);
   }
 
@@ -155,14 +153,12 @@ export class WorkshopFilterComponent {
   
   updateMinPrice(value:number)
   {
-    // this.angulartics2.eventTrack.next({ action: 'MinPriceFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
     this.minPriceFilterChanged.emit(value);
   }
   
   
   updateMaxPrice(value:number)
   {
-    // this.angulartics2.eventTrack.next({ action: 'MaxPriceFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
     this.maxPriceFilterChanged.emit(value);
   }
 
@@ -179,7 +175,6 @@ export class WorkshopFilterComponent {
   
   updateLocation(value: any)
   {
-    // this.angulartics2.eventTrack.next({ action: 'LocationFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
     let locationFound = false;
     this.workshopRepository.getLocations().then(loc => {
         loc.forEach(location => 
@@ -200,7 +195,6 @@ export class WorkshopFilterComponent {
   
   updateCategoryList(value: string)
   {
-    // this.angulartics2.eventTrack.next({ action: 'CategoryFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
     this.categoryFilterChanged.emit(value);
   }
 }
