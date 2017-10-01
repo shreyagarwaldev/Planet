@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService';
 
 @Component({
     selector: 'navi-bar',
@@ -12,7 +13,7 @@ export class NavComponent {
     @Input() showFilters: boolean;
     @Input() showName: boolean;
 
-    constructor() {
+    constructor(public gaService: GoogleAnalyticsService) {
         this.hideFilter = true;
         this.hideNavbar = true;
     }
@@ -30,5 +31,9 @@ export class NavComponent {
             this.hideFilter = true;
             this.filtersDropdownToggle.emit(this.hideFilter);
         }
+    }
+
+    onNavButtonClick(buttonName: string) {
+        this.gaService.trackEvent(buttonName, 'Click');
     }
 }

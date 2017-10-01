@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ChangeDetectionStrategy, Renderer } from '@angular/core';
 import { WorkshopRepository, IWorkshopDetails } from '../services/workshops/workshopRepository'
 import { ActivatedRoute } from '@angular/router';
+import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 export interface IImageObject {
     imageLink: string;
@@ -37,10 +38,14 @@ export class WorkshopDetailsComponent {
         workshopRepo: WorkshopRepository,
         private elementRef: ElementRef,
         private route: ActivatedRoute,
-        private renderer: Renderer) {
+        private renderer: Renderer,
+        public gaService: GoogleAnalyticsService) {
         this.workshopRepository = workshopRepo;
         this.workshopDetails = <any>{};
         this.hideModal = true;
+
+        this.gaService.trackPageView('WorkshopDetails');
+        
         this.slideIndex = 1;
         this.arrowKeyfunction = renderer.listenGlobal('document', 'keyup', (event) => {
             if(event.keyCode === 39) {
@@ -63,6 +68,10 @@ export class WorkshopDetailsComponent {
     ngOnDestroy() {
         this.sub.unsubscribe();
         this.arrowKeyfunction();
+    }
+
+    clickExternalLink(url: string) {
+        this.gaService.trackEvent('ExternalWorkshopLink', 'Click', '', this.workshopId);
     }
 
     getWorkshopDetail(workshopId: string) {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository';
+import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 interface ContactFormData
 {
@@ -48,7 +49,13 @@ export class ContactUsComponent {
   hideMessagebox() {
     this.showMessageBox = false;
   }
-  constructor(private http:Http, private globalConstants: GlobalConstantsRepository) {
+  
+  constructor(
+    private http:Http,
+    private globalConstants: GlobalConstantsRepository,
+    private gaService: GoogleAnalyticsService) {
+    
+    gaService.trackPageView('ContactPage');
     this.submitMessage = "Message submitted successfully";
   }
 }

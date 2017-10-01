@@ -1,7 +1,7 @@
 <div [class.list-in-ws-page]="!!activePage" class="workshop-list">
     <div *ngIf="asyncData?.length > 0">
         <article class="entity" *ngFor="let data of asyncData">
-            <a [href]="createWorkshopDetailsUrl(data.workshopId, data.name)">
+            <a [href]="createWorkshopDetailsUrl(data.workshopId, data.name)" (click)="onSelectWorkshop(data.workshopId)">
                 <div class="inner">
                     <object class="image" [data]="this.workshopRepository.globalConstants.resolveImageUrl(data.imageLink)" type="image/png">
                         <img class="image" [src]="this.workshopRepository.globalConstants.resolveLocalImageUrl(data.imageLink)" alt="workshop image" />

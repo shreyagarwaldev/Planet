@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { WorkshopRepository, IWorkshopOverview } from '../services/workshops/workshopRepository'
 import { Router, ActivatedRoute } from '@angular/router';
-// import { Angulartics2 } from 'angulartics2';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 @Component({
     selector: 'workshops-list',
@@ -26,15 +26,13 @@ export class WorkshopsListComponent {
     loading: boolean;
     workshops: IWorkshopOverview[];
 
-    // private angulartics2: any;
     private cdRef: any;
 
     constructor(
-        // angulartics2: Angulartics2,
         private workshopRepository: WorkshopRepository,
         private router: Router, cdRef: ChangeDetectorRef,
-        private route:ActivatedRoute) {
-        // this.angulartics2 = angulartics2;
+        private route:ActivatedRoute,
+        public gaService: GoogleAnalyticsService) {
         this.workshops = [];
         this.cdRef = cdRef;
     }
@@ -58,7 +56,6 @@ export class WorkshopsListComponent {
     }
 
     getWorkshopsData(path: string, page: number, wsPerPage: number) {
-        // this.angulartics2.eventTrack.next({ action: 'GetWorkshopsEvent', properties: { category: 'WorkshopsListComponent' } });
         this.loading = true;
         this.queryPath = path;
         this.itemsPerPage = wsPerPage;
@@ -103,5 +100,9 @@ export class WorkshopsListComponent {
         endDate = !endDate ? this.workshopRepository.globalConstants.getDefaultEndDate() : endDate;
 
         return this.workshopRepository.globalConstants.createWorkshopsUrl(page, startDate, endDate, minPrice, maxPrice, locations, categories);
+    }
+
+    onSelectWorkshop(workshopId: number) {
+        this.gaService.trackEvent('WorkshopInstance','Click','',`${workshopId}`);
     }
 }

@@ -65,7 +65,7 @@
                 <h2 class="highlight-headings">Workshop Link(s)</h2>
                 <div class="dates-wrapper">
                     <div class="dates-information" *ngFor="let detail of workshopDetails.multiWorkshopDetails;">
-                        <a href="{{detail.link}}" target="_blank">
+                        <a href="{{detail.link}}" (click)="clickExternalLink(detail.link)" target="_blank">
                             <i class="fa fa-calendar"></i>
                             <span>{{this.formatDate(detail.startDate)}} - {{this.formatDate(detail.endDate)}}</span>
                         </a>
