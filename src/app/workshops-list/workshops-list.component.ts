@@ -105,4 +105,12 @@ export class WorkshopsListComponent {
     onSelectWorkshop(workshopId: number) {
         this.gaService.trackEvent('WorkshopInstance','Click','',`${workshopId}`);
     }
+    
+    getCardImageCDNLink(workshopId: number) {
+        return this.workshopRepository.globalConstants.resolveImageUrl(`/img/Tiles/${workshopId}.jpg`);
+    }
+
+    getCardImageLocalLink(workshopId: number) {
+        return this.workshopRepository.globalConstants.resolveLocalImageUrl(`/img/Tiles/${workshopId}.jpg`);
+    }
 }

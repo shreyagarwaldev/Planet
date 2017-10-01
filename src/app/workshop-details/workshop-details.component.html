@@ -43,7 +43,7 @@
                         <span>{{photographer.locationName}}</span>
                     </div>
                     <div class="website-link">
-                        <a href="{{photographer?.websiteLink}}" target="_blank" (click)="onPhotographerWebsiteClick(photographer.id)"><i class="fa fa-external-link"></i> Website</a>
+                        <a [href]="createExternalLink(photographer?.websiteLink)" (click)="onPhotographerWebsiteClick(photographer.id)"><i class="fa fa-external-link"></i> Website</a>
                     </div>
                     <p [innerHTML]="photographer.moreInfo"></p>
                 </div>
@@ -65,7 +65,7 @@
                 <h2 class="highlight-headings">Workshop Link(s)</h2>
                 <div class="dates-wrapper">
                     <div class="dates-information" *ngFor="let detail of workshopDetails.multiWorkshopDetails;">
-                        <a href="{{detail.link}}" (click)="clickExternalLink(detail.link)" target="_blank">
+                        <a [href]="createExternalLink(detail.link)" (click)="clickExternalLink(detail.link)">
                             <i class="fa fa-calendar"></i>
                             <span>{{this.formatDate(detail.startDate)}} - {{this.formatDate(detail.endDate)}}</span>
                         </a>
