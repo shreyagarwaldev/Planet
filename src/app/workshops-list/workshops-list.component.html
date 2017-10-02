@@ -3,9 +3,8 @@
         <article class="entity" *ngFor="let data of asyncData">
             <a [href]="createWorkshopDetailsUrl(data.workshopId, data.name)" (click)="onSelectWorkshop(data.workshopId)">
                 <div class="inner">
-                    <object class="image" [data]="getCardImageCDNLink(data.workshopId)" type="image/png">
-                        <img class="image" [src]="getCardImageLocalLink(data.workshopId)" alt="workshop image" />
-                    </object>
+                    <img class="image1" [ngClass]="{'hideImage': imagesLoaded}" [src]="getCardImageDefaultLink(data.workshopId)" alt="workshop image"/>
+                    <img class="image" [ngClass]="{'hideImage': !imagesLoaded}" (load)="imageLoaded(data.workshopId)" [src]="getCardImageCDNLink(data.workshopId)" alt="workshop image"/>
                     <h1 class="name truncate" title="{{ data.name }}">
                         {{ data.name }}
                     </h1>

@@ -18,6 +18,8 @@ export class WorkshopsListComponent {
 
     queryPath: string;
     itemsPerPage: number;
+    imagesLoaded: boolean;
+    loadedImageSet: Set<string>;
 
     asyncData: IWorkshopOverview[];
     page: number = 1;
@@ -33,6 +35,9 @@ export class WorkshopsListComponent {
         private router: Router, cdRef: ChangeDetectorRef,
         private route:ActivatedRoute,
         public gaService: GoogleAnalyticsService) {
+
+        this.loadedImageSet = new Set<string>();
+        this.imagesLoaded = false;
         this.workshops = [];
         this.cdRef = cdRef;
     }
@@ -102,6 +107,14 @@ export class WorkshopsListComponent {
         return this.workshopRepository.globalConstants.createWorkshopsUrl(page, startDate, endDate, minPrice, maxPrice, locations, categories);
     }
 
+    imageLoaded(id: string) {
+        this.loadedImageSet.add(id);
+        if(this.loadedImageSet.size == this.itemsPerPage)
+        {
+            this.imagesLoaded = true;
+        }
+    }
+
     onSelectWorkshop(workshopId: number) {
         this.gaService.trackEvent('WorkshopInstance','Click','',`${workshopId}`);
     }
@@ -112,5 +125,9 @@ export class WorkshopsListComponent {
 
     getCardImageLocalLink(workshopId: number) {
         return this.workshopRepository.globalConstants.resolveLocalImageUrl(`/img/Tiles/${workshopId}.jpg`);
+    }
+
+    getCardImageDefaultLink(workshopId: number) {
+        return `/assets/img/default/${workshopId}.jpg`;
     }
 }

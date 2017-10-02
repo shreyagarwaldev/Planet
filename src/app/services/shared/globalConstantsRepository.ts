@@ -74,12 +74,12 @@ export class GlobalConstantsRepository
 
     public resolveImageUrl(path:string)
     {
-        return this.sanitizeUrl(this.cdnBaseUrl + path);
+        return this.cdnBaseUrl + path;
     }
 
     public resolveLocalImageUrl(path:string)
     {
-        return this.sanitizeUrl("/assets" + path);
+        return ("/assets" + path);
     }
 
     public getLocations()
