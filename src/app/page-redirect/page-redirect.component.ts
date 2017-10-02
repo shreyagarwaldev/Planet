@@ -26,8 +26,15 @@ export class PageRedirectComponent {
         this.ngZone.runOutsideAngular(() => {
             this.timer = Observable.interval(5000).subscribe({
                 next(result) {
+                    try
+                    {
                     // navigate to the URL (Assumes the url is http:// or https://
                     window.location.href=url;
+                    }
+                    catch(e)
+                    {
+                        // we know there will be an error here
+                    }
                 }
             });
         });
