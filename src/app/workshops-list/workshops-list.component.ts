@@ -20,6 +20,7 @@ export class WorkshopsListComponent {
     itemsPerPage: number;
     imagesLoaded: boolean;
     loadedImageSet: Set<string>;
+    workshopCount: number;
 
     asyncData: IWorkshopOverview[];
     page: number = 1;
@@ -66,6 +67,7 @@ export class WorkshopsListComponent {
         this.itemsPerPage = wsPerPage;
         this.workshopRepository.getWorkshopOverview(path, page, wsPerPage)
             .then(res => {
+                this.workshopCount = res.workshops.length;
                 this.pageNumbers = Array(Math.ceil(res.total / wsPerPage)).fill(0).map((x, i) => i + 1);
                 this.page = page;
                 this.loading = false;
@@ -109,7 +111,7 @@ export class WorkshopsListComponent {
 
     imageLoaded(id: string) {
         this.loadedImageSet.add(id);
-        if(this.loadedImageSet.size == this.itemsPerPage)
+        if(this.loadedImageSet.size == this.workshopCount)
         {
             this.imagesLoaded = true;
         }
