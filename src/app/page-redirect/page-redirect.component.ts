@@ -28,8 +28,8 @@ export class PageRedirectComponent {
                 next(result) {
                     try
                     {
-                    // navigate to the URL (Assumes the url is http:// or https://
-                    window.location.href=url;
+                        // navigate to the URL (Assumes the url is http:// or https://
+                        window.location.href=url;
                     }
                     catch(e)
                     {
