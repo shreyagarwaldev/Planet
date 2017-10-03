@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http'
 import { FormsModule } from '@angular/forms'
@@ -26,6 +26,7 @@ import { WorkshopDetailsComponent } from './workshop-details/workshop-details.co
 import { GlobalConstantsRepository } from './services/shared/globalConstantsRepository'
 import { WorkshopRepository } from './services/workshops/workshopRepository'
 import { GoogleAnalyticsService } from './services/analytics/googleAnalyticsService'
+import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
 
 @NgModule({
   declarations: [
@@ -66,7 +67,15 @@ import { GoogleAnalyticsService } from './services/analytics/googleAnalyticsServ
     FormsModule,
     MyDatePickerModule
   ],
-  providers: [WorkshopRepository, GlobalConstantsRepository, GoogleAnalyticsService],
+  providers: [
+      WorkshopRepository,
+      GlobalConstantsRepository,
+      GoogleAnalyticsService,
+      {
+        provide: ErrorHandler, 
+        useClass: GlobalErrorHandler
+      }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
