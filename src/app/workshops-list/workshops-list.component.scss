@@ -155,9 +155,27 @@ a.active-page.page-numbers {
             margin-bottom: 1rem;
             width: 100%;
         }
+
+        .image1 {
+            filter: blur(1px);
+            -webkit-filter: blur(1px);
+            transition: all .5s ease-in-out;
+            -webkit-transition: all .5s ease-in-out;
+             -moz-transition: all .5s ease-in-out;
+             -o-transition: all .5s ease-in-out;
+            transform: translateX(0);
+             -webkit-transform: translateX(0);
+            height: 20rem;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
     }
     h1.name {
         font-size: 1.8rem;
         margin: auto;
     }
+}
+
+.hideImage {
+    display: none;
 }

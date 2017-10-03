@@ -18,6 +18,9 @@ export class WorkshopsListComponent {
 
     queryPath: string;
     itemsPerPage: number;
+    imagesLoaded: boolean;
+    loadedImageSet: Set<string>;
+    workshopCount: number;
 
     asyncData: IWorkshopOverview[];
     page: number = 1;
@@ -33,6 +36,9 @@ export class WorkshopsListComponent {
         private router: Router, cdRef: ChangeDetectorRef,
         private route:ActivatedRoute,
         public gaService: GoogleAnalyticsService) {
+
+        this.loadedImageSet = new Set<string>();
+        this.imagesLoaded = false;
         this.workshops = [];
         this.cdRef = cdRef;
     }
@@ -61,16 +67,24 @@ export class WorkshopsListComponent {
         this.itemsPerPage = wsPerPage;
         this.workshopRepository.getWorkshopOverview(path, page, wsPerPage)
             .then(res => {
+                this.workshopCount = res.workshops.length;
                 this.pageNumbers = Array(Math.ceil(res.total / wsPerPage)).fill(0).map((x, i) => i + 1);
                 this.page = page;
                 this.loading = false;
                 this.asyncData = res.workshops;
+                this.asyncData.forEach(w => {
+                    w.workshopDetailsUrl = this.createWorkshopDetailsUrl(w.workshopId, w.name);
+                    w.cardImageDefaultLink = this.getCardImageDefaultLink(w.workshopId);
+                    w.cardImageCDNLink = this.getCardImageCDNLink(w.workshopId);
+                    w.startDateFirstStr = this.formatDate(w.startDateFirst);
+                    w.endDateFirstStr = this.formatDate(w.endDateFirst);
+                });
             });
 
         this.cdRef.detectChanges();
     }
 
-    createWorkshopDetailsUrl(workshopId: string, workshopName: string): string {
+    createWorkshopDetailsUrl(workshopId: number, workshopName: string): string {
         workshopName = workshopName.replace(/[ ()&/\#]/g, "-");
         return `/photography-workshop-details/${workshopName}/${workshopId}`;
     }
@@ -102,7 +116,27 @@ export class WorkshopsListComponent {
         return this.workshopRepository.globalConstants.createWorkshopsUrl(page, startDate, endDate, minPrice, maxPrice, locations, categories);
     }
 
+    imageLoaded(id: string) {
+        this.loadedImageSet.add(id);
+        if(this.loadedImageSet.size == this.workshopCount)
+        {
+            this.imagesLoaded = true;
+        }
+    }
+
     onSelectWorkshop(workshopId: number) {
         this.gaService.trackEvent('WorkshopInstance','Click','',`${workshopId}`);
+    }
+    
+    getCardImageCDNLink(workshopId: number) {
+        return this.workshopRepository.globalConstants.resolveImageUrl(`/img/Tiles/${workshopId}.jpg`);
+    }
+
+    getCardImageLocalLink(workshopId: number) {
+        return this.workshopRepository.globalConstants.resolveLocalImageUrl(`/img/Tiles/${workshopId}.jpg`);
+    }
+
+    getCardImageDefaultLink(workshopId: number) {
+        return `/assets/img/default/${workshopId}.jpg`;
     }
 }

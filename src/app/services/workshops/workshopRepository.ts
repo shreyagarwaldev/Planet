@@ -25,7 +25,14 @@ export interface IWorkshopOverview {
     name: string,
     imageLink: string,
     locationId: number,
-    locationName: string
+    locationName: string,
+
+    // following properties are set by the frontend
+    workshopDetailsUrl: string,
+    cardImageDefaultLink: string,
+    cardImageCDNLink: string,
+    startDateFirstStr: string,
+    endDateFirstStr:string
 }
 
 export interface IWorkshopDto {
@@ -42,6 +49,10 @@ export interface IPhotographer {
     locationId?: number;
     locationName: string;
     moreInfo: string;
+
+    // following properties are set by the frontend
+    profilePhotoCDNLink: string;
+    externalWebsiteLink: string;
 }
 
 export interface IMultiWorkshopDetails {
@@ -49,6 +60,11 @@ export interface IMultiWorkshopDetails {
     endDate: Date;
     cost?: number;
     link: string;
+
+    // following properties are set by the frontend
+    externalLink: string;
+    startDateStr: string;
+    endDateStr: string;
 }
 
 export interface IWorkshopDetails {

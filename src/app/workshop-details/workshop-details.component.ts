@@ -32,6 +32,8 @@ export class WorkshopDetailsComponent {
     private tabcontent: HTMLCollectionOf<HTMLElement>;
     private tabLinks: HTMLCollectionOf<HTMLElement>;
 
+    public coverImageCDNLink : string;
+
     arrowKeyfunction: Function;
 
     constructor(
@@ -70,6 +72,17 @@ export class WorkshopDetailsComponent {
         this.arrowKeyfunction();
     }
 
+    createExternalLink(url: string)
+    {
+        let encodedUri = encodeURI(url);
+        encodedUri = encodedUri.replace(new RegExp('/', 'g'), '%2F').replace(new RegExp(':', 'g'),'%3A')
+                    .replace(new RegExp('[?]', 'g'),'%3F').replace(new RegExp(';','g'),'%3B').replace(new RegExp(',', 'g'),'%2C')
+                    .replace(new RegExp('@','g'),'%40').replace(new RegExp('&', 'g'),'%26').replace(new RegExp('=', 'g'),'%3D')
+                    .replace(new RegExp('[+]','g'),'%2B');
+                    
+        return `/page-redirect/${encodedUri}`;
+    }
+
     clickExternalLink(url: string) {
         this.gaService.trackEvent('ExternalWorkshopLink', 'Click', '', `${this.workshopId}`);
     }
@@ -83,6 +96,17 @@ export class WorkshopDetailsComponent {
             .then(data => {
                 this.workshopDetails = data;
                 this.getImgData();
+                this.coverImageCDNLink = this.getCoverImageCDNLink();
+                this.workshopDetails.photographers.forEach( p => {
+                    p.profilePhotoCDNLink = this.workshopRepository.globalConstants.resolveImageUrl(p.profilePhotoLink);
+                    p.externalWebsiteLink = this.createExternalLink(p.websiteLink);
+                });
+
+                this.workshopDetails.multiWorkshopDetails.forEach( d => {
+                   d.externalLink = this.createExternalLink(d.link);
+                   d.startDateStr = this.formatDate(d.startDate);
+                   d.endDateStr = this.formatDate(d.endDate);
+                });
             });
     }
 

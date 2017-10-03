@@ -1,11 +1,10 @@
 <div [class.list-in-ws-page]="!!activePage" class="workshop-list">
     <div *ngIf="asyncData?.length > 0">
         <article class="entity" *ngFor="let data of asyncData">
-            <a [href]="createWorkshopDetailsUrl(data.workshopId, data.name)" (click)="onSelectWorkshop(data.workshopId)">
+            <a href="{{data.workshopDetailsUrl}}" (click)="onSelectWorkshop(data.workshopId)">
                 <div class="inner">
-                    <object class="image" [data]="this.workshopRepository.globalConstants.resolveImageUrl(data.imageLink)" type="image/png">
-                        <img class="image" [src]="this.workshopRepository.globalConstants.resolveLocalImageUrl(data.imageLink)" alt="workshop image" />
-                    </object>
+                    <img class="image1" [ngClass]="{'hideImage': imagesLoaded}" src="{{data.cardImageDefaultLink}}" alt="{{data.name}}"/>
+                    <img class="image" [ngClass]="{'hideImage': !imagesLoaded}" (load)="imageLoaded(data.workshopId)" src="{{data.cardImageCDNLink}}" alt="{{data.name}}"/>
                     <h1 class="name truncate" title="{{ data.name }}">
                         {{ data.name }}
                     </h1>
@@ -15,9 +14,9 @@
                         <span>{{data.locationName}}</span>
                     </div>
                     <div class="date">
-                        <span>{{this.formatDate(data.startDateFirst)}}</span>
+                        <span>{{data.startDateFirstStr}}</span>
                         <span *ngIf="data.startDateFirst != data.endDateFirst">-</span>
-                        <span *ngIf="data.startDateFirst != data.endDateFirst"> {{this.formatDate(data.endDateFirst)}} </span>
+                        <span *ngIf="data.startDateFirst != data.endDateFirst"> {{data.endDateFirstStr}} </span>
                     </div>
                     <div class="price" *ngIf="data.minCost == data.maxCost">{{data.costCurrency}} {{data.minCost}}</div>
                     <div class="price" *ngIf="data.minCost < data.maxCost">{{data.costCurrency}} {{data.minCost}}-{{data.maxCost}}</div>
