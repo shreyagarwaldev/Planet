@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ChangeDetectionStrategy, Renderer } from '@angular/core';
 import { WorkshopRepository, IWorkshopDetails } from '../services/workshops/workshopRepository'
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 export interface IImageObject {
@@ -41,7 +42,9 @@ export class WorkshopDetailsComponent {
         private elementRef: ElementRef,
         private route: ActivatedRoute,
         private renderer: Renderer,
-        public gaService: GoogleAnalyticsService) {
+        public gaService: GoogleAnalyticsService,
+        public titleService: Title) {
+
         this.workshopRepository = workshopRepo;
         this.workshopDetails = <any>{};
         this.hideModal = true;
@@ -95,6 +98,8 @@ export class WorkshopDetailsComponent {
         this.workshopRepository.getWorkshopDetails(workshopId)
             .then(data => {
                 this.workshopDetails = data;
+                this.titleService.setTitle(`${this.workshopDetails.locationName} - ${this.workshopDetails.name}`);
+        
                 this.getImgData();
                 this.coverImageCDNLink = this.getCoverImageCDNLink();
                 this.workshopDetails.photographers.forEach( p => {

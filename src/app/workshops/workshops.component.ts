@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser'
 import { ActivatedRoute, Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 import { WorkshopsListComponent } from '../workshops-list/workshops-list.component'
 import { WorkshopFilterComponent } from '../workshop-filter/workshop-filter.component'
@@ -31,8 +32,10 @@ export class WorkshopsComponent {
         private globalConstantsRepository:GlobalConstantsRepository,
         private route:ActivatedRoute,
         private router:Router,
-        public gaService:GoogleAnalyticsService)
+        public gaService:GoogleAnalyticsService,
+        private titleService: Title)
 	{
+        titleService.setTitle('Photography Workshop List - Pixelated Planet');
         this.globalConstants = globalConstantsRepository;
         this.hideFilter = true;
 

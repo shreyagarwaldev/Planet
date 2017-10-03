@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository';
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
@@ -49,13 +50,15 @@ export class ContactUsComponent {
   hideMessagebox() {
     this.showMessageBox = false;
   }
-  
+
   constructor(
     private http:Http,
     private globalConstants: GlobalConstantsRepository,
-    private gaService: GoogleAnalyticsService) {
+    private gaService: GoogleAnalyticsService,
+    private titleService: Title) {
     
     gaService.trackPageView('ContactPage');
+    titleService.setTitle('Contact - Pixelated Planet');
     this.submitMessage = "Message submitted successfully";
   }
 }

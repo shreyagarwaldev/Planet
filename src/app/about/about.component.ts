@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 @Component({
@@ -7,7 +8,8 @@ import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsSer
 })
 
 export class AboutComponent {
-    constructor(gaService : GoogleAnalyticsService) {
+    constructor(gaService : GoogleAnalyticsService, titleService: Title) {
         gaService.trackPageView('About');
+        titleService.setTitle('About Us - Pixelated Planet');
     }
 }
