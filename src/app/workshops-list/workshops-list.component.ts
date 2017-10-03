@@ -72,12 +72,19 @@ export class WorkshopsListComponent {
                 this.page = page;
                 this.loading = false;
                 this.asyncData = res.workshops;
+                this.asyncData.forEach(w => {
+                    w.workshopDetailsUrl = this.createWorkshopDetailsUrl(w.workshopId, w.name);
+                    w.cardImageDefaultLink = this.getCardImageDefaultLink(w.workshopId);
+                    w.cardImageCDNLink = this.getCardImageCDNLink(w.workshopId);
+                    w.startDateFirstStr = this.formatDate(w.startDateFirst);
+                    w.endDateFirstStr = this.formatDate(w.endDateFirst);
+                });
             });
 
         this.cdRef.detectChanges();
     }
 
-    createWorkshopDetailsUrl(workshopId: string, workshopName: string): string {
+    createWorkshopDetailsUrl(workshopId: number, workshopName: string): string {
         workshopName = workshopName.replace(/[ ()&/\#]/g, "-");
         return `/photography-workshop-details/${workshopName}/${workshopId}`;
     }

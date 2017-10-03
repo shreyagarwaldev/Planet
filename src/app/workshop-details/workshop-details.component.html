@@ -1,9 +1,7 @@
 <navi-bar [showName]="true"></navi-bar>
 
 <div class="header-img">
-    <object class="detail-img" [data]="getCoverImageCDNLink()" alt="workshop image" type="image/png">
-        <img class="detail-img" [src]="getCoverImageLocalLink()" alt="workshop image"/>
-    </object>
+    <img class="detail-img" src="{{coverImageCDNLink}}" alt="{{workshopDetails.name}}"/>
 </div>
 
 <div class="wsd-name">{{workshopDetails.name}}</div>
@@ -32,7 +30,7 @@
             <div id="{{tabs[2].label}}" [hidden]="!tabs[2].showTab" class="tabcontent">
                 <div class="photographer-information" *ngFor="let photographer of workshopDetails.photographers;">
                     <div class="profile-photo">
-                        <img class="profile-img" [src]="this.workshopRepository.globalConstants.resolveImageUrl(photographer.profilePhotoLink)" alt="workshop image"/>
+                        <img class="profile-img" src="{{photographer.profilePhotoCDNLink}}" alt="{{photographer.firstName}}"/>
                     </div>
                     <h4>
                         <span>{{photographer.firstName}}</span>
@@ -43,7 +41,7 @@
                         <span>{{photographer.locationName}}</span>
                     </div>
                     <div class="website-link">
-                        <a [href]="createExternalLink(photographer?.websiteLink)" (click)="onPhotographerWebsiteClick(photographer.id)"><i class="fa fa-external-link"></i> Website</a>
+                        <a href="{{photographer.externalWebsiteLink}}" (click)="onPhotographerWebsiteClick(photographer.id)"><i class="fa fa-external-link"></i> Website</a>
                     </div>
                     <p [innerHTML]="photographer.moreInfo"></p>
                 </div>
@@ -65,9 +63,9 @@
                 <h2 class="highlight-headings">Workshop Link(s)</h2>
                 <div class="dates-wrapper">
                     <div class="dates-information" *ngFor="let detail of workshopDetails.multiWorkshopDetails;">
-                        <a [href]="createExternalLink(detail.link)" (click)="clickExternalLink(detail.link)">
+                        <a href="{{detail.externalLink}}" (click)="clickExternalLink(detail.link)">
                             <i class="fa fa-calendar"></i>
-                            <span>{{this.formatDate(detail.startDate)}} - {{this.formatDate(detail.endDate)}}</span>
+                            <span>{{detail.startDateStr}} - {{detail.endDateStr}}</span>
                         </a>
                     </div>
                 </div>

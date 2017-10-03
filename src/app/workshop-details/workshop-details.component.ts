@@ -32,6 +32,8 @@ export class WorkshopDetailsComponent {
     private tabcontent: HTMLCollectionOf<HTMLElement>;
     private tabLinks: HTMLCollectionOf<HTMLElement>;
 
+    public coverImageCDNLink : string;
+
     arrowKeyfunction: Function;
 
     constructor(
@@ -94,6 +96,17 @@ export class WorkshopDetailsComponent {
             .then(data => {
                 this.workshopDetails = data;
                 this.getImgData();
+                this.coverImageCDNLink = this.getCoverImageCDNLink();
+                this.workshopDetails.photographers.forEach( p => {
+                    p.profilePhotoCDNLink = this.workshopRepository.globalConstants.resolveImageUrl(p.profilePhotoLink);
+                    p.externalWebsiteLink = this.createExternalLink(p.websiteLink);
+                });
+
+                this.workshopDetails.multiWorkshopDetails.forEach( d => {
+                   d.externalLink = this.createExternalLink(d.link);
+                   d.startDateStr = this.formatDate(d.startDate);
+                   d.endDateStr = this.formatDate(d.endDate);
+                });
             });
     }
 
