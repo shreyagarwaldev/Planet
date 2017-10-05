@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ChangeDetectionStrategy, Renderer } from '@angular/core';
 import { WorkshopRepository, IWorkshopDetails } from '../services/workshops/workshopRepository'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 export interface IImageObject {
@@ -40,6 +40,7 @@ export class WorkshopDetailsComponent {
         workshopRepo: WorkshopRepository,
         private elementRef: ElementRef,
         private route: ActivatedRoute,
+        public router: Router,
         private renderer: Renderer,
         public gaService: GoogleAnalyticsService) {
         this.workshopRepository = workshopRepo;
