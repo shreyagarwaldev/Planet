@@ -69,8 +69,8 @@ export class ContactUsComponent {
         { name: 'description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
         { property: 'og:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
         { name: 'twitter:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
-        { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
-        { name: 'twitter:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+        { property: 'og:image', content: 'http://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+        { name: 'twitter:image', content: 'http://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
         { property: 'og:url', content: 'https://www.thepixelatedplanet.com/contact' },
         { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/contact' },
       ]);
