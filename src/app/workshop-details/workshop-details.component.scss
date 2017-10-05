@@ -147,6 +147,14 @@ div.tab {
     }
 }
 
+ul#shareList {
+    list-style: none;
+}
+
+ul#shareList li {
+    display: inline;
+}
+
 .highlights {
     display: inline-block;
     margin-top: 10.5rem;

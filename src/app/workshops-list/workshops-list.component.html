@@ -1,4 +1,4 @@
-<<div [class.list-in-ws-page]="!!activePage" class="workshop-list">
+<div [class.list-in-ws-page]="!!activePage" class="workshop-list">
     <div *ngIf="asyncData?.length > 0">
         <article class="entity" *ngFor="let data of asyncData">
             <a title="{{data.name}}" href="{{data.workshopDetailsUrl}}" (click)="onSelectWorkshop(data.workshopId)">
@@ -37,4 +37,4 @@
     <div class="no-result-msg" *ngIf="asyncData?.length == 0">
         Sorry, we found 0 results. Please try different filters.
     </div>
-</div>>
+</div>
