@@ -147,19 +147,10 @@ div.tab {
     }
 }
 
-ul#shareList {
-    list-style: none;
-}
-
-ul#shareList li {
-    display: inline;
-}
-
 .highlights {
     display: inline-block;
     margin-top: 10.5rem;
     margin-left: 5rem;
-
     div {
         font-size: 2rem;
         font-weight: 300;
@@ -174,6 +165,15 @@ ul#shareList li {
         h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: 2.2rem;
+        }
+    }
+    .wsd-share {
+        div {
+            display: inline-block;
+        }
+        .fa {
+            color: #73656A;
+            font-size: 2.5rem;
         }
     }
 }

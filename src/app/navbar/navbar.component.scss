@@ -88,6 +88,13 @@
 }
 
 .social-icons {
+    div {
+        display: inline-block;
+    }
+    a {
+        color: white;
+        display: inline-block
+    }
     .fa {
         font-size: 3rem;
         padding: 1rem;
@@ -132,7 +139,8 @@ nav {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    .flyout-blocks, .flyout-blocks.social {
+    .flyout-blocks,
+    .flyout-blocks.social {
         width: 100%;
         top: 5rem;
     }
@@ -183,7 +191,8 @@ nav {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    .flyout-blocks, .flyout-blocks.social {
+    .flyout-blocks,
+    .flyout-blocks.social {
         width: 100%;
         top: 5rem;
     }
