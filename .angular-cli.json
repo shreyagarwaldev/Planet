@@ -23,8 +23,8 @@
         "styles": [
           "styles.css",
           "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-          "../node_modules/jquery-ui/themes/base/all.css",
-          "../node_modules/jquery-ui/themes/base/datepicker.css"
+          "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
+
         ],
         "scripts": [
             "../node_modules/jquery/dist/jquery.min.js",

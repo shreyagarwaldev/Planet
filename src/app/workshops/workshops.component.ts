@@ -10,17 +10,17 @@ import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsSer
     styleUrls: ['./workshops.component.scss']
 })
 export class WorkshopsComponent {
-	private query: string;
-	private startDate: string;
-	private endDate: string;
-	private locationIdList:string;
-	private categoryList:string;
-	private minPrice:number;
-	private maxPrice:number;
+    private query: string;
+    private startDate: string;
+    private endDate: string;
+    private locationIdList: string;
+    private categoryList: string;
+    private minPrice: number;
+    private maxPrice: number;
     hideFilter: boolean;
     pageNumber: number;
 
-	private readonly workshopsPerPage: number = 8;	
+    private readonly workshopsPerPage: number = 8;	
 	
 	private globalConstants:GlobalConstantsRepository;
 	
@@ -41,7 +41,6 @@ export class WorkshopsComponent {
         router.events.subscribe(event => {
             if(event instanceof NavigationEnd)
                 {
-                    this.setParameters();
                     this.updateUrl();
                 }
         });
@@ -50,7 +49,7 @@ export class WorkshopsComponent {
     toggleFilterDropdown(event: any) {
         this.hideFilter = event;
     }
-    
+
     setParameters() {
         this.route.params.subscribe(params => {
             this.pageNumber = params['pageNumber'];
@@ -70,13 +69,13 @@ export class WorkshopsComponent {
 
         this.workshopsFilterChildComp.setValuesFromParameters(this.minPrice, this.maxPrice, this.categoryList, this.locationIdList, this.startDate, this.endDate);
     }
-	
-	ngOnInit() {
+
+    ngOnInit() {
         this.setParameters();
-		this.updateUrl();
+        this.updateUrl();
     }
-    
-    createUrl() : string {
+
+    createUrl(): string {
         let url = `/workshops/${this.pageNumber}?startDate=${this.startDate}&endDate=${this.endDate}`;
         url += this.minPrice ? `&minPrice=${this.minPrice}` : ``;
         url += this.maxPrice ? `&maxPrice=${this.maxPrice}` : ``;
@@ -85,93 +84,75 @@ export class WorkshopsComponent {
 
         return url;
     }
-	
-	updateUrl()
-	{
+
+    updateUrl() {
         this.query = `${this.globalConstants.getPixelatedPlanetAPIUrl()}/Workshops?startDateFilter=${this.startDate}&endDateFilter=${this.endDate}`;
         this.query += this.locationIdList && this.locationIdList != "" ? `&locationIdFilter=${this.locationIdList}` : ``;
         this.query += this.categoryList && this.categoryList != "" ? `&workshopType=${this.categoryList}` : ``;
         this.query += this.minPrice && this.minPrice > 0 ? `&minPrice=${this.minPrice.toString()}` : ``;
         this.query += this.maxPrice && this.maxPrice > 0 ? `&maxPrice=${this.maxPrice.toString()}` : ``;
-        
-		if(this.query && this.pageNumber) {
-			this.workshopsListChildComp.getWorkshopsData(this.query, this.pageNumber, this.workshopsPerPage);
-		}
+
+        if (this.query && this.pageNumber) {
+            this.workshopsListChildComp.getWorkshopsData(this.query, this.pageNumber, this.workshopsPerPage);
+        }
     }
-    
+
     performNav() {
         this.pageNumber = 1;
         this.router.navigateByUrl(this.globalConstants.createWorkshopsUrl(this.pageNumber, this.startDate, this.endDate, this.minPrice, this.maxPrice, this.locationIdList, this.categoryList));
-        ;
     }
 
-    setFromDate(fromDate: any)
-	{
+    setFromDate(selectedDate: Array<Date>) {
         let previousStartDate = this.startDate;
-        this.startDate = `${fromDate.year}/${fromDate.month}/${fromDate.day}`;
-		if(this.startDate == "0/0/0")
-		{
-            this.startDate = this.globalConstants.getDefaultStartDate();
-		}
-        
-        if(previousStartDate !== this.startDate)
-        {
-         this.performNav();   
-        }
-    }
-
-	toggleFilter() {
-		this.hideFilter = true;
-	}
-	
-	setToDate(toDate: any)
-	{
         let previousEndDate = this.endDate;
-        this.endDate = `${toDate.year}/${toDate.month}/${toDate.day}`;
-		if(this.endDate == "0/0/0")
-		{
-            this.endDate = this.globalConstants.getDefaultEndDate();
-		}
+        let fromDate = selectedDate[0];
+        let toDate = selectedDate[1];
+        this.startDate = `${fromDate.getFullYear()}/${fromDate.getMonth() + 1}/${fromDate.getDate()}`;
+        this.endDate = `${toDate.getFullYear()}/${toDate.getMonth() + 1}/${toDate.getDate()}`;
 
-        if(previousEndDate != this.endDate)
-        {
+        if (this.startDate == "0/0/0") {
+            this.startDate = this.globalConstants.getDefaultStartDate();
+        }
+
+        if (this.endDate == "0/0/0") {
+            this.endDate = this.globalConstants.getDefaultEndDate();
+        }
+
+
+        if (previousStartDate !== this.startDate || previousEndDate !== this.endDate) {
             this.performNav();
         }
     }
-	
-	setLocationIdList(locationIdList: any)
-	{
-        if(locationIdList != this.locationIdList)
-        {
+
+    toggleFilter() {
+        this.hideFilter = true;
+    }
+
+    setLocationIdList(locationIdList: any) {
+        if (locationIdList != this.locationIdList) {
             this.locationIdList = locationIdList;
             this.performNav();
         }
-	}
-	
-	setCategoryList(category: string)
-	{
-        if(category != this.categoryList)
-        {
+    }
+
+    setCategoryList(category: string) {
+        if (category != this.categoryList) {
             this.categoryList = category;
             this.performNav();
         }
-	}
-	
-	setMinPrice(minPrice: number)
-	{
-        if(this.minPrice != minPrice)
-        {
+    }
+
+    setMinPrice(minPrice: number) {
+        if (this.minPrice != minPrice) {
             this.minPrice = minPrice;
             this.performNav();
         }
-	}
-	
-	setMaxPrice(maxPrice: number)
-	{
-        if(this.maxPrice != maxPrice)
-        {
+    }
+
+    setMaxPrice(maxPrice: number) {
+        if (this.maxPrice != maxPrice) {
             this.maxPrice = maxPrice;
             this.performNav();
         }
-	}
+    }
 }

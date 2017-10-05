@@ -1,5 +1,6 @@
-import { Component, OnInit, ElementRef, Input, EventEmitter, Output } from '@angular/core';
-import { MyDatePicker } from 'mydatepicker'
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 
 @Component({
   selector: 'date-picker',
@@ -8,78 +9,30 @@ import { MyDatePicker } from 'mydatepicker'
 })
 
 export class DatePickerComponent {
-    fromDatePickerOptions;
-    toDatePickerOptions;
-    fromDateLabel: string = "From date";
-    toDateLabel: string = "To date";
-    previousDate;
-    selFromDate: string;
-    selToDate: string;
 
-  @Output() selectedFromChanged = new EventEmitter();
-  @Output() selectedToChanged = new EventEmitter();
+  @Output() selectedDateChanged = new EventEmitter();
+  bsRangeValue: Array<Date>;
+  bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor(private element: ElementRef) {
-    let currentDate = new Date();
-    let previous = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate() - 1);
-    this.previousDate = { year: previous.getFullYear(), month: previous.getMonth(), day: previous.getDate() };
+  constructor() {
   }
 
-  public setToDate(miliseconds: number) {
-    let date = new Date(miliseconds);
-    this.selToDate = date.toISOString().slice(0,10);
-  }
-
-  public setFromDate(miliseconds: number) {
-    let date = new Date(miliseconds);
-    this.selFromDate = date.toISOString().slice(0,10);
+  public setDate(startMiliseconds: number, endMiliseconds: number) {
+    if (startMiliseconds && endMiliseconds) {
+      let startDate = new Date(startMiliseconds);
+      let endDate = new Date(endMiliseconds);
+      this.bsRangeValue = [startDate, endDate];
+    }
   }
 
   ngOnInit() {
-    this.fromDatePickerOptions = {
-      dateFormat: 'yyyy-mm-dd',
-      markCurrentDay: true,
-      yearSelector: true,
-      monthSelector: true,
-      disableUntil: this.previousDate,
-    };
-
-    this.toDatePickerOptions = {
-        dateFormat: 'yyyy-mm-dd',
-        markCurrentDay: true,
-        yearSelector: true,
-        monthSelector: true,
-        disableUntil: this.previousDate
-      };
+        this.bsConfig = Object.assign({}, {containerClass: 'date-picker-theme'}, {showWeekNumbers: false});
   }
 
-  onFromDateChanged(event: any) {
-    var selectedDate = event.date;
-    this.toDatePickerOptions = {
-      dateFormat: 'yyyy-mm-dd',
-      markCurrentDay: true,
-      yearSelector: true,
-      monthSelector: true,
-      disableUntil: {
-        year: selectedDate.year,
-        month: selectedDate.month,
-        day: selectedDate.day
-      }
-    };
-
-    this.selectedFromChanged.emit(selectedDate);
-  }
-
-  onToDateChanged(event: any) {
-    var selectedDate = event.date;
-    this.fromDatePickerOptions = {
-      disableUntil: this.previousDate,
-      disableSince: {
-        year: selectedDate.year,
-        month: selectedDate.month,
-        day: selectedDate.day
-      }
-    };
-    this.selectedToChanged.emit(selectedDate);
+  onDateChanged(event: Array<Date>) {
+    if (event && event !== this.bsRangeValue) {
+      var selectedDate = event;
+      this.selectedDateChanged.emit(selectedDate);
+    }
   }
 }

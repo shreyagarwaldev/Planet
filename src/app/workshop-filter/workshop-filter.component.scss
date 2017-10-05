@@ -65,11 +65,11 @@
         display: block;
     }
     .price-filter {
-        margin-top: 1.4rem;
+        margin-top: 0;
         input {
             width: 70%;
-            display: block;
-            margin: 1.4rem auto;
+            display: inline-block;
+            margin: 1.5rem auto;
         }
     }
     .get-list-btn {

@@ -1,45 +1,31 @@
-.date-picker-container /deep/ {
+.date-picker-container {
     display: flex;
+    width: 100%;
+    text-align: center;
+    margin: 1.4rem 1rem 0 1rem;
+    height: 3.6rem;
     input {
-        height: 3rem;
-        width: 8rem;
-        margin-top: .2rem;
-    }
-    .from-date,
-    .to-date {
-        width: 13.5rem;
+        border-radius: 5px;
+        height: 100%;
         text-align: center;
-        margin: 1.4rem 1rem 0 1rem;
-        height: 3.6rem;
-        input {
-            width: 10rem;
-            height: 3.6rem;
-            text-align: center;
-            background-color: transparent;
-            &::placeholder {
-                font-family: 'Comfortaa', cursive;
-            }
-        }
-        .btnpicker,
-        .btnclear {
-            width: 1.7rem;
+        background-color: white;
+        color: #26181D;
+        border: none;
+        &::placeholder {
+            font-family: 'Comfortaa', cursive;
         }
     }
 }
 
 @media (max-width: 1050px) {
-    .date-picker-container /deep/ {
-        margin-bottom: 1.5rem;
+    .date-picker-container {
+        position: relative;
         display: inline-block;
-        .from-date,
-        .to-date {
-            position: relative;
-            display: inline-block;
-            width: 70%;
-            input {
-                text-align: center;
-                width: 100%;
-            }
+        width: 70%;
+        margin-bottom: 1.5rem;
+        input {
+            text-align: center;
+            width: 100%;
         }
     }
 }
