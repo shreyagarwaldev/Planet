@@ -69,8 +69,8 @@ export class WorkshopDetailsComponent {
         });
         this.getWorkshopDetail(this.workshopId);
 
-        // let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
-        // this.title.setTitle(titleStr);
+        let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
+        this.title.setTitle(titleStr);
         // this.meta.addTags([
         //     { name: 'twitter:title', content: titleStr },
         //     { property: 'og:title', content: titleStr },
