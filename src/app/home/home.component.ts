@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     meta.addTags([
         { name: 'twitter:title', content: 'Photography Workshops - Pixelated Planet' },
         { property: 'og:title', content: 'Photography Workshops - Pixelated Planet' },
-        // { property: 'og:type', content: 'website'},
+        { property: 'og:type', content: 'website'},
         { property: 'og:site_name', content: 'The Pixelated Planet'},
         { property: 'fb:app_id', content: '132676104124561'},
         { name: 'description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
