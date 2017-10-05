@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './navbar/navbar.component'
-import { MyDatePickerModule } from 'mydatepicker';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component'
 import { DatePickerComponent } from './date-picker/date-picker.component'
 import { DropdownComponent } from './dropdown-menu/dropdown-menu.component'
@@ -22,6 +21,8 @@ import { PrivacyComponent } from './privacy-policy/privacy-policy.component'
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component'
 import { PageRedirectComponent } from './page-redirect/page-redirect.component'
 import { WorkshopDetailsComponent } from './workshop-details/workshop-details.component'
+import { BsDatepickerModule } from 'ngx-bootstrap';
+
 
 import { GlobalConstantsRepository } from './services/shared/globalConstantsRepository'
 import { WorkshopRepository } from './services/workshops/workshopRepository'
@@ -65,7 +66,7 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
       ]),
     HttpModule,
     FormsModule,
-    MyDatePickerModule
+    BsDatepickerModule.forRoot()
   ],
   providers: [
       WorkshopRepository,

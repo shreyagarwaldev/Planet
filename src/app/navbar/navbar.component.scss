@@ -41,13 +41,66 @@
     display: none;
 }
 
+.social-link {
+    padding: 15px 10px;
+    color: white;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.flyout-blocks {
+    position: fixed;
+    right: 0;
+    top: 6rem;
+    width: 30%;
+    text-align: center;
+    background-color: #26181D;
+    border-top: 1px solid white;
+    color: white;
+    z-index: 5;
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.5rem;
+    &.social {
+        width: 10%;
+    }
+    border-radius: 3px;
+}
+
+.subscribe-btn {
+    display: block;
+    margin: 1rem auto;
+    background-color: white;
+    color: #26181D;
+}
+
+.email-textbox {
+    width: 70%;
+    height: 4rem;
+    border-radius: 5px;
+    border: none;
+    padding: 0 1rem;
+    color: #26181D;
+}
+
+.flyout-description {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.social-icons {
+    .fa {
+        font-size: 3rem;
+        padding: 1rem;
+    }
+}
+
 nav {
     position: fixed;
     margin: 0;
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 999;
+    z-index: 3;
     height: 6rem;
     background-color: #26181D;
     border: none;
@@ -75,6 +128,14 @@ nav {
             width: 100%;
         }
     }
+    .social-link {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .flyout-blocks, .flyout-blocks.social {
+        width: 100%;
+        top: 5rem;
+    }
     .navbar-toggle {
         display: block;
         padding-bottom: 0;
@@ -86,7 +147,7 @@ nav {
         margin-top: 1rem;
         padding-left: 1rem;
         background: transparent;
-        margin-left: 2rem;
+        margin-left: 1rem;
     }
     .navbar-collapse {
         background-color: #26181D;
@@ -117,6 +178,14 @@ nav {
         ul {
             width: 100%;
         }
+    }
+    .social-link {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .flyout-blocks, .flyout-blocks.social {
+        width: 100%;
+        top: 5rem;
     }
     .hideNavbar {
         display: none;
