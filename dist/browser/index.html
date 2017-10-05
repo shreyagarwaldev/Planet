@@ -4,7 +4,24 @@
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=132676104124561";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script><div class="main-page"><app-root ng-version="4.4.3"><router-outlet></router-outlet><app-home _nghost-c0=""><div _ngcontent-c0="" class="main-page-container">
+}(document, 'script', 'facebook-jssdk'));
+
+window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      
+        t._e = [];
+        t.ready = function(f) {
+          t._e.push(f);
+        };
+      
+        return t;
+      }(document, "script", "twitter-wjs"));</script><div class="main-page"><app-root ng-version="4.4.3"><router-outlet></router-outlet><app-home _nghost-c0=""><div _ngcontent-c0="" class="main-page-container">
     <navi-bar _ngcontent-c0="" _nghost-c1="" ng-reflect-show-filters="false"><nav _ngcontent-c1="" class="nav-container">
   <a _ngcontent-c1="" class="company-icon" href="">
     <img _ngcontent-c1="" alt="workshop image" class="image" src="/assets/img/icon.png">
@@ -195,4 +212,4 @@
     <a _ngcontent-c3="" href="/contact">Contact</a>
 </div></footer>
     </div>
-</div></app-home></app-root></div><script type="text/javascript" src="inline.7afeeec341f90b12a84a.bundle.js"></script><script type="text/javascript" src="polyfills.35726d60cdf25fecc5f1.bundle.js"></script><script type="text/javascript" src="scripts.da6de8bbb6199d9ca04b.bundle.js"></script><script type="text/javascript" src="vendor.6a9a6283fb6a8f4848a0.bundle.js"></script><script type="text/javascript" src="main.5fbea79c38431f73cc33.bundle.js"></script></body></html>
+</div></app-home></app-root></div><script type="text/javascript" src="inline.1199a39200f98bd58521.bundle.js"></script><script type="text/javascript" src="polyfills.35726d60cdf25fecc5f1.bundle.js"></script><script type="text/javascript" src="scripts.da6de8bbb6199d9ca04b.bundle.js"></script><script type="text/javascript" src="vendor.6a9a6283fb6a8f4848a0.bundle.js"></script><script type="text/javascript" src="main.c735806794415b4f696b.bundle.js"></script></body></html>
