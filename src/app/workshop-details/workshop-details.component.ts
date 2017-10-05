@@ -69,8 +69,6 @@ export class WorkshopDetailsComponent {
         });
         this.getWorkshopDetail(this.workshopId);
 
-        let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
-        this.title.setTitle(titleStr);
         // this.meta.addTags([
         //     { name: 'twitter:title', content: titleStr },
         //     { property: 'og:title', content: titleStr },
@@ -128,6 +126,9 @@ export class WorkshopDetailsComponent {
                    d.startDateStr = this.formatDate(d.startDate);
                    d.endDateStr = this.formatDate(d.endDate);
                 });
+                        
+                let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
+                this.title.setTitle(titleStr);
             });
     }
 
