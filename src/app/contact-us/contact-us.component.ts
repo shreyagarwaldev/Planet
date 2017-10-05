@@ -66,6 +66,7 @@ export class ContactUsComponent {
         { property: 'og:type', content: 'website'},
         { property: 'og:site_name', content: 'The Pixelated Planet'},
         { property: 'fb:app_id', content: '132676104124561'},
+        { name: 'description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
         { property: 'og:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
         { name: 'twitter:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
         { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },

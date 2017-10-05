@@ -19,6 +19,7 @@ export class ErrorComponent {
             { property: 'og:type', content: 'website'},
             { property: 'og:site_name', content: 'The Pixelated Planet'},
             { property: 'fb:app_id', content: '132676104124561'},
+            { name: 'description', content: 'You tried accessing a page that does not exist.' },
             { property: 'og:description', content: 'You tried accessing a page that does not exist.' },
             { name: 'twitter:description', content: 'You tried accessing a page that does not exist.' },
             { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },

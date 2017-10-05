@@ -48,6 +48,7 @@ export class WorkshopsComponent {
             { property: 'og:type', content: 'website'},
             { property: 'og:site_name', content: 'The Pixelated Planet'},
             { property: 'fb:app_id', content: '132676104124561'},
+            { name: 'description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
             { property: 'og:description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
             { name: 'twitter:description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
             { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },

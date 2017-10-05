@@ -121,6 +121,7 @@ export class WorkshopDetailsComponent {
                     { property: 'og:type', content: 'article'},
                     { property: 'og:site_name', content: 'The Pixelated Planet'},
                     { property: 'fb:app_id', content: '132676104124561'},
+                    { name: 'description', content: this.workshopDetails.description },
                     { property: 'og:description', content: this.workshopDetails.description },
                     { name: 'twitter:description', content: this.workshopDetails.description },
                     { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },

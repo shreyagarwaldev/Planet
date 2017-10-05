@@ -17,6 +17,7 @@ export class AboutComponent {
             { property: 'og:type', content: 'article'},
             { property: 'og:site_name', content: 'The Pixelated Planet'},
             { property: 'fb:app_id', content: '132676104124561'},
+            { name: 'description', content: 'PixelatedPlanet enables aspiring photographers to find workshops and seminars all around the world being conducted by people successful in the field of photography. On the other hand, we provide a platform for photographers to showcase their photography workshops and reach interested folks.' },
             { property: 'og:description', content: 'PixelatedPlanet enables aspiring photographers to find workshops and seminars all around the world being conducted by people successful in the field of photography. On the other hand, we provide a platform for photographers to showcase their photography workshops and reach interested folks.' },
             { name: 'twitter:description', content: 'PixelatedPlanet enables aspiring photographers to find workshops and seminars all around the world being conducted by people successful in the field of photography. On the other hand, we provide a platform for photographers to showcase their photography workshops and reach interested folks.' },
             { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
