@@ -1,5 +1,5 @@
 <nav class="nav-container">
-  <a href="" class="company-icon">
+  <a title="Go to homepage" href="" class="company-icon">
     <img class="image" src="/assets/img/icon.png" alt="workshop image">
     <span *ngIf="showName" class="company-name">Pixelated Planet</span>
   </a>
@@ -14,9 +14,9 @@
 
   <div class="navbar-collapse" [ngClass]="{'hideNavbar': hideNavbar}">
     <ul class="nav navbar-nav navbar-right">
-      <li class="active"><a href="/workshops" (click)="onNavButtonClick('Workshops')">WORKSHOPS</a></li>
-      <li><a href="/about" (click)="onNavButtonClick('About')">ABOUT</a></li>
-      <li><a href="/contact" (click)="onNavButtonClick('Contact')">CONTACT</a></li>
+      <li class="active"><a title="Go to workshop list" href="/workshops" (click)="onNavButtonClick('Workshops')">WORKSHOPS</a></li>
+      <li><a title="Go to About page" href="/about" (click)="onNavButtonClick('About')">ABOUT</a></li>
+      <li><a title="Go to Contact page" href="/contact" (click)="onNavButtonClick('Contact')">CONTACT</a></li>
       <li *ngIf="showSocialBlock" class="social-link" (click)="toggleSubscribeBlock()">SUBSCRIBE</li>
       <li *ngIf="showSocialBlock" class="social-link" (click)="toggleShareBlock()">#SpreadLove</li>
     </ul>

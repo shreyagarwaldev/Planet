@@ -41,7 +41,7 @@
                         <span>{{photographer.locationName}}</span>
                     </div>
                     <div class="website-link">
-                        <a href="{{photographer.externalWebsiteLink}}" (click)="onPhotographerWebsiteClick(photographer.id)"><i class="fa fa-external-link"></i> Website</a>
+                        <a title="{{photographer.firstName}} {{photographer.lastName}}'s website" href="{{photographer.externalWebsiteLink}}" (click)="onPhotographerWebsiteClick(photographer.id)"><i class="fa fa-external-link"></i> Website</a>
                     </div>
                     <p [innerHTML]="photographer.moreInfo"></p>
                 </div>
@@ -63,7 +63,7 @@
                 <h2 class="highlight-headings">Workshop Link(s)</h2>
                 <div class="dates-wrapper">
                     <div class="dates-information" *ngFor="let detail of workshopDetails.multiWorkshopDetails;">
-                        <a href="{{detail.externalLink}}" (click)="clickExternalLink(detail.link)">
+                        <a title="Details for workshop starting on {{detail.startDateStr}}" href="{{detail.externalLink}}" (click)="clickExternalLink(detail.link)">
                             <i class="fa fa-calendar"></i>
                             <span>{{detail.startDateStr}} - {{detail.endDateStr}}</span>
                         </a>
@@ -73,8 +73,8 @@
             <div class="wsd-share">
                 <h2 class="highlight-headings">Spread the word!</h2>
                 <ul>
-                <li><div [attr.data-href]="router.url" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.thepixelatedplanet.com%2F&amp;src=sdkpreparse">Share</a></div></li>
-                <li><a href="https://twitter.com/intent/tweet?text=Best%20Photography%20Workshops"> Tweet</a></li>
+                <li><div [attr.data-href]="router.url" data-layout="button" data-size="small" data-mobile-iframe="true"><a title="Share on Facebook" class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.thepixelatedplanet.com%2F&amp;src=sdkpreparse">Share</a></div></li>
+                <li><a title="Share on twitter" href="https://twitter.com/intent/tweet?text=Best%20Photography%20Workshops"> Tweet</a></li>
                 </ul>
             </div>
         </div>
@@ -88,8 +88,8 @@
                 </div>
             </div>
 
-            <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
-            <a class="next" (click)="plusSlides(1)">&#10095;</a>
+            <a title="Go to previous image" class="prev" (click)="plusSlides(-1)">&#10094;</a>
+            <a title="Go to next image" class="next" (click)="plusSlides(1)">&#10095;</a>
         </div>
     </div>
 
