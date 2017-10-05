@@ -69,21 +69,21 @@ export class WorkshopDetailsComponent {
         });
         this.getWorkshopDetail(this.workshopId);
 
-        let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
-        this.title.setTitle(titleStr);
-        this.meta.addTags([
-            { name: 'twitter:title', content: titleStr },
-            { property: 'og:title', content: titleStr },
-            { property: 'og:type', content: 'article'},
-            { property: 'og:site_name', content: 'The Pixelated Planet'},
-            { property: 'fb:app_id', content: '132676104124561'},
-            { property: 'og:description', content: this.workshopDetails.description },
-            { name: 'twitter:description', content: this.workshopDetails.description },
-            { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
-            { name: 'twitter:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
-            { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
-            { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
-          ]);
+        // let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
+        // this.title.setTitle(titleStr);
+        // this.meta.addTags([
+        //     { name: 'twitter:title', content: titleStr },
+        //     { property: 'og:title', content: titleStr },
+        //     { property: 'og:type', content: 'article'},
+        //     { property: 'og:site_name', content: 'The Pixelated Planet'},
+        //     { property: 'fb:app_id', content: '132676104124561'},
+        //     { property: 'og:description', content: this.workshopDetails.description },
+        //     { name: 'twitter:description', content: this.workshopDetails.description },
+        //     { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+        //     { name: 'twitter:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+        //     { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
+        //     { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
+        //   ]);
 
         this.initializeTabs();
     }
