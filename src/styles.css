@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-html, body, .main-page {
+
+html,
+body,
+.main-page {
     height: 100%;
     width: 100%;
+}
+
+bs-daterangepicker-container {
+    z-index: 5;
+}
+
+.date-picker-theme .bs-datepicker-head,
+.date-picker-theme .bs-datepicker-body table.days span.select-start,
+.date-picker-theme .bs-datepicker-body table td span[class*="select-"], .bs-datepicker-body table td[class*="select-"] span {
+    background-color: #26181D;
 }

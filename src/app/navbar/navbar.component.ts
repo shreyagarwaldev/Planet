@@ -7,22 +7,38 @@ import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsSer
     styleUrls: ['./navbar.component.scss']
 })
 export class NavComponent {
-    hideFilter: boolean;
     hideNavbar: boolean;
+    hideSubscribe: boolean;
+    hideShare: boolean;
+    emailId: string;
     @Output() filtersDropdownToggle = new EventEmitter();
     @Input() showFilters: boolean;
+    @Input() showSocialBlock: boolean;
     @Input() showName: boolean;
+    @Input() hideFilter: boolean
 
     constructor(public gaService: GoogleAnalyticsService) {
-        this.hideFilter = true;
         this.hideNavbar = true;
+        this.hideSubscribe = true;
+        this.hideShare = true;
     }
     toggleFilter() {
         this.hideFilter = !this.hideFilter;
         if (!this.hideNavbar) {
             this.hideNavbar = true;
         }
+        if (!this.hideShare) {
+            this.hideShare = true;
+        }
+        if (!this.hideSubscribe) {
+            this.hideSubscribe = true;
+        }
         this.filtersDropdownToggle.emit(this.hideFilter);
+    }
+
+    submitEmail() {
+        console.log(this.emailId);
+        this.toggleSubscribeBlock();
     }
 
     toggleNavbar() {
@@ -30,6 +46,33 @@ export class NavComponent {
         if (!this.hideFilter) {
             this.hideFilter = true;
             this.filtersDropdownToggle.emit(this.hideFilter);
+        }
+        if (!this.hideShare) {
+            this.hideShare = true;
+        }
+        if (!this.hideSubscribe) {
+            this.hideSubscribe = true;
+        }
+    }
+
+    toggleSubscribeBlock() {
+        this.hideSubscribe = !this.hideSubscribe;
+        if (!this.hideNavbar) {
+            this.hideNavbar = true;
+        }
+        if (!this.hideShare) {
+            this.hideShare = true;
+        }
+
+    }
+
+    toggleShareBlock() {
+        this.hideShare = !this.hideShare;
+        if (!this.hideSubscribe) {
+            this.hideSubscribe = true;
+        }
+        if (!this.hideNavbar) {
+            this.hideNavbar = true;
         }
     }
 

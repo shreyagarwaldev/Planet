@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer, Output, EventEmitter, ViewChild } from '@angular/core';
 import { WorkshopRepository, ILocation, IPhotographer } from '../services/workshops/workshopRepository'
-// import { Angulartics2 } from 'angulartics2';
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component'
 import { DatePickerComponent } from '../date-picker/date-picker.component'
@@ -21,8 +20,6 @@ export class WorkshopFilterComponent {
   @Output() minPriceFilterChanged = new EventEmitter();
   @Output() maxPriceFilterChanged = new EventEmitter();
   @Output() applyFilters = new EventEmitter();
-  
-//   private angulartics2: Angulartics2;
 
   public cities: any[];
   public categories: any[];
@@ -45,7 +42,7 @@ export class WorkshopFilterComponent {
   public maxFromDate: Date;
   public minToDate: Date;
   public maxToDate: Date;
-  public fromDate: Date;
+  public fromDate: Array<Date>;
   public toDate: Date;
 
   private globalConstants:GlobalConstantsRepository;
@@ -58,9 +55,8 @@ export class WorkshopFilterComponent {
   @ViewChild(DropdownComponent) dropdownChildComp:DropdownComponent;
 
   constructor(private workshopRepository: WorkshopRepository,
-    // private a: Angulartics2,
+
     private globalConstantsRepository:GlobalConstantsRepository) {
-    // this.angulartics2 = a;
     this.globalConstants = globalConstantsRepository;
     this.workshopRepo = workshopRepository;
     
@@ -81,22 +77,13 @@ export class WorkshopFilterComponent {
     this.minPriceValue = minPrice || null;
     this.maxPriceValue = maxPrice || null;
 
-    if(endDate)
+    if(endDate && startDate)
     {
-        this.datePickerChildComp.setToDate(Date.parse(endDate));
+        this.datePickerChildComp.setDate(Date.parse(startDate), Date.parse(endDate));
     }
     else
     {
-        this.datePickerChildComp.setToDate(null);
-    }
-
-    if(startDate)
-    {
-        this.datePickerChildComp.setFromDate(Date.parse(startDate));
-    }
-    else
-    {
-        this.datePickerChildComp.setFromDate(null);
+        this.datePickerChildComp.setDate(null, null);
     }
 
     if(locations)
@@ -137,15 +124,13 @@ export class WorkshopFilterComponent {
         });
   }
 
-  getFromDate(value: Date) {
+  getFromDate(value: Array<Date>) {
     this.fromDate = value;
-	// this.angulartics2.eventTrack.next({ action: 'FromDateFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
-    this.fromDateChanged.emit(this.fromDate);
+	this.fromDateChanged.emit(this.fromDate);
   }
 
   getToDate(value: Date) {
     this.toDate = value;
-	// this.angulartics2.eventTrack.next({ action: 'ToDateFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
 	this.toDateChanged.emit(this.toDate);
   }
 
@@ -155,14 +140,12 @@ export class WorkshopFilterComponent {
   
   updateMinPrice(value:number)
   {
-    // this.angulartics2.eventTrack.next({ action: 'MinPriceFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
     this.minPriceFilterChanged.emit(value);
   }
   
   
   updateMaxPrice(value:number)
   {
-    // this.angulartics2.eventTrack.next({ action: 'MaxPriceFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
     this.maxPriceFilterChanged.emit(value);
   }
 
@@ -179,7 +162,6 @@ export class WorkshopFilterComponent {
   
   updateLocation(value: any)
   {
-    // this.angulartics2.eventTrack.next({ action: 'LocationFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
     let locationFound = false;
     this.workshopRepository.getLocations().then(loc => {
         loc.forEach(location => 
@@ -200,7 +182,6 @@ export class WorkshopFilterComponent {
   
   updateCategoryList(value: string)
   {
-    // this.angulartics2.eventTrack.next({ action: 'CategoryFilterEvent', properties: { category: 'WorkshopFilterComponent' }});
     this.categoryFilterChanged.emit(value);
   }
 }

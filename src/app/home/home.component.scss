@@ -39,7 +39,7 @@
     bottom: 5rem;
     font-size: 4rem;
     color: white;
-    margin-left: -5%;
+    margin-left: -1%;
 }
 
 .sub-heading {
@@ -98,9 +98,15 @@ h1.ws-heading {
         width: auto;
         font-size: 2.2rem;
     }
+    .chevron-down {
+        margin-left: -5%;
+    }
 }
 
 @media (max-width: 400px) {
+    .chevron-down {
+        margin-left: -5%;
+    }
     .main-heading {
         font-size: 3.8rem;
     }
