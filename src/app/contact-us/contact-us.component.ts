@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
+import { Title, Meta } from '@angular/platform-browser'
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository';
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
@@ -53,9 +54,26 @@ export class ContactUsComponent {
   constructor(
     private http:Http,
     private globalConstants: GlobalConstantsRepository,
-    private gaService: GoogleAnalyticsService) {
+    private gaService: GoogleAnalyticsService,
+    title: Title,
+    meta: Meta) {
     
     gaService.trackPageView('ContactPage');
+    title.setTitle('Contact Us - Pixelated Planet')
+    meta.addTags([
+        { name: 'twitter:title', content: 'Contact Us - Pixelated Planet' },
+        { property: 'og:title', content: 'Contact Us - Pixelated Planet' },
+        { property: 'og:type', content: 'website'},
+        { property: 'og:site_name', content: 'The Pixelated Planet'},
+        { property: 'fb:app_id', content: '132676104124561'},
+        { property: 'og:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
+        { name: 'twitter:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
+        { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+        { name: 'twitter:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+        { property: 'og:url', content: 'https://www.thepixelatedplanet.com/contact' },
+        { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/contact' },
+      ]);
+
     this.submitMessage = "Message submitted successfully";
   }
 }

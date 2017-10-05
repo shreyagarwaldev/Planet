@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser'
 import { ActivatedRoute, Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 import { WorkshopsListComponent } from '../workshops-list/workshops-list.component'
 import { WorkshopFilterComponent } from '../workshop-filter/workshop-filter.component'
@@ -31,6 +32,8 @@ export class WorkshopsComponent {
         private globalConstantsRepository:GlobalConstantsRepository,
         private route:ActivatedRoute,
         private router:Router,
+        title: Title,
+        meta: Meta,
         public gaService:GoogleAnalyticsService)
 	{
         this.globalConstants = globalConstantsRepository;
@@ -38,10 +41,24 @@ export class WorkshopsComponent {
 
         this.gaService.trackPageView('Workshops');
         
+        title.setTitle('List of Photography Workshops');
+        meta.addTags([
+            { name: 'twitter:title', content: 'List of Photography Workshops' },
+            { property: 'og:title', content: 'List of Photography Workshops' },
+            { property: 'og:type', content: 'website'},
+            { property: 'og:site_name', content: 'The Pixelated Planet'},
+            { property: 'fb:app_id', content: '132676104124561'},
+            { property: 'og:description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
+            { name: 'twitter:description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
+            { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+            { name: 'twitter:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+            { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
+            { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
+          ]);
+        
         router.events.subscribe(event => {
             if(event instanceof NavigationEnd)
                 {
-                    this.setParameters();
                     this.updateUrl();
                 }
         });
