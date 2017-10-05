@@ -22,18 +22,19 @@ export class HomeComponent implements OnInit {
     this.globalConstants = globalConstantsRepository;
     this.gaService.trackPageView('Home');
     title.setTitle('Travel, Wildlife, Portrait, Street, etc. Photography Workshops')
+    meta.updateTag({content: 'website'}, "property='og:type'");
     meta.addTags([
         { name: 'twitter:title', content: 'Photography Workshops - Pixelated Planet' },
-        { name: 'og:title', content: 'Photography Workshops - Pixelated Planet' },
-        { name: 'og:type', content: 'website'},
-        { name: 'og:site_name', content: 'The Pixelated Planet'},
-        { name: 'fb:app_id', content: '132676104124561'},
+        { property: 'og:title', content: 'Photography Workshops - Pixelated Planet' },
+        // { property: 'og:type', content: 'website'},
+        { property: 'og:site_name', content: 'The Pixelated Planet'},
+        { property: 'fb:app_id', content: '132676104124561'},
         { name: 'description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
-        { name: 'og:description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
+        { property: 'og:description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
         { name: 'twitter:description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
-        { name: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+        { property: 'og:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
         { name: 'twitter:image', content: 'https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
-        { name: 'og:url', content: 'https://www.thepixelatedplanet.com/' },
+        { property: 'og:url', content: 'https://www.thepixelatedplanet.com/' },
         { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/' },
       ]);
   }
