@@ -94,26 +94,26 @@ export class WorkshopsListComponent {
     }
     
     createUrl(page : number) : string {
-        let locations: string;
+        let location: number;
         let categories: string;
         let startDate: string;
         let endDate: string;
         let minPrice: string;
         let maxPrice: string;
         this.route.queryParams.subscribe(params => {
-                locations = params['locations'];
+                location = Number(params['locations']);
                 categories = params['categories'];
                 startDate = params['startDate'];
                 endDate = params['endDate'];
                 minPrice = params['minPrice'];
                 maxPrice = params['maxPrice'];
         });
-        
+        location = location === NaN ? undefined : location;
         let today = new Date();
         startDate = !startDate ? this.workshopRepository.globalConstants.getDefaultStartDate() : startDate;
         endDate = !endDate ? this.workshopRepository.globalConstants.getDefaultEndDate() : endDate;
 
-        return this.workshopRepository.globalConstants.createWorkshopsUrl(page, startDate, endDate, minPrice, maxPrice, locations, categories);
+        return this.workshopRepository.globalConstants.createWorkshopsUrl(page, startDate, endDate, minPrice, maxPrice, location, categories);
     }
 
     imageLoaded(id: string) {

@@ -22,6 +22,7 @@ import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-co
 import { PageRedirectComponent } from './page-redirect/page-redirect.component'
 import { WorkshopDetailsComponent } from './workshop-details/workshop-details.component'
 import { BsDatepickerModule } from 'ngx-bootstrap';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 
 import { GlobalConstantsRepository } from './services/shared/globalConstantsRepository'
@@ -66,7 +67,8 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
       ]),
     HttpModule,
     FormsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    TypeaheadModule.forRoot()
   ],
   providers: [
       WorkshopRepository,

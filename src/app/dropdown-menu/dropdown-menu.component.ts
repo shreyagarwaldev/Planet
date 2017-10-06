@@ -22,7 +22,6 @@ export class DropdownComponent {
   }
 
   ngOnInit() {
-    this.buttonLabel = "Category";
     var that = this;
     this.selfClick = false;
     this.renderer.listenGlobal('document', 'click', (event: any) => {

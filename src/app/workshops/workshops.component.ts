@@ -14,40 +14,39 @@ export class WorkshopsComponent {
     private query: string;
     private startDate: string;
     private endDate: string;
-    private locationIdList: string;
+    private locationId: number;
     private categoryList: string;
     private minPrice: number;
     private maxPrice: number;
     hideFilter: boolean;
     pageNumber: number;
 
-    private readonly workshopsPerPage: number = 8;	
-	
-	private globalConstants:GlobalConstantsRepository;
-	
-	@ViewChild(WorkshopsListComponent) workshopsListChildComp:WorkshopsListComponent;
-	@ViewChild(WorkshopFilterComponent) workshopsFilterChildComp:WorkshopFilterComponent;
+    private readonly workshopsPerPage: number = 8;
 
-	constructor(
-        private globalConstantsRepository:GlobalConstantsRepository,
-        private route:ActivatedRoute,
-        private router:Router,
+    private globalConstants: GlobalConstantsRepository;
+
+    @ViewChild(WorkshopsListComponent) workshopsListChildComp: WorkshopsListComponent;
+    @ViewChild(WorkshopFilterComponent) workshopsFilterChildComp: WorkshopFilterComponent;
+
+    constructor(
+        private globalConstantsRepository: GlobalConstantsRepository,
+        private route: ActivatedRoute,
+        private router: Router,
         title: Title,
         meta: Meta,
-        public gaService:GoogleAnalyticsService)
-	{
+        public gaService: GoogleAnalyticsService) {
         this.globalConstants = globalConstantsRepository;
         this.hideFilter = true;
 
         this.gaService.trackPageView('Workshops');
-        
+
         title.setTitle('List of Photography Workshops');
         meta.addTags([
             { name: 'twitter:title', content: 'List of Photography Workshops' },
             { property: 'og:title', content: 'List of Photography Workshops' },
-            { property: 'og:type', content: 'website'},
-            { property: 'og:site_name', content: 'The Pixelated Planet'},
-            { property: 'fb:app_id', content: '132676104124561'},
+            { property: 'og:type', content: 'website' },
+            { property: 'og:site_name', content: 'The Pixelated Planet' },
+            { property: 'fb:app_id', content: '132676104124561' },
             { name: 'description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
             { property: 'og:description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
             { name: 'twitter:description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
@@ -55,13 +54,12 @@ export class WorkshopsComponent {
             { name: 'twitter:image', content: 'http://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
             { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
             { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
-          ]);
-        
+        ]);
+
         router.events.subscribe(event => {
-            if(event instanceof NavigationEnd)
-                {
-                    this.updateUrl();
-                }
+            if (event instanceof NavigationEnd) {
+                this.updateUrl();
+            }
         });
     }
 
@@ -75,7 +73,7 @@ export class WorkshopsComponent {
         });
 
         this.route.queryParams.subscribe(params => {
-            this.locationIdList = params['locations'];
+            this.locationId = Number(params['locations']);
             this.categoryList = params['categories'];
             this.minPrice = params['minPrice'];
             this.maxPrice = params['maxPrice'];
@@ -83,10 +81,11 @@ export class WorkshopsComponent {
             this.endDate = params['endDate'];
         });
 
+        this.locationId = this.locationId === NaN ? undefined : this.locationId;
         this.startDate = !this.startDate ? this.globalConstants.getDefaultStartDate() : this.startDate;
         this.endDate = !this.endDate ? this.globalConstants.getDefaultEndDate() : this.endDate;
 
-        this.workshopsFilterChildComp.setValuesFromParameters(this.minPrice, this.maxPrice, this.categoryList, this.locationIdList, this.startDate, this.endDate);
+        this.workshopsFilterChildComp.setValuesFromParameters(this.minPrice, this.maxPrice, this.categoryList, this.locationId, this.startDate, this.endDate);
     }
 
     ngOnInit() {
@@ -98,15 +97,17 @@ export class WorkshopsComponent {
         let url = `/workshops/${this.pageNumber}?startDate=${this.startDate}&endDate=${this.endDate}`;
         url += this.minPrice ? `&minPrice=${this.minPrice}` : ``;
         url += this.maxPrice ? `&maxPrice=${this.maxPrice}` : ``;
-        url += this.locationIdList ? `&locations=${this.locationIdList}` : ``;
+        url += this.locationId ? `&locations=${this.locationId}` : ``;
         url += this.categoryList ? `&categories=${this.categoryList}` : ``;
 
         return url;
     }
 
     updateUrl() {
+        this.startDate = !this.startDate ? this.globalConstants.getDefaultStartDate() : this.startDate;
+        this.endDate = !this.endDate ? this.globalConstants.getDefaultEndDate() : this.endDate;
         this.query = `${this.globalConstants.getPixelatedPlanetAPIUrl()}/Workshops?startDateFilter=${this.startDate}&endDateFilter=${this.endDate}`;
-        this.query += this.locationIdList && this.locationIdList != "" ? `&locationIdFilter=${this.locationIdList}` : ``;
+        this.query += this.locationId && this.locationId ? `&locationIdFilter=${this.locationId}` : ``;
         this.query += this.categoryList && this.categoryList != "" ? `&workshopType=${this.categoryList}` : ``;
         this.query += this.minPrice && this.minPrice > 0 ? `&minPrice=${this.minPrice.toString()}` : ``;
         this.query += this.maxPrice && this.maxPrice > 0 ? `&maxPrice=${this.maxPrice.toString()}` : ``;
@@ -118,7 +119,7 @@ export class WorkshopsComponent {
 
     performNav() {
         this.pageNumber = 1;
-        this.router.navigateByUrl(this.globalConstants.createWorkshopsUrl(this.pageNumber, this.startDate, this.endDate, this.minPrice, this.maxPrice, this.locationIdList, this.categoryList));
+        this.router.navigateByUrl(this.globalConstants.createWorkshopsUrl(this.pageNumber, this.startDate, this.endDate, this.minPrice, this.maxPrice, this.locationId, this.categoryList));
     }
 
     setFromDate(selectedDate: Array<Date>) {
@@ -147,9 +148,9 @@ export class WorkshopsComponent {
         this.hideFilter = true;
     }
 
-    setLocationIdList(locationIdList: any) {
-        if (locationIdList != this.locationIdList) {
-            this.locationIdList = locationIdList;
+    setLocationIdList(locationId: number) {
+        if (locationId !== this.locationId) {
+            this.locationId = locationId;
             this.performNav();
         }
     }

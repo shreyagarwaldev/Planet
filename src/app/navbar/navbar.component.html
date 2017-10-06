@@ -23,12 +23,12 @@
   </div>
 </nav>
 
-<div class="flyout-blocks" [hidden]="hideSubscribe">
+<div class="flyout-blocks" *ngIf="!hideSubscribe">
   <div class="flyout-description">Subscribe to our newsletter and upcoming workshops</div>
   <input type="text" placeholder="Enter email id" class="email-textbox" [(ngModel)]="emailId">
   <button type="button" class="subscribe-btn btn" (click)="submitEmail()">Subscribe</button>
 </div>
-<div class="flyout-blocks social" [hidden]="hideShare">
+<div class="flyout-blocks social" *ngIf="!hideShare">
   <div class="social-icons">
     <div [attr.data-href]="router.url">
       <a title="Share on Facebook" class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.thepixelatedplanet.com%2F&amp;src=sdkpreparse">

@@ -53,11 +53,11 @@ export class GlobalConstantsRepository
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
-    public createWorkshopsUrl(page:number, startDate:string, endDate:string, minPrice:number, maxPrice:number, locations: string, categories: string) {
+    public createWorkshopsUrl(page:number, startDate:string, endDate:string, minPrice:number, maxPrice:number, location: number, categories: string) {
         let url = `/workshops/${page}?startDate=${startDate}&endDate=${endDate}`;
         url += minPrice ? `&minPrice=${minPrice}` : ``;
         url += maxPrice ? `&maxPrice=${maxPrice}` : ``;
-        url += locations ? `&locations=${locations}` : ``;
+        url += location ? `&locations=${location}` : ``;
         url += categories ? `&categories=${categories}` : ``;
 
         return url;
