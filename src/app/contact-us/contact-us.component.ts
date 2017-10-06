@@ -55,8 +55,8 @@ export class ContactUsComponent {
     private http:Http,
     private globalConstants: GlobalConstantsRepository,
     private gaService: GoogleAnalyticsService,
-    title: Title,
-    meta: Meta) {
+    private title: Title,
+    private meta: Meta) {
     
     gaService.trackPageView('ContactPage');
     title.setTitle('Contact Us - Pixelated Planet')
