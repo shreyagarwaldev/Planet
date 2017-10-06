@@ -22,6 +22,8 @@ const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toStri
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main.bundle');
 
+const compression = require('compression');
+
 // Express Engine
 import { ngExpressEngine } from '@nguniversal/express-engine';
 // Import module map for lazy loading
@@ -37,6 +39,8 @@ app.engine('html', ngExpressEngine({
 
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
+
+app.use(compression());
 
 /* - Example Express Rest API endpoints -
   app.get('/api/**', (req, res) => { });

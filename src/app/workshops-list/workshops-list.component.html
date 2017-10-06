@@ -1,7 +1,7 @@
 <div [class.list-in-ws-page]="!!activePage" class="workshop-list">
     <div *ngIf="asyncData?.length > 0">
         <article class="entity" *ngFor="let data of asyncData">
-            <a href="{{data.workshopDetailsUrl}}" (click)="onSelectWorkshop(data.workshopId)">
+            <a title="{{data.name}}" href="{{data.workshopDetailsUrl}}" (click)="onSelectWorkshop(data.workshopId)">
                 <div class="inner">
                     <img class="image1" [ngClass]="{'hideImage': imagesLoaded}" src="{{data.cardImageDefaultLink}}" alt="{{data.name}}"/>
                     <img class="image" [ngClass]="{'hideImage': !imagesLoaded}" (load)="imageLoaded(data.workshopId)" src="{{data.cardImageCDNLink}}" alt="{{data.name}}"/>
@@ -24,11 +24,11 @@
             </a>
         </article>
         <div *ngIf="itemsPerPage > 4" class="ws-pages">
-            <a class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': activePage <=1 }" [href]="createPageLink(activePage-1)">
+            <a title="Go to previous page" class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': activePage <=1 }" [href]="createPageLink(activePage-1)">
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
             <i class="fa fa-chevron-left" aria-hidden="true"></i><span>Previous</span></a>
-            <a class="page-numbers" [ngClass]="{'active-page': activePage == page}" *ngFor="let page of pageNumbers;" [href]="createPageLink(page)">{{page}}</a>
-            <a class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': activePage == pageNumbers.length }" [href]="createPageLink(activePage-1+2)"><span>Next</span>
+            <a title="Go to page {{page}}" class="page-numbers" [ngClass]="{'active-page': activePage == page}" *ngFor="let page of pageNumbers;" [href]="createPageLink(page)">{{page}}</a>
+            <a title="Go to next page" class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': activePage == pageNumbers.length }" [href]="createPageLink(activePage-1+2)"><span>Next</span>
             <span class="chevron-wrapper"><i class="fa fa-chevron-right" aria-hidden="true"></i>
             <i class="fa fa-chevron-right" aria-hidden="true"></i></span></a>
         </div>

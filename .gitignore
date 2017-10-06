@@ -9,9 +9,17 @@ morgan.log
 /typings/
 /tsd_typings/
 /compiled/
+/src/assets/img/Tiles/
+/dist/browser/assets/img/Tiles/
+/dist/server/assets/img/Tiles/
+/src/assets/img/Cover/
+/dist/browser/assets/img/Cover/
+/dist/server/assets/img/Cover/
 /src/assets/img/workshops/
 /dist/browser/assets/img/workshops/
 /dist/server/assets/img/workshops/
+/dist/server/assets/img/yosemite*.jpg
+
 
 # Node #
 npm-debug.log

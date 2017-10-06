@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ChangeDetectionStrategy, Renderer } from '@angular/core';
 import { WorkshopRepository, IWorkshopDetails } from '../services/workshops/workshopRepository'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser'
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 export interface IImageObject {
@@ -33,6 +34,7 @@ export class WorkshopDetailsComponent {
     private tabLinks: HTMLCollectionOf<HTMLElement>;
 
     public coverImageCDNLink : string;
+    public currentUrl: string;
 
     arrowKeyfunction: Function;
 
@@ -40,8 +42,11 @@ export class WorkshopDetailsComponent {
         workshopRepo: WorkshopRepository,
         private elementRef: ElementRef,
         private route: ActivatedRoute,
+        public router: Router,
         private renderer: Renderer,
-        public gaService: GoogleAnalyticsService) {
+        public gaService: GoogleAnalyticsService,
+        public title: Title,
+        public meta: Meta) {
         this.workshopRepository = workshopRepo;
         this.workshopDetails = <any>{};
         this.hideModal = true;
@@ -63,6 +68,7 @@ export class WorkshopDetailsComponent {
         this.sub = this.route.params.subscribe(params => {
             this.workshopId = params['id'];
         });
+
         this.getWorkshopDetail(this.workshopId);
         this.initializeTabs();
     }
@@ -107,6 +113,28 @@ export class WorkshopDetailsComponent {
                    d.startDateStr = this.formatDate(d.startDate);
                    d.endDateStr = this.formatDate(d.endDate);
                 });
+
+                this.currentUrl = (`https://www.thepixelatedplanet.com${this.router.url}`).replace(new RegExp('/', 'g'), '%2F').replace(new RegExp(':', 'g'),'%3A')
+                .replace(new RegExp('[?]', 'g'),'%3F').replace(new RegExp(';','g'),'%3B').replace(new RegExp(',', 'g'),'%2C')
+                .replace(new RegExp('@','g'),'%40').replace(new RegExp('&', 'g'),'%26').replace(new RegExp('=', 'g'),'%3D')
+                .replace(new RegExp('[+]','g'),'%2B');
+                        
+                let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
+                this.title.setTitle(titleStr);
+                this.meta.addTags([
+                    { name: 'twitter:title', content: titleStr },
+                    { property: 'og:title', content: titleStr },
+                    { property: 'og:type', content: 'article'},
+                    { property: 'og:site_name', content: 'The Pixelated Planet'},
+                    { property: 'fb:app_id', content: '132676104124561'},
+                    { name: 'description', content: this.workshopDetails.description },
+                    { property: 'og:description', content: this.workshopDetails.description },
+                    { name: 'twitter:description', content: this.workshopDetails.description },
+                    { property: 'og:image', content: 'http://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+                    { name: 'twitter:image', content: 'http://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+                    { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
+                    { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
+                ]);
             });
     }
 
