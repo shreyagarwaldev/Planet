@@ -72,8 +72,8 @@
             </div>
             <div class="wsd-share">
                 <h2 class="highlight-headings">Spread the word!</h2>
-                <div [attr.data-href]="router.url" data-layout="button" data-size="small" data-mobile-iframe="true"><a title="Share on Facebook" class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.thepixelatedplanet.com%2F&amp;src=sdkpreparse"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></div>
-                <a title="Share on twitter" href="https://twitter.com/intent/tweet?text=Best%20Photography%20Workshops"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                <div [attr.data-href]="currentUrl" data-layout="button" data-size="small" data-mobile-iframe="true"><a title="Share on Facebook" class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{currentUrl}}&amp;src=sdkpreparse"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></div>
+                <a title="Share on twitter" href="https://twitter.com/intent/tweet?text=Best%20Photography%20Workshops&url={{currentUrl}}"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
             </div>
         </div>
 

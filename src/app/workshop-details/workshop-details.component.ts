@@ -34,6 +34,7 @@ export class WorkshopDetailsComponent {
     private tabLinks: HTMLCollectionOf<HTMLElement>;
 
     public coverImageCDNLink : string;
+    public currentUrl: string;
 
     arrowKeyfunction: Function;
 
@@ -112,6 +113,11 @@ export class WorkshopDetailsComponent {
                    d.startDateStr = this.formatDate(d.startDate);
                    d.endDateStr = this.formatDate(d.endDate);
                 });
+
+                this.currentUrl = (`https://www.thepixelatedplanet.com${this.router.url}`).replace(new RegExp('/', 'g'), '%2F').replace(new RegExp(':', 'g'),'%3A')
+                .replace(new RegExp('[?]', 'g'),'%3F').replace(new RegExp(';','g'),'%3B').replace(new RegExp(',', 'g'),'%2C')
+                .replace(new RegExp('@','g'),'%40').replace(new RegExp('&', 'g'),'%26').replace(new RegExp('=', 'g'),'%3D')
+                .replace(new RegExp('[+]','g'),'%2B');
                         
                 let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
                 this.title.setTitle(titleStr);
