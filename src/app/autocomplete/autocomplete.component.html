@@ -1,8 +1,9 @@
 <div class="dropdown-container">
-    <input id="country" type="text" class="filter-input" [(ngModel)]=query (keyup)=filter() placeholder="Type a location">
-    <div class="suggestions" *ngIf="filteredList.length > 0">
-        <ul>
-            <li *ngFor="let item of filteredList" (click)="select(item)">{{item}}</li>
-        </ul>
-    </div>
+    <input [(ngModel)]="query"
+           (blur)="onBlur(query)"
+           [typeahead]="countries"
+           (typeaheadOnSelect)="select($event)"
+           placeholder="Type a location"
+           typeaheadOptionField="name"
+           class="form-control">
 </div>
