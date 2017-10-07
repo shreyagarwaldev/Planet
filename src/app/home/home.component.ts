@@ -22,6 +22,20 @@ export class HomeComponent implements OnInit {
     this.globalConstants = globalConstantsRepository;
     this.gaService.trackPageView('Home');
     title.setTitle('Travel, Wildlife, Portrait, Street, etc. Photography Workshops')
+
+    meta.removeTag("name='twitter:title'");
+    meta.removeTag("property='og:title'");
+    meta.removeTag("property='og:type'");
+    meta.removeTag("property='og:site_name'");
+    meta.removeTag("property='fb:app_id'");
+    meta.removeTag("name='description'");
+    meta.removeTag("property='og:description'");
+    meta.removeTag("name='twitter:description'");
+    meta.removeTag("property='og:image'");
+    meta.removeTag("name='twitter:image'");
+    meta.removeTag("name='twitter:site'");
+    meta.removeTag("property='og:url'");
+    
     meta.updateTag({content: 'Photography Workshops - Pixelated Planet'}, "name='twitter:title'");
     meta.updateTag({content: 'Photography Workshops - Pixelated Planet'}, "property='og:title'");
     meta.updateTag({content: 'website'}, "property='og:type'");

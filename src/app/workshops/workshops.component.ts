@@ -43,18 +43,31 @@ export class WorkshopsComponent {
         
         title.setTitle('List of Photography Workshops');
 
-        // meta.updateTag({content: 'Photography Workshops List - Pixelated Planet'}, "name='twitter:title'");
-        // meta.updateTag({content: 'Photography Workshops List - Pixelated Planet'}, "property='og:title'");
-        // meta.updateTag({content: 'website'}, "property='og:type'");
-        // meta.updateTag({content: 'The Pixelated Planet'}, "property='og:site_name'");
-        // meta.updateTag({content: '132676104124561'}, "property='fb:app_id'");
-        // meta.updateTag({content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price'}, "name='description'");
-        // meta.updateTag({content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price'}, "property='og:description'");
-        // meta.updateTag({content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price'}, "name='twitter:description'");
-        // meta.updateTag({content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' }, "property='og:image'");
-        // meta.updateTag({content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' }, "name='twitter:image'");
-        // meta.updateTag({content: `https://www.thepixelatedplanet.com${this.router.url}` }, "property='og:url'");
-        // meta.updateTag({content: `https://www.thepixelatedplanet.com${this.router.url}` }, "property='twitter:site'");
+        meta.removeTag("name='twitter:title'");
+        meta.removeTag("property='og:title'");
+        meta.removeTag("property='og:type'");
+        meta.removeTag("property='og:site_name'");
+        meta.removeTag("property='fb:app_id'");
+        meta.removeTag("name='description'");
+        meta.removeTag("property='og:description'");
+        meta.removeTag("name='twitter:description'");
+        meta.removeTag("property='og:image'");
+        meta.removeTag("name='twitter:image'");
+        meta.removeTag("name='twitter:site'");
+        meta.removeTag("property='og:url'");
+        
+        meta.updateTag({content: 'Photography Workshops List - Pixelated Planet'}, "name='twitter:title'");
+        meta.updateTag({content: 'Photography Workshops List - Pixelated Planet'}, "property='og:title'");
+        meta.updateTag({content: 'website'}, "property='og:type'");
+        meta.updateTag({content: 'The Pixelated Planet'}, "property='og:site_name'");
+        meta.updateTag({content: '132676104124561'}, "property='fb:app_id'");
+        meta.updateTag({content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price'}, "name='description'");
+        meta.updateTag({content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price'}, "property='og:description'");
+        meta.updateTag({content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price'}, "name='twitter:description'");
+        meta.updateTag({content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' }, "property='og:image'");
+        meta.updateTag({content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' }, "name='twitter:image'");
+        meta.updateTag({content: `https://www.thepixelatedplanet.com${this.router.url}` }, "property='og:url'");
+        meta.updateTag({content: `https://www.thepixelatedplanet.com${this.router.url}` }, "property='twitter:site'");
         
         router.events.subscribe(event => {
             if(event instanceof NavigationEnd)

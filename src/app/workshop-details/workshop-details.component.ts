@@ -122,18 +122,31 @@ export class WorkshopDetailsComponent {
                 let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
                 this.title.setTitle(titleStr);
 
-                // this.meta.updateTag({content: titleStr}, "name='twitter:title'");
-                // this.meta.updateTag({content: titleStr}, "property='og:title'");
-                // this.meta.updateTag({content: 'article'}, "property='og:type'");
-                // this.meta.updateTag({content: 'The Pixelated Planet'}, "property='og:site_name'");
-                // this.meta.updateTag({content: '132676104124561'}, "property='fb:app_id'");
-                // this.meta.updateTag({content: this.workshopDetails.description }, "name='description'");
-                // this.meta.updateTag({content: this.workshopDetails.description }, "property='og:description'");
-                // this.meta.updateTag({content: this.workshopDetails.description }, "name='twitter:description'");
-                // this.meta.updateTag({content: this.coverImageCDNLink }, "property='og:image'");
-                // this.meta.updateTag({content: this.coverImageCDNLink }, "name='twitter:image'");
-                // this.meta.updateTag({content: `https://www.thepixelatedplanet.com${this.router.url}` }, "property='og:url'");
-                // this.meta.updateTag({content: `https://www.thepixelatedplanet.com${this.router.url}` }, "name='twitter:site'");
+                this.meta.removeTag("name='twitter:title'");
+                this.meta.removeTag("property='og:title'");
+                this.meta.removeTag("property='og:type'");
+                this.meta.removeTag("property='og:site_name'");
+                this.meta.removeTag("property='fb:app_id'");
+                this.meta.removeTag("name='description'");
+                this.meta.removeTag("property='og:description'");
+                this.meta.removeTag("name='twitter:description'");
+                this.meta.removeTag("property='og:image'");
+                this.meta.removeTag("name='twitter:image'");
+                this.meta.removeTag("name='twitter:site'");
+                this.meta.removeTag("property='og:url'");            
+
+                this.meta.updateTag({content: titleStr}, "name='twitter:title'");
+                this.meta.updateTag({content: titleStr}, "property='og:title'");
+                this.meta.updateTag({content: 'article'}, "property='og:type'");
+                this.meta.updateTag({content: 'The Pixelated Planet'}, "property='og:site_name'");
+                this.meta.updateTag({content: '132676104124561'}, "property='fb:app_id'");
+                this.meta.updateTag({content: this.workshopDetails.description }, "name='description'");
+                this.meta.updateTag({content: this.workshopDetails.description }, "property='og:description'");
+                this.meta.updateTag({content: this.workshopDetails.description }, "name='twitter:description'");
+                this.meta.updateTag({content: this.coverImageCDNLink }, "property='og:image'");
+                this.meta.updateTag({content: this.coverImageCDNLink }, "name='twitter:image'");
+                this.meta.updateTag({content: `https://www.thepixelatedplanet.com${this.router.url}` }, "property='og:url'");
+                this.meta.updateTag({content: `https://www.thepixelatedplanet.com${this.router.url}` }, "name='twitter:site'");
             });
     }
 
