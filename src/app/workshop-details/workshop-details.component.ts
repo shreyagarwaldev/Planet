@@ -130,8 +130,8 @@ export class WorkshopDetailsComponent {
                     { name: 'description', content: this.workshopDetails.description },
                     { property: 'og:description', content: this.workshopDetails.description },
                     { name: 'twitter:description', content: this.workshopDetails.description },
-                    { property: 'og:image', content: 'http://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
-                    { name: 'twitter:image', content: 'http://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg' },
+                    { property: 'og:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
+                    { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
                     { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
                     { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
                 ]);
