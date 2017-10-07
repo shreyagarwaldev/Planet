@@ -137,6 +137,7 @@ hr {
 .disabled {
     cursor: not-allowed;
     opacity: 0.5;
+    pointer-events: none;
 }
 
 a.active-page.page-numbers {

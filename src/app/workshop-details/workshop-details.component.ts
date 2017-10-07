@@ -24,14 +24,11 @@ export class WorkshopDetailsComponent {
     imagesLink: IImageObject[];
     hideModal: boolean;
     private slideIndex: number;
-    private sub: any;
     tabs: ITabs[];
     workshopId:string;
 
     workshopRepository : WorkshopRepository;
     private previousActiveTab: ITabs;
-    private tabcontent: HTMLCollectionOf<HTMLElement>;
-    private tabLinks: HTMLCollectionOf<HTMLElement>;
 
     public coverImageCDNLink : string;
     public currentUrl: string;
@@ -65,16 +62,12 @@ export class WorkshopDetailsComponent {
 
     ngOnInit() {
         this.hideModal = true;
-        this.sub = this.route.params.subscribe(params => {
-            this.workshopId = params['id'];
-        });
-
+        this.workshopId = this.route.snapshot.params['id'];
         this.getWorkshopDetail(this.workshopId);
         this.initializeTabs();
     }
 
     ngOnDestroy() {
-        this.sub.unsubscribe();
         this.arrowKeyfunction();
     }
 
