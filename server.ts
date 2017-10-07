@@ -10,6 +10,8 @@ import { readFileSync } from 'fs';
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
+const sslRedirect = require('heroku-ssl-redirect');
+
 // Express server
 const app = express();
 
@@ -21,6 +23,8 @@ const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toStri
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main.bundle');
+
+app.use(sslRedirect());
 
 const compression = require('compression');
 
