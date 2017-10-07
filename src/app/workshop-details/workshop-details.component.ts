@@ -121,20 +121,19 @@ export class WorkshopDetailsComponent {
                         
                 let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
                 this.title.setTitle(titleStr);
-                this.meta.addTags([
-                    { name: 'twitter:title', content: titleStr },
-                    { property: 'og:title', content: titleStr },
-                    { property: 'og:type', content: 'article'},
-                    { property: 'og:site_name', content: 'The Pixelated Planet'},
-                    { property: 'fb:app_id', content: '132676104124561'},
-                    { name: 'description', content: this.workshopDetails.description },
-                    { property: 'og:description', content: this.workshopDetails.description },
-                    { name: 'twitter:description', content: this.workshopDetails.description },
-                    { property: 'og:image', content: this.coverImageCDNLink },
-                    { name: 'twitter:image', content: this.coverImageCDNLink },
-                    { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
-                    { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
-                ], true);
+
+                this.meta.updateTag({content: titleStr}, "name='twitter:title'");
+                this.meta.updateTag({content: titleStr}, "property='og:title'");
+                this.meta.updateTag({content: 'article'}, "property='og:type'");
+                this.meta.updateTag({content: 'The Pixelated Planet'}, "property='og:site_name'");
+                this.meta.updateTag({content: '132676104124561'}, "property='fb:app_id'");
+                this.meta.updateTag({content: this.workshopDetails.description }, "name='description'");
+                this.meta.updateTag({content: this.workshopDetails.description }, "property='og:description'");
+                this.meta.updateTag({content: this.workshopDetails.description }, "name='twitter:description'");
+                this.meta.updateTag({content: this.coverImageCDNLink }, "property='og:image'");
+                this.meta.updateTag({content: this.coverImageCDNLink }, "name='twitter:image'");
+                this.meta.updateTag({content: `https://www.thepixelatedplanet.com${this.router.url}` }, "property='og:url'");
+                this.meta.updateTag({content: `https://www.thepixelatedplanet.com${this.router.url}` }, "name='twitter:site'");
             });
     }
 
