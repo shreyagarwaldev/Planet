@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import { Observable } from "rxjs";
@@ -19,9 +19,7 @@ export class PageRedirectComponent {
     }
     ngOnInit() {
         let url: string;
-		this.sub = this.route.params.subscribe(params => {
-       url = params['externalUrl'];
-        });
+		url  = this.route.snapshot.params['externalUrl'];
         
         this.ngZone.runOutsideAngular(() => {
             this.timer = Observable.interval(5000).subscribe({
@@ -38,6 +36,9 @@ export class PageRedirectComponent {
                 }
             });
         });
+    }
+
+    ngOnDestroy() {
     }
     
     goBack() {
