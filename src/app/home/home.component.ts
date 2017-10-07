@@ -22,18 +22,18 @@ export class HomeComponent implements OnInit {
     this.globalConstants = globalConstantsRepository;
     this.gaService.trackPageView('Home');
     title.setTitle('Travel, Wildlife, Portrait, Street, etc. Photography Workshops')
-    meta.updateTag({content: 'Photography Workshops - Pixelated Planet'}, "name='twitter:title'");
-    meta.updateTag({content: 'Photography Workshops - Pixelated Planet'}, "property='og:title'");
-    meta.updateTag({content: 'website'}, "property='og:type'");
-    meta.updateTag({content: 'The Pixelated Planet'}, "property='og:site_name'");
-    meta.updateTag({content: '132676104124561'}, "property='fb:app_id'");
-    meta.updateTag({content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops`}, "name='description'");
-    meta.updateTag({content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops`}, "property='og:description'");
-    meta.updateTag({content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops`}, "name='twitter:description'");
-    meta.updateTag({content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg'}, "property='og:image'");
-    meta.updateTag({content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg'}, "name='twitter:image'");
-    meta.updateTag({content: 'https://www.thepixelatedplanet.com/'}, "name='twitter:site'");
-    meta.updateTag({content: 'https://www.thepixelatedplanet.com/'}, "property='og:url'");
+    // meta.updateTag({content: 'Photography Workshops - Pixelated Planet'}, "name='twitter:title'");
+    // meta.updateTag({content: 'Photography Workshops - Pixelated Planet'}, "property='og:title'");
+    // meta.updateTag({content: 'website'}, "property='og:type'");
+    // meta.updateTag({content: 'The Pixelated Planet'}, "property='og:site_name'");
+    // meta.updateTag({content: '132676104124561'}, "property='fb:app_id'");
+    // meta.updateTag({content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops`}, "name='description'");
+    // meta.updateTag({content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops`}, "property='og:description'");
+    // meta.updateTag({content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops`}, "name='twitter:description'");
+    // meta.updateTag({content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg'}, "property='og:image'");
+    // meta.updateTag({content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg'}, "name='twitter:image'");
+    // meta.updateTag({content: 'https://www.thepixelatedplanet.com/'}, "name='twitter:site'");
+    // meta.updateTag({content: 'https://www.thepixelatedplanet.com/'}, "property='og:url'");
   }
 
   ngOnInit() {
