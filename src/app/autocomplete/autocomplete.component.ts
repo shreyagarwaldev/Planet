@@ -26,15 +26,20 @@ export class AutocompleteComponent {
     }
 
     public select(value: any) {
-        if (value && value.fromFilters && value.id) {
+        if (value) {
             let locationId = value.id;
-            this.workshopRepository.getLocations().then((locations: ILocation[]) => {
-                locations.forEach((loc: ILocation) => {
-                    if (locationId === loc.id) {
-                        this.query = loc.name;
-                    }
-                })
-            });
+            if (Number.isNaN(locationId)) {
+                this.query = "";
+            }
+            else if (value.id) {
+                this.workshopRepository.getLocations().then((locations: ILocation[]) => {
+                    locations.forEach((loc: ILocation) => {
+                        if (locationId === loc.id) {
+                            this.query = loc.name;
+                        }
+                    })
+                });
+            }
         }
 
         if (value && value.item) {

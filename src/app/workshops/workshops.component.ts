@@ -1,10 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser'
-import { ActivatedRoute, Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
-import { WorkshopsListComponent } from '../workshops-list/workshops-list.component'
-import { WorkshopFilterComponent } from '../workshop-filter/workshop-filter.component'
-import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
-import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
+import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
+import { WorkshopsListComponent } from '../workshops-list/workshops-list.component';
+import { WorkshopFilterComponent } from '../workshop-filter/workshop-filter.component';
+import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository';
+import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService';
 
 @Component({
     templateUrl: './workshops.component.html',
@@ -58,6 +58,7 @@ export class WorkshopsComponent {
 
         router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
+                this.setParameters();
                 this.updateUrl();
             }
         });
@@ -68,18 +69,14 @@ export class WorkshopsComponent {
     }
 
     setParameters() {
-        this.route.params.subscribe(params => {
-            this.pageNumber = params['pageNumber'];
-        });
-
-        this.route.queryParams.subscribe(params => {
-            this.locationId = Number(params['locations']);
-            this.categoryList = params['categories'];
-            this.minPrice = params['minPrice'];
-            this.maxPrice = params['maxPrice'];
-            this.startDate = params['startDate'];
-            this.endDate = params['endDate'];
-        });
+        this.pageNumber = this.route.snapshot.params['pageNumber'];
+        let queryParams = this.route.snapshot.queryParams;
+        this.locationId = Number(queryParams['locations']);
+        this.categoryList = queryParams['categories'];
+        this.minPrice = queryParams['minPrice'];
+        this.maxPrice = queryParams['maxPrice'];
+        this.startDate = queryParams['startDate'];
+        this.endDate = queryParams['endDate'];
 
         this.locationId = this.locationId === NaN ? undefined : this.locationId;
         this.startDate = !this.startDate ? this.globalConstants.getDefaultStartDate() : this.startDate;
@@ -93,17 +90,20 @@ export class WorkshopsComponent {
         this.updateUrl();
     }
 
+    ngOnDestroy() {
+    }
+
     createUrl(): string {
         let url = `/workshops/${this.pageNumber}?startDate=${this.startDate}&endDate=${this.endDate}`;
         url += this.minPrice ? `&minPrice=${this.minPrice}` : ``;
         url += this.maxPrice ? `&maxPrice=${this.maxPrice}` : ``;
         url += this.locationId ? `&locations=${this.locationId}` : ``;
         url += this.categoryList ? `&categories=${this.categoryList}` : ``;
-
         return url;
     }
 
     updateUrl() {
+
         this.startDate = !this.startDate ? this.globalConstants.getDefaultStartDate() : this.startDate;
         this.endDate = !this.endDate ? this.globalConstants.getDefaultEndDate() : this.endDate;
         this.query = `${this.globalConstants.getPixelatedPlanetAPIUrl()}/Workshops?startDateFilter=${this.startDate}&endDateFilter=${this.endDate}`;

@@ -83,11 +83,8 @@ export class WorkshopFilterComponent {
             this.datePickerChildComp.setDate(null, null);
         }
 
-        if (locationId) {
-            this.autocompleteChildComp.select({ id: locationId, fromFilters: true });
-        }
-        else {
-            this.autocompleteChildComp.select(null);
+        if (locationId || Number.isNaN(locationId)) {
+            this.autocompleteChildComp.select({ id: locationId });
         }
 
         this.dropdownChildComp.selectValue(!categories || categories == "" ? "Category" : categories);
