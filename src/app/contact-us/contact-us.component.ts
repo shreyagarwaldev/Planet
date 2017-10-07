@@ -60,20 +60,20 @@ export class ContactUsComponent {
     
     gaService.trackPageView('ContactPage');
     title.setTitle('Contact Us - Pixelated Planet')
-    meta.addTags([
-        { name: 'twitter:title', content: 'Contact Us - Pixelated Planet' },
-        { property: 'og:title', content: 'Contact Us - Pixelated Planet' },
-        { property: 'og:type', content: 'website'},
-        { property: 'og:site_name', content: 'The Pixelated Planet'},
-        { property: 'fb:app_id', content: '132676104124561'},
-        { name: 'description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
-        { property: 'og:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
-        { name: 'twitter:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
-        { property: 'og:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-        { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-        { property: 'og:url', content: 'https://www.thepixelatedplanet.com/contact' },
-        { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/contact' },
-      ], true);
+    // meta.addTags([
+    //     { name: 'twitter:title', content: 'Contact Us - Pixelated Planet' },
+    //     { property: 'og:title', content: 'Contact Us - Pixelated Planet' },
+    //     { property: 'og:type', content: 'website'},
+    //     { property: 'og:site_name', content: 'The Pixelated Planet'},
+    //     { property: 'fb:app_id', content: '132676104124561'},
+    //     { name: 'description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
+    //     { property: 'og:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
+    //     { name: 'twitter:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
+    //     { property: 'og:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
+    //     { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
+    //     { property: 'og:url', content: 'https://www.thepixelatedplanet.com/contact' },
+    //     { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/contact' },
+    //   ], true);
 
     this.submitMessage = "Message submitted successfully";
   }
