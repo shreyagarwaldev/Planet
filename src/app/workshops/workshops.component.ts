@@ -55,7 +55,7 @@ export class WorkshopsComponent {
             { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
             { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
             { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
-          ]);
+          ], true);
         
         router.events.subscribe(event => {
             if(event instanceof NavigationEnd)

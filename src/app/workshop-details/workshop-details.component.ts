@@ -134,7 +134,7 @@ export class WorkshopDetailsComponent {
                     { name: 'twitter:image', content: this.coverImageCDNLink },
                     { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
                     { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
-                ]);
+                ], true);
             });
     }
 

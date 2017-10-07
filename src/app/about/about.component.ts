@@ -24,6 +24,6 @@ export class AboutComponent {
             { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
             { property: 'og:url', content: 'https://www.thepixelatedplanet.com/about' },
             { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/about' },
-          ]);
+          ], true);
     }
 }

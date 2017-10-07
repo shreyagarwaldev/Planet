@@ -73,7 +73,7 @@ export class ContactUsComponent {
         { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
         { property: 'og:url', content: 'https://www.thepixelatedplanet.com/contact' },
         { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/contact' },
-      ]);
+      ], true);
 
     this.submitMessage = "Message submitted successfully";
   }

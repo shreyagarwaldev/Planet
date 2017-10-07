@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
         { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
         { property: 'og:url', content: 'https://www.thepixelatedplanet.com/' },
         { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/' },
-      ]);
+      ], true);
   }
 
   ngOnInit() {
