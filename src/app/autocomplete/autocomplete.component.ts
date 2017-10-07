@@ -8,7 +8,8 @@ import { WorkshopRepository, ILocation } from '../services/workshops/workshopRep
 })
 export class AutocompleteComponent {
 
-    public query = '';
+    public query = "";
+    private previousValue = "";
     public countries: ILocation[];
     private workshopRepository: WorkshopRepository;
 
@@ -31,11 +32,12 @@ export class AutocompleteComponent {
             if (Number.isNaN(locationId)) {
                 this.query = "";
             }
-            else if (value.id) {
+            else if (locationId) {
                 this.workshopRepository.getLocations().then((locations: ILocation[]) => {
                     locations.forEach((loc: ILocation) => {
                         if (locationId === loc.id) {
                             this.query = loc.name;
+                            this.previousValue = this.query;
                         }
                     })
                 });
@@ -44,12 +46,13 @@ export class AutocompleteComponent {
 
         if (value && value.item) {
             this.query = value.item.name;
+            this.previousValue = this.query;
             this.selectionChanged.emit(value.item);
         }
     }
 
     public onBlur(value: string) {
-        if (value === "") {
+        if (value === "" && this.previousValue !== value) {
             this.selectionChanged.emit(value);
         }
     }

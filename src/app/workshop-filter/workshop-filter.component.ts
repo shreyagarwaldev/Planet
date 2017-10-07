@@ -13,37 +13,21 @@ import { DropdownComponent } from '../dropdown-menu/dropdown-menu.component'
 
 export class WorkshopFilterComponent {
 
-    @Output() fromDateChanged = new EventEmitter();
-    @Output() toDateChanged = new EventEmitter();
+    @Output() dateRangeChanged = new EventEmitter();
     @Output() locationFilterChanged = new EventEmitter();
     @Output() categoryFilterChanged = new EventEmitter();
     @Output() minPriceFilterChanged = new EventEmitter();
     @Output() maxPriceFilterChanged = new EventEmitter();
     @Output() applyFilters = new EventEmitter();
 
-    public cities: any[];
     public categories: any[];
 
     // price values
     minPriceValue: number;
     maxPriceValue: number;
 
-    /** labels for filters */
-    public cityDropdownLabel: string;
-    public photographerDropdownLabel: string;
-    public categoryDropdownLabel: string;
-    public fromDateLabel: string;
-    public toDateLabel: string;
-
-    private checkboxElements: NodeListOf<Element>;
-
     /** date filters */
-    public minFromDate: Date;
-    public maxFromDate: Date;
-    public minToDate: Date;
-    public maxToDate: Date;
-    public fromDate: Array<Date>;
-    public toDate: Date;
+    public dateRange: Array<Date>;
 
     private globalConstants: GlobalConstantsRepository;
     private workshopRepo: WorkshopRepository;
@@ -61,14 +45,6 @@ export class WorkshopFilterComponent {
         this.workshopRepo = workshopRepository;
 
         this.updateCategories();
-
-        this.cityDropdownLabel = "Location";
-        this.photographerDropdownLabel = "Photographer";
-        this.categoryDropdownLabel = "Category";
-        this.fromDateLabel = "From";
-        this.toDateLabel = "To";
-
-        this.minFromDate = new Date();
         this.showFilter = true;
     }
 
@@ -99,14 +75,9 @@ export class WorkshopFilterComponent {
         });
     }
 
-    getFromDate(value: Array<Date>) {
-        this.fromDate = value;
-        this.fromDateChanged.emit(this.fromDate);
-    }
-
-    getToDate(value: Date) {
-        this.toDate = value;
-        this.toDateChanged.emit(this.toDate);
+    getDate(value: Array<Date>) {
+        this.dateRange = value;
+        this.dateRangeChanged.emit(this.dateRange);
     }
 
     toggleFilter() {
@@ -120,17 +91,6 @@ export class WorkshopFilterComponent {
 
     updateMaxPrice(value: number) {
         this.maxPriceFilterChanged.emit(value);
-    }
-
-    getSelectedFilters(inputName: string): string[] {
-        let selected: string[] = [];
-        this.checkboxElements = document.querySelectorAll(`input[name=${inputName}]:checked`);
-        for (var i = 0; i < this.checkboxElements.length; i++) {
-            var x = <HTMLInputElement>this.checkboxElements[i];
-            selected.push(x.value);
-        }
-
-        return selected;
     }
 
     updateLocation(value: any) {

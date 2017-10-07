@@ -22,7 +22,6 @@ export class WorkshopsComponent {
     pageNumber: number;
 
     private readonly workshopsPerPage: number = 8;
-
     private globalConstants: GlobalConstantsRepository;
 
     @ViewChild(WorkshopsListComponent) workshopsListChildComp: WorkshopsListComponent;
@@ -122,7 +121,7 @@ export class WorkshopsComponent {
         this.router.navigateByUrl(this.globalConstants.createWorkshopsUrl(this.pageNumber, this.startDate, this.endDate, this.minPrice, this.maxPrice, this.locationId, this.categoryList));
     }
 
-    setFromDate(selectedDate: Array<Date>) {
+    setDateRange(selectedDate: Array<Date>) {
         let previousStartDate = this.startDate;
         let previousEndDate = this.endDate;
         let fromDate = selectedDate[0];

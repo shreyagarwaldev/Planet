@@ -1,7 +1,7 @@
 <div class="ws-container">
     <navi-bar [showFilters]="true" [showSocialBlock]="false" [hideFilter]="hideFilter" (filtersDropdownToggle)="toggleFilterDropdown($event)"></navi-bar>
     <div class="filters" [ngClass]="{'hideFilter': hideFilter}" id="filters">
-        <workshop-filter (minPriceFilterChanged)="setMinPrice($event)" (maxPriceFilterChanged)="setMaxPrice($event)" (fromDateChanged)="setFromDate($event)"
+        <workshop-filter (minPriceFilterChanged)="setMinPrice($event)" (maxPriceFilterChanged)="setMaxPrice($event)" (dateRangeChanged)="setDateRange($event)"
             (locationFilterChanged)="setLocationIdList($event)" (categoryFilterChanged)="setCategoryList($event)" (applyFilters)="toggleFilterDropdown($event)"></workshop-filter>
     </div>
     <div class="list">

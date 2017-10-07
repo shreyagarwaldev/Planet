@@ -4,13 +4,13 @@
 
 .dropdown-list {
     z-index: 99;
-    padding: 1.5rem;
     width: 15rem;
     background-color: white;
     box-shadow: 0 0 0.7px grey;
     position: absolute;
-    color: #15424E;
+    color: #26181D;
     text-align: left;
+    border-radius: 2px;
 }
 
 .dropdown-container {
@@ -30,8 +30,12 @@
 .data-list {
     list-style: none;
     cursor: pointer;
-    padding: .5rem;
+    padding: 1rem 1.5rem .5rem 1.5rem;
     white-space: nowrap;
+    &:hover {
+        background-color:#26181D;
+        color: white; 
+    }
     span {
         vertical-align: middle;
         font-size: 1.5rem;
