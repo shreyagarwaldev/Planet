@@ -92,6 +92,11 @@
     }
 }
 
+.submit-success {
+    color: #26181D;
+    font-size: 1.8rem;
+}
+
 #message {
     height: 20rem;
     font-size: 1.8rem;
@@ -154,5 +159,9 @@
     }
     .ok-btn {
         width: 40%;
+    }
+
+    .submit-success {
+        font-size: 1.5rem;
     }
 }
