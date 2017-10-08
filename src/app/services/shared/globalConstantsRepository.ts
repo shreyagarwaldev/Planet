@@ -10,6 +10,7 @@ export class GlobalConstantsRepository
     private pixelatedPlanetAPIUrl;
     private contactAPIUrl;
     private subscribeAPIUrl;
+    private feedbackAPIUrl;
     private locationsUrl;
     private workshopTypesUrl;
     private photographersUrl;
@@ -25,9 +26,14 @@ export class GlobalConstantsRepository
         this.serviceBaseUrl = `https://pixelatedplanetservice.azurewebsites.net`;
         this.pixelatedPlanetAPIUrl = `${this.serviceBaseUrl}/api/Pixelated`;
         this.contactAPIUrl = `${this.pixelatedPlanetAPIUrl}/Contact`;
+        this.feedbackAPIUrl = `${this.pixelatedPlanetAPIUrl}/feedback`;
         this.subscribeAPIUrl = `${this.pixelatedPlanetAPIUrl}/addemail`;
         this.locationsUrl = `${this.pixelatedPlanetAPIUrl}/Locations`;
         this.workshopTypesUrl = `${this.pixelatedPlanetAPIUrl}/WorkshopTypes`;
+    }
+
+    public getFeedbackAPIUrl() {
+        return this.feedbackAPIUrl;
     }
 
     public getSubscribeAPIUrl() {
