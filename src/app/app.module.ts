@@ -65,7 +65,7 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
         { path: 'termsandconditions', component: TermsAndConditionsComponent, pathMatch: 'full'},
         { path: 'privacypolicy', component: PrivacyComponent, pathMatch: 'full'},
         { path: 'feedback', component: FeedbackComponent, pathMatch: 'full'},
-        { path: 'workshops', redirectTo: '/workshops/1' },
+        { path: 'photography-workshops', redirectTo: '/photography-workshops/1' },
         { path: '**', redirectTo: '/404' }
       ]),
     HttpModule,
