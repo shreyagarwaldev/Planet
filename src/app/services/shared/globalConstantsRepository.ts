@@ -60,7 +60,7 @@ export class GlobalConstantsRepository
     }
 
     public createWorkshopsUrl(page:number, startDate:string, endDate:string, minPrice:number, maxPrice:number, location: number, categories: string) {
-        let url = `/workshops/${page}?startDate=${startDate}&endDate=${endDate}`;
+        let url = `/photography-workshops/${page}?startDate=${startDate}&endDate=${endDate}`;
         url += minPrice ? `&minPrice=${minPrice}` : ``;
         url += maxPrice ? `&maxPrice=${maxPrice}` : ``;
         url += location ? `&locations=${location}` : ``;
