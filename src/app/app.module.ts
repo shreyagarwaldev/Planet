@@ -14,6 +14,7 @@ import { WorkshopFilterComponent } from './workshop-filter/workshop-filter.compo
 import { WorkshopsListComponent } from './workshops-list/workshops-list.component'
 import { WorkshopsComponent } from './workshops/workshops.component'
 import { AboutComponent } from './about/about.component'
+import { FeedbackComponent } from './feedback/feedback.component'
 import { FooterComponent } from './footer/footer.component'
 import { ErrorComponent } from './error/error.component'
 import { ContactUsComponent } from './contact-us/contact-us.component'
@@ -48,7 +49,8 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
     FooterComponent,
     PrivacyComponent,
     TermsAndConditionsComponent,
-    PageRedirectComponent
+    PageRedirectComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
@@ -62,6 +64,7 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
         { path: '404', component: ErrorComponent, pathMatch:'full'},
         { path: 'termsandconditions', component: TermsAndConditionsComponent, pathMatch: 'full'},
         { path: 'privacypolicy', component: PrivacyComponent, pathMatch: 'full'},
+        { path: 'feedback', component: FeedbackComponent, pathMatch: 'full'},
         { path: 'workshops', redirectTo: '/workshops/1' },
         { path: '**', redirectTo: '/404' }
       ]),
