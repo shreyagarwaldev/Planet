@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser'
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { WorkshopsListComponent } from '../workshops-list/workshops-list.component'
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
+import { MetaService } from '@ngx-meta/core';
 
 @Component({
   selector: 'app-home',
@@ -17,25 +17,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private globalConstantsRepository:GlobalConstantsRepository,
                 public gaService : GoogleAnalyticsService,
-                title: Title,
-                meta: Meta) {
+                private readonly meta: MetaService) {
     this.globalConstants = globalConstantsRepository;
     this.gaService.trackPageView('Home');
-    title.setTitle('Travel, Wildlife, Portrait, Street, etc. Photography Workshops')
-    meta.addTags([
-        { name: 'twitter:title', content: 'Photography Workshops - Pixelated Planet' },
-        { property: 'og:title', content: 'Photography Workshops - Pixelated Planet' },
-        { property: 'og:type', content: 'website'},
-        { property: 'og:site_name', content: 'The Pixelated Planet'},
-        { property: 'fb:app_id', content: '132676104124561'},
-        { name: 'description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
-        { property: 'og:description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
-        { name: 'twitter:description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
-        { property: 'og:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-        { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-        { property: 'og:url', content: 'https://www.thepixelatedplanet.com/' },
-        { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/' },
-      ]);
+
+    this.meta.setTitle(`Travel, Wildlife, Portrait, Street, etc. Photography Workshops`);
+    this.meta.setTag('og:image', 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg');
   }
 
   ngOnInit() {

@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef, ChangeDetectionStrategy, Renderer } from '@angular/core';
 import { WorkshopRepository, IWorkshopDetails } from '../services/workshops/workshopRepository'
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser'
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 export interface IImageObject {
@@ -41,9 +40,7 @@ export class WorkshopDetailsComponent {
         private route: ActivatedRoute,
         public router: Router,
         private renderer: Renderer,
-        public gaService: GoogleAnalyticsService,
-        public title: Title,
-        public meta: Meta) {
+        public gaService: GoogleAnalyticsService) {
         this.workshopRepository = workshopRepo;
         this.workshopDetails = <any>{};
         this.hideModal = true;
@@ -113,21 +110,7 @@ export class WorkshopDetailsComponent {
                 .replace(new RegExp('[+]','g'),'%2B');
                         
                 let titleStr = `Workshop Details - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
-                this.title.setTitle(titleStr);
-                this.meta.addTags([
-                    { name: 'twitter:title', content: titleStr },
-                    { property: 'og:title', content: titleStr },
-                    { property: 'og:type', content: 'article'},
-                    { property: 'og:site_name', content: 'The Pixelated Planet'},
-                    { property: 'fb:app_id', content: '132676104124561'},
-                    { name: 'description', content: this.workshopDetails.description },
-                    { property: 'og:description', content: this.workshopDetails.description },
-                    { name: 'twitter:description', content: this.workshopDetails.description },
-                    { property: 'og:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-                    { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-                    { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
-                    { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
-                ]);
+                
             });
     }
 

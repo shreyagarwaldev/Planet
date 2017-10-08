@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser'
 import { Http } from '@angular/http'
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
@@ -19,7 +18,7 @@ export class FeedbackComponent {
     isSuccess: boolean;
     submitStatus: string;
 
-    constructor(gaService : GoogleAnalyticsService, title: Title, meta: Meta, public http:Http, public globalConstants: GlobalConstantsRepository) {
+    constructor(gaService : GoogleAnalyticsService, public http:Http, public globalConstants: GlobalConstantsRepository) {
         this.isSuccess = false;
     }
 
