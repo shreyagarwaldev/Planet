@@ -3,6 +3,15 @@
     margin: 5rem 10rem 0rem 10rem;
     font-family: 'Lato', sans-serif;
     font-size: 1.5rem;
+    text-align: center;
+}
+
+h1 {
+    color: #26181D;
+}
+
+.feedback-text {
+    font-size: 1.8rem;
 }
 
 .detail-img {
@@ -11,13 +20,44 @@
     object-fit: cover;
 }
 
+.submit-btn {
+    width: 25rem;
+    margin-top: 2rem;
+    height: 4rem;
+    margin-bottom: 5rem;
+    background-color: #26181D;
+    color: white;
+    font-size: 1.8rem;
+}
+
+.success-text {
+    color: #26181D;
+    font-size: 1.8rem;
+    width: 50%;
+    text-align: center;
+    margin: 2rem auto;
+    display: block;
+}
+
 @media (max-width: 955px) {
+    h1 {
+        font-size: 2.5rem;
+    }
     .content {
         margin: 3rem;
     }
-
+    .feedback-text {
+        font-size: 1.5rem;
+    }
     .header-img,
     .detail-img {
         height: 25rem;
+    }
+    .submit-btn {
+        font-size: 1.5rem;
+    }
+    .success-text {
+        margin: 1rem auto;
+        font-size: 1.5rem;
     }
 }

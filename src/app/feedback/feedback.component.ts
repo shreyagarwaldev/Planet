@@ -10,13 +10,16 @@ import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsSer
 export class FeedbackComponent {
 
     messageText: string;
+    isSuccess: boolean;
 
     constructor(gaService : GoogleAnalyticsService, title: Title, meta: Meta) {
+        this.isSuccess = false;
     }
 
     submitFeedback() {
         if(this.messageText && this.messageText !== "") {
-            let xyz = this.messageText;
+            this.isSuccess = true;
+            this.messageText = "";
         }
     }
 }
