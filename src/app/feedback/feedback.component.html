@@ -1,0 +1,16 @@
+<navi-bar [showName]="true" [showSocialBlock]="true"></navi-bar>
+
+<div class="header-img">
+    <img class="detail-img" src="https://pixelatedplanetcdn.azureedge.net/img/yosemite.jpg" alt="workshop image" />
+</div>
+
+<div class="content">
+    <h1>Feedback</h1>
+    <textarea class="form-control feedback-text" id="message" required rows="8" cols="50" name="message" [(ngModel)]="messageText"
+        #message="ngModel" placeholder="Tell us what you think about us"></textarea>
+        <div *ngIf="isSuccess" class="success-text">{{submitStatus}}</div>
+    <button (click)="submitFeedback()" class="submit-btn btn">Submit</button>
+</div>
+<div class="footer">
+    <footer></footer>
+</div>

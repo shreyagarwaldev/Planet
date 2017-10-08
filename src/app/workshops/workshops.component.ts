@@ -91,16 +91,7 @@ export class WorkshopsComponent {
 
     ngOnDestroy() {
     }
-
-    createUrl(): string {
-        let url = `/workshops/${this.pageNumber}?startDate=${this.startDate}&endDate=${this.endDate}`;
-        url += this.minPrice ? `&minPrice=${this.minPrice}` : ``;
-        url += this.maxPrice ? `&maxPrice=${this.maxPrice}` : ``;
-        url += this.locationId ? `&locations=${this.locationId}` : ``;
-        url += this.categoryList ? `&categories=${this.categoryList}` : ``;
-        return url;
-    }
-
+    
     updateUrl() {
 
         this.startDate = !this.startDate ? this.globalConstants.getDefaultStartDate() : this.startDate;

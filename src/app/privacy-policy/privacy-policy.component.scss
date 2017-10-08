@@ -1,9 +1,11 @@
 .content {
-    position:relative;
-    margin:5rem 10rem 0rem 10rem;
+    color: #26181D;
+    position: relative;
+    margin: 5rem 10rem 0rem 10rem;
     font-family: 'Lato', sans-serif;
     font-size: 1.5rem;
 }
+
 .detail-img {
     height: 40rem;
     width: 100%;
@@ -14,9 +16,8 @@
     .content {
         margin: 3rem;
     }
-
     .header-img,
     .detail-img {
         height: 25rem;
     }
-}   
+}

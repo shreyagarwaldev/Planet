@@ -47,15 +47,9 @@
                     Invalid message
                 </div>
             </div>
+            <div *ngIf="submitted" class="submit-success text">{{submitMessage}}</div>
             <button type="submit" class="submit-btn btn btn-success" [disabled]="!contactForm.form.valid">Submit</button>
         </form>
-    </div>
-
-    <div class="message-dialog" *ngIf="submitted && showMessageBox">
-        <div class="wrapper">
-            <div class="text">{{submitMessage}}</div>
-            <button class="ok-btn btn" (click)="hideMessagebox()">ok</button>
-        </div>
     </div>
     <div class="footer">
         <footer></footer>

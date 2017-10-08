@@ -130,6 +130,6 @@ export class WorkshopsListComponent {
     }
 
     getCardImageDefaultLink(workshopId: number) {
-        return `/assets/img/default/${workshopId}.jpg`;
+        return this.workshopRepository.globalConstants.resolveImageUrl(`/img/default/${workshopId}.jpg`);
     }
 }

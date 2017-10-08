@@ -37,18 +37,13 @@ export class ContactUsComponent {
     email.EmailId = this.emailId;
 
     this.http.post(this.globalConstants.getContactAPIUrl(), email).toPromise().then(e => {
-        this.submitMessage = "Message submitted successfully";
+        this.submitMessage = "Message submitted successfully!";
     }).catch(a => 
     {
         this.submitMessage = "Message could not be submitted"; 
     });
 
     this.submitted = true;
-    this.showMessageBox = true;
-  }
-
-  hideMessagebox() {
-    this.showMessageBox = false;
   }
   
   constructor(
