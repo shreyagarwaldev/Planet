@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer, Output, EventEmitter, ViewChild } from '@angular/core';
 import { WorkshopRepository, ILocation, IPhotographer } from '../services/workshops/workshopRepository'
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
+import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component'
 import { DatePickerComponent } from '../date-picker/date-picker.component'
 import { DropdownComponent } from '../dropdown-menu/dropdown-menu.component'
@@ -39,8 +40,8 @@ export class WorkshopFilterComponent {
     @ViewChild(DropdownComponent) dropdownChildComp: DropdownComponent;
 
     constructor(private workshopRepository: WorkshopRepository,
-
-        private globalConstantsRepository: GlobalConstantsRepository) {
+                private globalConstantsRepository: GlobalConstantsRepository,
+                private gaService: GoogleAnalyticsService) {
         this.globalConstants = globalConstantsRepository;
         this.workshopRepo = workshopRepository;
 
@@ -85,11 +86,13 @@ export class WorkshopFilterComponent {
     }
 
     updateMinPrice(value: number) {
+        this.gaService.trackEvent("MinPriceFilterChanged", "Filter", `${value}`);
         this.minPriceFilterChanged.emit(value);
     }
 
 
     updateMaxPrice(value: number) {
+        this.gaService.trackEvent("MaxPriceFilterChanged", "Filter", `${value}`);
         this.maxPriceFilterChanged.emit(value);
     }
 
@@ -103,6 +106,8 @@ export class WorkshopFilterComponent {
     }
 
     updateCategoryList(value: string) {
+        this.gaService.trackEvent("CategoryFilterChanged", "Filter", value);
+        
         this.categoryFilterChanged.emit(value);
     }
 }

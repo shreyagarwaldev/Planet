@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { WorkshopRepository, ILocation } from '../services/workshops/workshopRepository'
+import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
 @Component({
     selector: 'autocomplete',
@@ -15,7 +16,8 @@ export class AutocompleteComponent {
 
     @Output() selectionChanged = new EventEmitter();
 
-    constructor(private workshopRepo: WorkshopRepository) {
+    constructor(private workshopRepo: WorkshopRepository,
+                public gaService: GoogleAnalyticsService) {
         this.workshopRepository = workshopRepo;
     }
 
@@ -47,6 +49,10 @@ export class AutocompleteComponent {
         if (value && value.item) {
             this.query = value.item.name;
             this.previousValue = this.query;
+
+            // send analytics event
+            this.gaService.trackEvent("LocationFilterChanged", "Filter", this.query);
+
             this.selectionChanged.emit(value.item);
         }
     }
