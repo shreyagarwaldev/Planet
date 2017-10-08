@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-SITEMAP: /sitemap.xml
+SITEMAP: https://www.thepixelatedplanet.com/sitemap.xml
