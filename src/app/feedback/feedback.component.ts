@@ -17,19 +17,23 @@ export class FeedbackComponent {
 
     messageText: string;
     isSuccess: boolean;
+    submitStatus: string;
 
     constructor(gaService : GoogleAnalyticsService, title: Title, meta: Meta, public http:Http, public globalConstants: GlobalConstantsRepository) {
         this.isSuccess = false;
     }
 
     submitFeedback() {
-        if(this.messageText && this.messageText !== "") {
+        if(this.messageText  && this.messageText !== "") {
+            this.submitStatus = "Submitting feedback ...";
+            this.isSuccess = true;
             var email = <FeedbackFormData>{};
             email.feedback = this.messageText;
             this.http.post(this.globalConstants.getFeedbackAPIUrl(), email).toPromise().then(e => {
-                this.isSuccess = true;
+                this.submitStatus = "Feedback submitted successfully!";
             }).catch(a => 
             {
+                this.submitStatus = "Shoot! Something went wrong. Please try again!";
             });
         }
     }

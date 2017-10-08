@@ -8,7 +8,7 @@
     <h1>Feedback</h1>
     <textarea class="form-control feedback-text" id="message" required rows="8" cols="50" name="message" [(ngModel)]="messageText"
         #message="ngModel" placeholder="Tell us what you think about us"></textarea>
-        <div *ngIf="isSuccess" class="success-text">Feedback submitted successfully!</div>
+        <div *ngIf="isSuccess" class="success-text">{{submitStatus}}</div>
     <button (click)="submitFeedback()" class="submit-btn btn">Submit</button>
 </div>
 <div class="footer">
