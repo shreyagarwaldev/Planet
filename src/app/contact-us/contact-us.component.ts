@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
 import { Title, Meta } from '@angular/platform-browser'
@@ -51,7 +51,7 @@ export class ContactUsComponent {
     private globalConstants: GlobalConstantsRepository,
     private gaService: GoogleAnalyticsService,
     private title: Title,
-    private meta: Meta) {
+    public meta: Meta) {
     
     gaService.trackPageView('ContactPage');
     title.setTitle('Contact Us - Pixelated Planet')
@@ -72,4 +72,20 @@ export class ContactUsComponent {
 
     this.submitMessage = "Message submitted successfully";
   }
+
+  
+  ngOnDestroy() {
+    this.meta.removeTag("name='twitter:title'");
+    this.meta.removeTag("property='og:title'");
+    this.meta.removeTag("property='og:type'");
+    this.meta.removeTag("property='og:site_name'");
+    this.meta.removeTag("property='fb:app_id'");
+    this.meta.removeTag("name='description'");
+    this.meta.removeTag("property='og:description'");
+    this.meta.removeTag("name='twitter:description'");
+    this.meta.removeTag("property='og:image'");
+    this.meta.removeTag("name='twitter:image'");
+    this.meta.removeTag("property='og:url'");
+    this.meta.removeTag("name='twitter:site'");
+}
 }

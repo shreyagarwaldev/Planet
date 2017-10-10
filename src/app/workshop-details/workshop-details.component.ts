@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ChangeDetectionStrategy, Renderer } from '@angular/core';
+import { Component, OnInit, ElementRef, ChangeDetectionStrategy, Renderer, OnDestroy } from '@angular/core';
 import { WorkshopRepository, IWorkshopDetails } from '../services/workshops/workshopRepository'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser'
@@ -60,15 +60,28 @@ export class WorkshopDetailsComponent {
         })
     }
 
+    
+  ngOnDestroy() {
+        this.arrowKeyfunction();
+        this.meta.removeTag("name='twitter:title'");
+    this.meta.removeTag("property='og:title'");
+    this.meta.removeTag("property='og:type'");
+    this.meta.removeTag("property='og:site_name'");
+    this.meta.removeTag("property='fb:app_id'");
+    this.meta.removeTag("name='description'");
+    this.meta.removeTag("property='og:description'");
+    this.meta.removeTag("name='twitter:description'");
+    this.meta.removeTag("property='og:image'");
+    this.meta.removeTag("name='twitter:image'");
+    this.meta.removeTag("property='og:url'");
+    this.meta.removeTag("name='twitter:site'");
+}
+
     ngOnInit() {
         this.hideModal = true;
         this.workshopId = this.route.snapshot.params['id'];
         this.getWorkshopDetail(this.workshopId);
         this.initializeTabs();
-    }
-
-    ngOnDestroy() {
-        this.arrowKeyfunction();
     }
 
     createExternalLink(url: string)

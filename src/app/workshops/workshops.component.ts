@@ -32,7 +32,7 @@ export class WorkshopsComponent {
         private route: ActivatedRoute,
         private router: Router,
         title: Title,
-        meta: Meta,
+        public meta: Meta,
         public gaService: GoogleAnalyticsService) {
         this.globalConstants = globalConstantsRepository;
         this.hideFilter = true;
@@ -63,6 +63,21 @@ export class WorkshopsComponent {
         });
     }
 
+    ngOnDestroy() {
+        this.meta.removeTag("name='twitter:title'");
+    this.meta.removeTag("property='og:title'");
+    this.meta.removeTag("property='og:type'");
+    this.meta.removeTag("property='og:site_name'");
+    this.meta.removeTag("property='fb:app_id'");
+    this.meta.removeTag("name='description'");
+    this.meta.removeTag("property='og:description'");
+    this.meta.removeTag("name='twitter:description'");
+    this.meta.removeTag("property='og:image'");
+    this.meta.removeTag("name='twitter:image'");
+    this.meta.removeTag("property='og:url'");
+    this.meta.removeTag("name='twitter:site'");
+}
+
     toggleFilterDropdown(event: any) {
         this.hideFilter = event;
     }
@@ -87,9 +102,6 @@ export class WorkshopsComponent {
     ngOnInit() {
         this.setParameters();
         this.updateUrl();
-    }
-
-    ngOnDestroy() {
     }
     
     updateUrl() {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser'
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
@@ -8,7 +8,7 @@ import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsSer
 })
 
 export class AboutComponent {
-    constructor(gaService : GoogleAnalyticsService, title: Title, meta: Meta) {
+    constructor(gaService : GoogleAnalyticsService, title: Title, public meta: Meta) {
         gaService.trackPageView('About');
         title.setTitle('About Pixelated Planet, the photographers and their workshop listings')
         meta.addTags([
@@ -26,4 +26,20 @@ export class AboutComponent {
             { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/about' },
           ]);
     }
+
+    
+  ngOnDestroy() {
+    this.meta.removeTag("name='twitter:title'");
+    this.meta.removeTag("property='og:title'");
+    this.meta.removeTag("property='og:type'");
+    this.meta.removeTag("property='og:site_name'");
+    this.meta.removeTag("property='fb:app_id'");
+    this.meta.removeTag("name='description'");
+    this.meta.removeTag("property='og:description'");
+    this.meta.removeTag("name='twitter:description'");
+    this.meta.removeTag("property='og:image'");
+    this.meta.removeTag("name='twitter:image'");
+    this.meta.removeTag("property='og:url'");
+    this.meta.removeTag("name='twitter:site'");
+}
 }

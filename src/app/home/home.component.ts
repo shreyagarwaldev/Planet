@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser'
 import { WorkshopsListComponent } from '../workshops-list/workshops-list.component'
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   constructor(private globalConstantsRepository:GlobalConstantsRepository,
                 public gaService : GoogleAnalyticsService,
                 title: Title,
-                meta: Meta) {
+                public meta: Meta) {
     this.globalConstants = globalConstantsRepository;
     this.gaService.trackPageView('Home');
     title.setTitle('Travel, Wildlife, Portrait, Street, etc. Photography Workshops')
@@ -37,6 +37,21 @@ export class HomeComponent implements OnInit {
         { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/' },
       ]);
   }
+
+  ngOnDestroy() {
+    this.meta.removeTag("name='twitter:title'");
+    this.meta.removeTag("property='og:title'");
+    this.meta.removeTag("property='og:type'");
+    this.meta.removeTag("property='og:site_name'");
+    this.meta.removeTag("property='fb:app_id'");
+    this.meta.removeTag("name='description'");
+    this.meta.removeTag("property='og:description'");
+    this.meta.removeTag("name='twitter:description'");
+    this.meta.removeTag("property='og:image'");
+    this.meta.removeTag("name='twitter:image'");
+    this.meta.removeTag("property='og:url'");
+    this.meta.removeTag("name='twitter:site'");
+}
 
   ngOnInit() {
 		var today = new Date();

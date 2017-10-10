@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser'
 import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsService'
 
@@ -10,7 +10,7 @@ import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsSer
 export class ErrorComponent {
     constructor(gaService : GoogleAnalyticsService,
                 title:Title,
-                meta: Meta) {
+                public meta: Meta) {
         gaService.trackPageView('404');
         title.setTitle('Page Not Found - Pixelated Planet')
         meta.addTags([
@@ -28,4 +28,20 @@ export class ErrorComponent {
             { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/404' },
           ]);
     }
+
+    
+  ngOnDestroy() {
+    this.meta.removeTag("name='twitter:title'");
+    this.meta.removeTag("property='og:title'");
+    this.meta.removeTag("property='og:type'");
+    this.meta.removeTag("property='og:site_name'");
+    this.meta.removeTag("property='fb:app_id'");
+    this.meta.removeTag("name='description'");
+    this.meta.removeTag("property='og:description'");
+    this.meta.removeTag("name='twitter:description'");
+    this.meta.removeTag("property='og:image'");
+    this.meta.removeTag("name='twitter:image'");
+    this.meta.removeTag("property='og:url'");
+    this.meta.removeTag("name='twitter:site'");
+}
 }
