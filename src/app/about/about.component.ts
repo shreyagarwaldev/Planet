@@ -20,10 +20,10 @@ export class AboutComponent {
             { name: 'description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
             { property: 'og:description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
             { name: 'twitter:description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
-            { property: 'og:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-            { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-            { property: 'og:url', content: 'https://www.thepixelatedplanet.com/about' },
-            { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/about' },
+            { property: 'og:image', content: 'http://www.piplanet-shrey.herokuapp.com/assets/img/yosemite.jpg' },
+            { name: 'twitter:image', content: 'http://www.piplanet-shrey.herokuapp.com/assets/img/yosemite.jpg' },
+            { property: 'og:url', content: 'https://www.piplanet-shrey.herokuapp.com/about' },
+            { name: 'twitter:site', content: 'https://www.piplanet-shrey.herokuapp.com/about' },
           ]);
     }
 
