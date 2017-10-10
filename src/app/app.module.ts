@@ -55,7 +55,7 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
     RouterModule.forRoot([
-        { path: 'home', component: HomeComponent, pathMatch: 'full' },
+        { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'about', component: AboutComponent, pathMatch: 'full' },
         { path: 'photography-workshops/:pageNumber', component: WorkshopsComponent },
         { path: 'photography-workshop-details/:title/:id', component: WorkshopDetailsComponent },

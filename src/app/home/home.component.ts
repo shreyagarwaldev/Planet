@@ -22,6 +22,9 @@ export class HomeComponent implements OnInit {
     this.globalConstants = globalConstantsRepository;
     this.gaService.trackPageView('Home');
     title.setTitle('Travel, Wildlife, Portrait, Street, etc. Photography Workshops')
+
+    console.log(meta.getTag('property="og:title"'));
+
     meta.addTags([
         { name: 'twitter:title', content: 'Photography Workshops - Pixelated Planet' },
         { property: 'og:title', content: 'Photography Workshops - Pixelated Planet' },
