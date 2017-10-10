@@ -32,7 +32,7 @@ export class WorkshopsComponent {
         private route: ActivatedRoute,
         private router: Router,
         title: Title,
-        meta: Meta,
+        public meta: Meta,
         public gaService: GoogleAnalyticsService) {
         this.globalConstants = globalConstantsRepository;
         this.hideFilter = true;
@@ -102,6 +102,8 @@ export class WorkshopsComponent {
     }
 
     ngOnDestroy() {
+this.meta.removeTag('property="og:title"');
+        
     }
     
     updateUrl() {

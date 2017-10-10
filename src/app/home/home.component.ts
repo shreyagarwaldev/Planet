@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser'
 import { WorkshopsListComponent } from '../workshops-list/workshops-list.component'
 import { GlobalConstantsRepository } from '../services/shared/globalConstantsRepository'
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   constructor(private globalConstantsRepository:GlobalConstantsRepository,
                 public gaService : GoogleAnalyticsService,
                 title: Title,
-                meta: Meta) {
+                public meta: Meta) {
     this.globalConstants = globalConstantsRepository;
     this.gaService.trackPageView('Home');
     title.setTitle('Travel, Wildlife, Portrait, Street, etc. Photography Workshops')
@@ -48,6 +48,10 @@ export class HomeComponent implements OnInit {
 
     console.log("Check 3");
     console.log(meta.getTag('property="og:title"'));
+  }
+
+  ngOnDestroy() {
+    this.meta.removeTag('property="og:title"');    
   }
 
   ngOnInit() {
