@@ -23,7 +23,13 @@ export class HomeComponent implements OnInit {
     this.gaService.trackPageView('Home');
     title.setTitle('Travel, Wildlife, Portrait, Street, etc. Photography Workshops')
 
+    console.log("Check");
     console.log(meta.getTag('property="og:title"'));
+    console.log("Remove");
+    console.log(meta.removeTag('property="og:title"'));
+    console.log("Check 2");
+    console.log(meta.getTag('property="og:title"'));
+    console.log("Add");
 
     meta.addTags([
         { name: 'twitter:title', content: 'Photography Workshops - Pixelated Planet' },
@@ -39,6 +45,9 @@ export class HomeComponent implements OnInit {
         { property: 'og:url', content: 'https://www.thepixelatedplanet.com/' },
         { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/' },
       ]);
+
+    console.log("Check 3");
+    console.log(meta.getTag('property="og:title"'));
   }
 
   ngOnInit() {

@@ -40,6 +40,14 @@ export class WorkshopsComponent {
         this.gaService.trackPageView('Workshops');
 
         title.setTitle('List of Photography Workshops');
+        console.log("Check");
+        console.log(meta.getTag('property="og:title"'));
+        console.log("Remove");
+        console.log(meta.removeTag('property="og:title"'));
+        console.log("Check 2");
+        console.log(meta.getTag('property="og:title"'));
+        console.log("Add");
+    
         meta.addTags([
             { name: 'twitter:title', content: 'List of Photography Workshops' },
             { property: 'og:title', content: 'List of Photography Workshops' },
@@ -54,6 +62,10 @@ export class WorkshopsComponent {
             { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
             { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
         ]);
+
+        
+    console.log("Check 3");
+    console.log(meta.getTag('property="og:title"'));
 
         router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
