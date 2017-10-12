@@ -36,9 +36,9 @@
                         <span>{{photographer.firstName}}</span>
                         <span>{{photographer.lastName}}</span>
                     </h4>
-                    <div class="detail-location" *ngIf="photographer.locationName !== null && photographer.locationName !== ''">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <span>{{photographer.locationName}}</span>
+                    <div class="detail-location" *ngIf="photographer.location !== null && photographer.location !== ''">
+                        <i class="fa fa-map-marker"></i>
+                        <span>{{photographer.location}}</span>
                     </div>
                     <div class="website-link">
                         <a title="{{photographer.firstName}} {{photographer.lastName}}'s website" href="{{photographer.externalWebsiteLink}}" (click)="onPhotographerWebsiteClick(photographer.id)"><i class="fa fa-external-link"></i> Website</a>
@@ -53,7 +53,7 @@
             <div class="wsd-location">
                 <h2 class="highlight-headings">Location</h2>
                 <i class="fa fa-map-marker"></i>
-                <span>{{workshopDetails.locationName}}</span>
+                <span>{{workshopDetails.location}}</span>
             </div>
             <div class="wsd-price">
                 <h2 class="highlight-headings">Price</h2>

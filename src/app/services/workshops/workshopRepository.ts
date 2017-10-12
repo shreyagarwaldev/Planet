@@ -14,25 +14,25 @@ export interface ILocation {
 }
 
 export interface IWorkshopOverview {
-    workshopId: number,
+    id: number,
     workshopType: string,
     numberOfWorkshops: number,
-    startDateFirst?: Date,
-    endDateFirst?: Date,
+    startDate?: Date,
+    endDate?: Date,
     minCost?: number,
     maxCost?: number,
     costCurrency?: string,
     name: string,
     imageLink: string,
     locationId: number,
-    locationName: string,
+    location: string,
 
     // following properties are set by the frontend
-    workshopDetailsUrl: string,
+    detailsUrl: string,
     cardImageDefaultLink: string,
     cardImageCDNLink: string,
-    startDateFirstStr: string,
-    endDateFirstStr:string
+    startDateStr: string,
+    endDateStr:string
 }
 
 export interface IWorkshopDto {
@@ -47,7 +47,7 @@ export interface IPhotographer {
     profilePhotoLink: string;
     websiteLink: string;
     locationId?: number;
-    locationName: string;
+    location: string;
     moreInfo: string;
 
     // following properties are set by the frontend
@@ -68,7 +68,7 @@ export interface IMultiWorkshopDetails {
 }
 
 export interface IWorkshopDetails {
-    workshopId: number;
+    id: number;
     name: string;
     description: string;
     itinerary: IItinerary[];
@@ -76,7 +76,7 @@ export interface IWorkshopDetails {
     imageLink: string;
     link?: string;
     locationId: number;
-    locationName: string;
+    location: string;
     workshopType: string;
     multiWorkshopDetails: IMultiWorkshopDetails[];
     minCost: number;

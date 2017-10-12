@@ -14,7 +14,7 @@ import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsSer
 
 export class WorkshopsListComponent {
 
-    @Input() activePage: number;
+    @Input() active: number;
 
     queryPath: string;
     itemsPerPage: number;
@@ -22,7 +22,7 @@ export class WorkshopsListComponent {
     loadedImageSet: Set<string>;
     workshopCount: number;
 
-    asyncData: IWorkshopOverview[];
+    data: IWorkshopOverview[];
     page: number = 1;
     total: number;
     pageNumbers: number[];
@@ -71,20 +71,20 @@ export class WorkshopsListComponent {
                 this.pageNumbers = Array(Math.ceil(res.total / wsPerPage)).fill(0).map((x, i) => i + 1);
                 this.page = page;
                 this.loading = false;
-                this.asyncData = res.workshops;
-                this.asyncData.forEach(w => {
-                    w.workshopDetailsUrl = this.createWorkshopDetailsUrl(w.workshopId, w.name);
-                    w.cardImageDefaultLink = this.getCardImageDefaultLink(w.workshopId);
-                    w.cardImageCDNLink = this.getCardImageCDNLink(w.workshopId);
-                    w.startDateFirstStr = this.formatDate(w.startDateFirst);
-                    w.endDateFirstStr = this.formatDate(w.endDateFirst);
+                this.data = res.workshops;
+                this.data.forEach(w => {
+                    w.detailsUrl = this.createDetailsUrl(w.id, w.name);
+                    w.cardImageDefaultLink = this.getCardImageDefaultLink(w.id);
+                    w.cardImageCDNLink = this.getCardImageCDNLink(w.id);
+                    w.startDateStr = this.formatDate(w.startDate);
+                    w.endDateStr = this.formatDate(w.endDate);
                 });
             });
 
         this.cdRef.detectChanges();
     }
 
-    createWorkshopDetailsUrl(workshopId: number, workshopName: string): string {
+    createDetailsUrl(workshopId: number, workshopName: string): string {
         workshopName = workshopName.replace(/[ ()&/\#]/g, "-");
         return `/photography-workshop-details/${workshopName}/${workshopId}`;
     }

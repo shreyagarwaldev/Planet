@@ -125,7 +125,7 @@ hr {
     }
 }
 
-.no-result-msg {
+.no-result {
     height: 40rem;
     font-size: 3rem;
     color: #73656A;
@@ -152,13 +152,13 @@ a.active-page.page-numbers {
     .entity {
         width: auto;
         max-width: 30rem;
-        .image {
+        .img {
             height: 20rem;
             margin-bottom: 1rem;
             width: 100%;
         }
 
-        .image1 {
+        .img1 {
             filter: blur(1px);
             -webkit-filter: blur(1px);
             transition: all .5s ease-in-out;
@@ -178,6 +178,6 @@ a.active-page.page-numbers {
     }
 }
 
-.hideImage {
+.hide {
     display: none;
 }

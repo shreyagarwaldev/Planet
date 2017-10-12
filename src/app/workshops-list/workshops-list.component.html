@@ -1,38 +1,38 @@
-<div [class.page-list]="!!activePage" class="ws-list">
-    <div *ngIf="asyncData?.length > 0">
-        <article class="entity" *ngFor="let data of asyncData">
-            <a title="{{data.name}}" itemprop="url" href="{{data.workshopDetailsUrl}}" (click)="onSelectWorkshop(data.workshopId)">
+<div [class.page-list]="!!active" class="ws-list">
+    <div *ngIf="data?.length > 0">
+        <article class="entity" *ngFor="let d of data">
+            <a title="{{d.name}}" itemprop="url" href="{{d.detailsUrl}}" (click)="onSelectWorkshop(d.id)">
                 <div class="inner" itemscope itemtype="http://schema.org/Event">
-                    <img class="image1" itemprop="image" [ngClass]="{'hideImage': imagesLoaded}" src="{{data.cardImageDefaultLink}}" alt="{{data.name}}"/>
-                    <img class="image" itemprop="image" [ngClass]="{'hideImage': !imagesLoaded}" (load)="imageLoaded(data.workshopId)" src="{{data.cardImageCDNLink}}" alt="{{data.name}}"/>
-                    <h1 class="name truncate" title="{{ data.name }}" itemprop="name">
-                        {{ data.name }}
+                    <img class="img1" itemprop="image" [ngClass]="{'hide': imagesLoaded}" src="{{d.cardImageDefaultLink}}" alt="{{d.name}}"/>
+                    <img class="img" itemprop="image" [ngClass]="{'hide': !imagesLoaded}" (load)="imageLoaded(d.id)" src="{{d.cardImageCDNLink}}" alt="{{d.name}}"/>
+                    <h1 class="name truncate" title="{{ d.name }}" itemprop="name">
+                        {{ d.name }}
                     </h1>
                     <hr>
                     <div class="loc" itemscope itemtype="http://schema.org/Place" itemprop="location">
-                        <i class="fa-map-marker"></i> {{data.locationName}}
+                        <i class="fa-map-marker"></i> {{d.location}}
                     </div>
                     <div class="date">
-                        <span itemprop="startDate">{{data.startDateFirstStr}}</span>
-                        <span *ngIf="data.startDateFirst != data.endDateFirst" itemprop="endDate"> - {{data.endDateFirstStr}} </span>
+                        <span itemprop="startDate">{{d.startDateStr}}</span>
+                        <span *ngIf="d.startDate != d.endDate" itemprop="endDate"> - {{d.endDateStr}} </span>
                     </div>
-                    <div class="price" *ngIf="data.minCost == data.maxCost" itemprop="price"><span itemprop="priceCurrency">{{data.costCurrency}} </span><span itemprop="price">{{data.minCost}}</span></div>
-                    <div class="price" *ngIf="data.minCost < data.maxCost" itemprop="price"><span itemprop="priceCurrency">{{data.costCurrency}} </span><span itemprop="price">{{data.minCost}}-{{data.maxCost}}</span></div>
+                    <div class="price" *ngIf="d.minCost == d.maxCost" itemprop="price"><span itemprop="priceCurrency">{{d.costCurrency}} </span><span itemprop="price">{{d.minCost}}</span></div>
+                    <div class="price" *ngIf="d.minCost < d.maxCost" itemprop="price"><span itemprop="priceCurrency">{{d.costCurrency}} </span><span itemprop="price">{{d.minCost}}-{{d.maxCost}}</span></div>
                 </div>
             </a>
         </article>
         <div *ngIf="itemsPerPage > 4" class="ws-pages">
-            <a title="previous page" class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': activePage <=1 }" [href]="createPageLink(activePage-1)">
+            <a title="previous page" class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': active <=1 }" [href]="createPageLink(active-1)">
             <i class="fa-chevron-left"></i>
             <i class="fa-chevron-left"></i><span>Previous</span></a>
-            <a title="page {{page}}" class="page-numbers" [ngClass]="{'active-page': activePage == page}" *ngFor="let page of pageNumbers;" [href]="createPageLink(page)">{{page}}</a>
-            <a title="next page" class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': activePage == pageNumbers.length }" [href]="createPageLink(activePage-1+2)"><span>Next</span>
+            <a title="page {{p}}" class="page-numbers" [ngClass]="{'active-page': active == p}" *ngFor="let p of pageNumbers;" [href]="createPageLink(p)">{{p}}</a>
+            <a title="next page" class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': active == pageNumbers.length }" [href]="createPageLink(active-1+2)"><span>Next</span>
             <span class="chevron-wrapper"><i class="fa-chevron-right"></i>
             <i class="fa-chevron-right"></i></span></a>
         </div>
     </div>
 
-    <div class="no-result-msg" *ngIf="asyncData?.length == 0">
+    <div class="no-result" *ngIf="data?.length == 0">
         Sorry, we found 0 results. Please try different filters.
     </div>
 </div>
