@@ -1,6 +1,16 @@
 import {Injectable} from '@angular/core';
 import {ILocation, IPhotographer} from '../workshops/workshopRepository'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Http } from '@angular/http'
+import { UUID } from 'angular2-uuid';
+
+export interface ILocationTracker {
+    ipAddress: string,
+    countryCode: string,
+    regionCode: string,
+    city: string,
+    zip: string
+}
 
 @Injectable()
 export class GlobalConstantsRepository
@@ -9,27 +19,53 @@ export class GlobalConstantsRepository
     private serviceBaseUrl;
     private pixelatedPlanetAPIUrl;
     private contactAPIUrl;
+    private analyticsAPIUrl;
     private subscribeAPIUrl;
     private feedbackAPIUrl;
     private locationsUrl;
+    private sessionGUID;
     private workshopTypesUrl;
     private photographersUrl;
+    private trackedLocation;
     private locations:ILocation[];
     private workshopTypes:string[];
     private photographers:IPhotographer[];
     private locationMap: {[key: number]: ILocation} = {};
     private locationMapName:{[key: string]: ILocation} = {};
 
-    constructor(private sanitizer:DomSanitizer)
+    constructor(private sanitizer:DomSanitizer, private http: Http)
     {
+        console.log("c");
         this.cdnBaseUrl = `https://pixelatedplanetcdn.azureedge.net`;
         this.serviceBaseUrl = `https://pixelatedplanetservice.azurewebsites.net`;
         this.pixelatedPlanetAPIUrl = `${this.serviceBaseUrl}/api/Pixelated`;
+        this.analyticsAPIUrl = `${this.pixelatedPlanetAPIUrl}/analytics`;
         this.contactAPIUrl = `${this.pixelatedPlanetAPIUrl}/Contact`;
         this.feedbackAPIUrl = `${this.pixelatedPlanetAPIUrl}/feedback`;
         this.subscribeAPIUrl = `${this.pixelatedPlanetAPIUrl}/addemail`;
         this.locationsUrl = `${this.pixelatedPlanetAPIUrl}/Locations`;
         this.workshopTypesUrl = `${this.pixelatedPlanetAPIUrl}/WorkshopTypes`;
+        this.sessionGUID = UUID.UUID();
+        http.get('http://ip-api.com/json').toPromise().then(response => {
+            this.trackedLocation = <ILocationTracker>{};
+            this.trackedLocation.city = response.json()["city"];
+            this.trackedLocation.regionCode = response.json()["region"];
+            this.trackedLocation.countryCode = response.json()["countryCode"];
+            this.trackedLocation.zip = response.json()["zip"];
+            this.trackedLocation.ipAddress = response.json()["query"];
+        }).catch(e => { this.trackedLocation = <ILocationTracker>{} });
+    }
+
+    public getTrackedLocation() {
+        return this.trackedLocation;
+    }
+
+    public getSessionGUID() {
+        return this.sessionGUID;
+    }
+
+    public getAnalyticsAPIUrl() {
+        return this.analyticsAPIUrl;
     }
 
     public getFeedbackAPIUrl() {

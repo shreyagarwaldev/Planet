@@ -29,6 +29,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { GlobalConstantsRepository } from './services/shared/globalConstantsRepository'
 import { WorkshopRepository } from './services/workshops/workshopRepository'
 import { GoogleAnalyticsService } from './services/analytics/googleAnalyticsService'
+import { PixelatedAnalyticsService } from './services/analytics/pixelatedAnalyticsService'
 import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
 
 @NgModule({
@@ -77,6 +78,7 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
       WorkshopRepository,
       GlobalConstantsRepository,
       GoogleAnalyticsService,
+      PixelatedAnalyticsService,
       {
         provide: ErrorHandler, 
         useClass: GlobalErrorHandler

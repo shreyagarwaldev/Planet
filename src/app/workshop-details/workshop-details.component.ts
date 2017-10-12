@@ -83,11 +83,11 @@ export class WorkshopDetailsComponent {
     }
 
     clickExternalLink(url: string) {
-        this.gaService.trackEvent('ExternalWorkshopLink', 'Click', '', `${this.workshopId}`);
+        this.gaService.trackEvent('ExternalWorkshopLink', 'Click', `${this.workshopId}`);
     }
 
     onPhotographerWebsiteClick(photographerId: string) {
-        this.gaService.trackEvent('ExternalPhotographerLink', 'Click', '', `${photographerId}`);
+        this.gaService.trackEvent('ExternalPhotographerLink', 'Click', `${photographerId}`);
     }
 
     getWorkshopDetail(workshopId: string) {
