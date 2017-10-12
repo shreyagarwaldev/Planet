@@ -73,11 +73,11 @@ export class WorkshopsListComponent {
                 this.loading = false;
                 this.data = res.workshops;
                 this.data.forEach(w => {
-                    w.detailsUrl = this.createDetailsUrl(w.id, w.name);
-                    w.cardImageDefaultLink = this.getCardImageDefaultLink(w.id);
-                    w.cardImageCDNLink = this.getCardImageCDNLink(w.id);
-                    w.startDateStr = this.formatDate(w.startDate);
-                    w.endDateStr = this.formatDate(w.endDate);
+                    w.detailsUrl = this.createDetailsUrl(w.workshopId, w.name);
+                    w.cardImageDefaultLink = this.getCardImageDefaultLink(w.workshopId);
+                    w.cardImageCDNLink = this.getCardImageCDNLink(w.workshopId);
+                    w.startDateStr = this.formatDate(w.startDateFirst);
+                    w.endDateStr = this.formatDate(w.endDateFirst);
                 });
             });
 

@@ -14,18 +14,18 @@ export interface ILocation {
 }
 
 export interface IWorkshopOverview {
-    id: number,
+    workshopId: number,
     workshopType: string,
     numberOfWorkshops: number,
-    startDate?: Date,
-    endDate?: Date,
+    startDateFirst?: Date,
+    endDateFirst?: Date,
     minCost?: number,
     maxCost?: number,
     costCurrency?: string,
     name: string,
     imageLink: string,
     locationId: number,
-    location: string,
+    locationName: string,
 
     // following properties are set by the frontend
     detailsUrl: string,
