@@ -1,25 +1,25 @@
 <div [class.list-in-ws-page]="!!activePage" class="workshop-list">
     <div *ngIf="asyncData?.length > 0">
         <article class="entity" *ngFor="let data of asyncData">
-            <a title="{{data.name}}" href="{{data.workshopDetailsUrl}}" (click)="onSelectWorkshop(data.workshopId)">
-                <div class="inner">
-                    <img class="image1" [ngClass]="{'hideImage': imagesLoaded}" src="{{data.cardImageDefaultLink}}" alt="{{data.name}}"/>
-                    <img class="image" [ngClass]="{'hideImage': !imagesLoaded}" (load)="imageLoaded(data.workshopId)" src="{{data.cardImageCDNLink}}" alt="{{data.name}}"/>
-                    <h1 class="name truncate" title="{{ data.name }}">
+            <a title="{{data.name}}" itemprop="url" href="{{data.workshopDetailsUrl}}" (click)="onSelectWorkshop(data.workshopId)">
+                <div class="inner" itemscope itemtype="http://schema.org/Event">
+                    <img class="image1" itemprop="image" [ngClass]="{'hideImage': imagesLoaded}" src="{{data.cardImageDefaultLink}}" alt="{{data.name}}"/>
+                    <img class="image" itemprop="image" [ngClass]="{'hideImage': !imagesLoaded}" (load)="imageLoaded(data.workshopId)" src="{{data.cardImageCDNLink}}" alt="{{data.name}}"/>
+                    <h1 class="name truncate" title="{{ data.name }}" itemprop="name">
                         {{ data.name }}
                     </h1>
                     <hr>
-                    <div class="location">
+                    <div class="location" itemscope itemtype="http://schema.org/Place" itemprop="location">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                         <span>{{data.locationName}}</span>
                     </div>
                     <div class="date">
-                        <span>{{data.startDateFirstStr}}</span>
+                        <span itemprop="startDate">{{data.startDateFirstStr}}</span>
                         <span *ngIf="data.startDateFirst != data.endDateFirst">-</span>
-                        <span *ngIf="data.startDateFirst != data.endDateFirst"> {{data.endDateFirstStr}} </span>
+                        <span *ngIf="data.startDateFirst != data.endDateFirst" itemprop="endDate"> {{data.endDateFirstStr}} </span>
                     </div>
-                    <div class="price" *ngIf="data.minCost == data.maxCost">{{data.costCurrency}} {{data.minCost}}</div>
-                    <div class="price" *ngIf="data.minCost < data.maxCost">{{data.costCurrency}} {{data.minCost}}-{{data.maxCost}}</div>
+                    <div class="price" *ngIf="data.minCost == data.maxCost" itemprop="price"><span itemprop="priceCurrency">{{data.costCurrency}} </span><span itemprop="price">{{data.minCost}}</span></div>
+                    <div class="price" *ngIf="data.minCost < data.maxCost" itemprop="price"><span itemprop="priceCurrency">{{data.costCurrency}} </span><span itemprop="price">{{data.minCost}}-{{data.maxCost}}</span></div>
                 </div>
             </a>
         </article>
