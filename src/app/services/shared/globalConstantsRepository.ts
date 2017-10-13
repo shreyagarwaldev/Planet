@@ -1,9 +1,9 @@
-import {Injectable, PLATFORM_ID} from '@angular/core';
+import {Injectable, PLATFORM_ID, Inject} from '@angular/core';
 import {ILocation, IPhotographer} from '../workshops/workshopRepository'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Http } from '@angular/http'
 import { UUID } from 'angular2-uuid';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { isPlatformBrowser, JsonPipe } from '@angular/common';
 
 export interface ILocationTracker {
     ipAddress: string,
@@ -11,10 +11,6 @@ export interface ILocationTracker {
     regionCode: string,
     city: string,
     zip: string
-}
-
-interface LocationListWrapper {
-    locationList:ILocation[];
 }
 
 @Injectable()
@@ -35,10 +31,8 @@ export class GlobalConstantsRepository
     private locations:ILocation[];
     private workshopTypes:string[];
     private photographers:IPhotographer[];
-    private locationMap: {[key: number]: ILocation} = {};
-    private locationMapName:{[key: string]: ILocation} = {};
 
-    constructor(private sanitizer:DomSanitizer, private http: Http)
+    constructor(@Inject(PLATFORM_ID) public platformId: string, private sanitizer:DomSanitizer, private http: Http)
     {
         this.cdnBaseUrl = `https://pixelatedplanetcdn.azureedge.net`;
         this.serviceBaseUrl = `https://pixelatedplanetservice.azurewebsites.net`;
@@ -49,20 +43,24 @@ export class GlobalConstantsRepository
         this.subscribeAPIUrl = `${this.pixelatedPlanetAPIUrl}/addemail`;
         this.locationsUrl = `${this.pixelatedPlanetAPIUrl}/Locations`;
         this.workshopTypesUrl = `${this.pixelatedPlanetAPIUrl}/WorkshopTypes`;
-        console.log(isPlatformBrowser(PLATFORM_ID));
-        console.log(isPlatformServer(PLATFORM_ID));
-        if(isPlatformBrowser(PLATFORM_ID) && localStorage.getItem('sessionId') && localStorage.getItem('locationTracker'))
+
+        if(isPlatformBrowser(this.platformId) && localStorage.getItem('sessionId') 
+        && localStorage.getItem('city') && localStorage.getItem('regionCode') && localStorage.getItem('countryCode')
+        && localStorage.getItem('zip') && localStorage.getItem('ipAddress'))
         {
-            console.log("Found locally");
             this.sessionGUID = localStorage.getItem('sessionId');
-            this.trackedLocation = localStorage.getItem('locationTracker');
+            this.trackedLocation = <ILocationTracker>{};
+            this.trackedLocation.city = localStorage.getItem('city');
+            this.trackedLocation.regionCode = localStorage.getItem('regionCode');
+            this.trackedLocation.countryCode = localStorage.getItem('countryCode');
+            this.trackedLocation.zip = localStorage.getItem('zip');
+            this.trackedLocation.ipAddress = localStorage.getItem('ipAddress');
         }
         else
         {
             this.sessionGUID = UUID.UUID();
-            if(isPlatformBrowser(PLATFORM_ID))
+            if(isPlatformBrowser(this.platformId))
             {
-                console.log("setting sessionId");
                 localStorage.setItem('sessionId', this.sessionGUID);
             }
 
@@ -73,9 +71,16 @@ export class GlobalConstantsRepository
                 this.trackedLocation.countryCode = response.json()["countryCode"];
                 this.trackedLocation.zip = response.json()["zip"];
                 this.trackedLocation.ipAddress = response.json()["query"];
+                if(isPlatformBrowser(this.platformId))
+                {            
+                    localStorage.setItem('city', this.trackedLocation);
+                    localStorage.setItem('regionCode', this.trackedLocation.regionCode);
+                    localStorage.setItem('countryCode', this.trackedLocation.countryCode);
+                    localStorage.setItem('zip', this.trackedLocation.zip);
+                    localStorage.setItem('ipAddress', this.trackedLocation.ipAddress);
+                }
             }).catch(e => {
                 this.trackedLocation = <ILocationTracker>{};
-                localStorage.setItem('locationTracker', this.trackedLocation);
             });
         }
     }
@@ -156,11 +161,21 @@ export class GlobalConstantsRepository
 
     public getLocations()
     {
+        if(isPlatformBrowser(this.platformId))
+        {
+            this.locations = JSON.parse(localStorage.getItem('locations'));
+        }
+
         return this.locations;
     }
     
     public getWorkshopTypes()
     {
+        if(isPlatformBrowser(this.platformId))
+        {
+            this.workshopTypes = JSON.parse(localStorage.getItem('workshopTypes'));
+        }
+
         return this.workshopTypes;
     }
 
@@ -168,21 +183,21 @@ export class GlobalConstantsRepository
     {
         for (var i = 0; i < locations.length; i++) {
             var location = <ILocation>locations[i];
-            this.locationMap[location.id] = location;
-            this.locationMapName[location.name] = location;
         }
 
         this.locations = locations;
-        // if(isPlatformBrowser(PLATFORM_ID))
-        // {
-        //     let locationListObj = <LocationListWrapper>{};
-        //     locationListObj.locationList = this.locations;
-        //     localStorage.setItem('locations', locationListObj);
-        // }
+        if(isPlatformBrowser(this.platformId))
+        {
+            localStorage.setItem('locations', JSON.stringify(this.locations));
+        }
     }
 
     public setWorkshopTypes(workshopTypes:string[])
     {
         this.workshopTypes = workshopTypes;
+        if(isPlatformBrowser(this.platformId))
+        {
+            localStorage.setItem('workshopTypes', JSON.stringify(this.workshopTypes));
+        }
     }
 }
