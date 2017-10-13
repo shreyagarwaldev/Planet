@@ -19,7 +19,7 @@ export class PixelatedAnalyticsService {
 
     public trackEvent(eventCategory: string, eventAction: string, eventLabel?: string, eventValue?: string)
     {
-        if(!isPlatformBrowser(PLATFORM_ID))
+        if(!isPlatformBrowser(this.platformId))
         {
             return;
         }
