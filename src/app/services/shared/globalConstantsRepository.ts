@@ -44,17 +44,33 @@ export class GlobalConstantsRepository
         this.locationsUrl = `${this.pixelatedPlanetAPIUrl}/Locations`;
         this.workshopTypesUrl = `${this.pixelatedPlanetAPIUrl}/WorkshopTypes`;
 
-        if(isPlatformBrowser(this.platformId) && localStorage.getItem('sessionId') 
-        && localStorage.getItem('city') && localStorage.getItem('regionCode') && localStorage.getItem('countryCode')
-        && localStorage.getItem('zip') && localStorage.getItem('ipAddress'))
+        if(isPlatformBrowser(this.platformId))
         {
-            this.sessionGUID = localStorage.getItem('sessionId');
-            this.trackedLocation = <ILocationTracker>{};
-            this.trackedLocation.city = localStorage.getItem('city');
-            this.trackedLocation.regionCode = localStorage.getItem('regionCode');
-            this.trackedLocation.countryCode = localStorage.getItem('countryCode');
-            this.trackedLocation.zip = localStorage.getItem('zip');
-            this.trackedLocation.ipAddress = localStorage.getItem('ipAddress');
+            if(localStorage.getItem('sessionId'))
+            {
+                this.sessionGUID = localStorage.getItem('sessionId');
+            }
+
+            if(localStorage.getItem('workshopTypes'))
+            {
+                this.workshopTypes = JSON.parse(localStorage.getItem('workshopTypes'));
+            }
+
+            if(localStorage.getItem('locations'))
+            {
+                this.locations = JSON.parse(localStorage.getItem('locations'));
+            }
+            
+            if(localStorage.getItem('city') && localStorage.getItem('regionCode') && localStorage.getItem('countryCode')
+                && localStorage.getItem('zip') && localStorage.getItem('ipAddress'))
+            {
+                this.trackedLocation = <ILocationTracker>{};
+                this.trackedLocation.city = localStorage.getItem('city');
+                this.trackedLocation.regionCode = localStorage.getItem('regionCode');
+                this.trackedLocation.countryCode = localStorage.getItem('countryCode');
+                this.trackedLocation.zip = localStorage.getItem('zip');
+                this.trackedLocation.ipAddress = localStorage.getItem('ipAddress');
+            }
         }
         else
         {
@@ -161,21 +177,11 @@ export class GlobalConstantsRepository
 
     public getLocations()
     {
-        if(isPlatformBrowser(this.platformId))
-        {
-            this.locations = JSON.parse(localStorage.getItem('locations'));
-        }
-
         return this.locations;
     }
     
     public getWorkshopTypes()
     {
-        if(isPlatformBrowser(this.platformId))
-        {
-            this.workshopTypes = JSON.parse(localStorage.getItem('workshopTypes'));
-        }
-
         return this.workshopTypes;
     }
 
