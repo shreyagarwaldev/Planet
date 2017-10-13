@@ -1,6 +1,6 @@
-import { Component, NgZone, OnDestroy } from '@angular/core';
+import { Component, NgZone, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {Location} from '@angular/common';
+import { Location, isPlatformBrowser } from '@angular/common';
 import { Observable } from "rxjs";
 
 @Component({
@@ -13,6 +13,7 @@ export class PageRedirectComponent {
     private timer:any;
 
     constructor(
+        @Inject(PLATFORM_ID) public platformId: string,
         private route: ActivatedRoute,
         private location:Location,
         private ngZone:NgZone) {
@@ -24,14 +25,10 @@ export class PageRedirectComponent {
         this.ngZone.runOutsideAngular(() => {
             this.timer = Observable.interval(5000).subscribe({
                 next(result) {
-                    try
+                    if(isPlatformBrowser(this.platformId))                    
                     {
                         // navigate to the URL (Assumes the url is http:// or https://
                         window.location.href=url;
-                    }
-                    catch(e)
-                    {
-                        // we know there will be an error here
                     }
                 }
             });

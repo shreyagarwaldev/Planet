@@ -11,10 +11,7 @@ export class PixelatedAnalyticsService {
 
     public trackPageView(pageName : string)
     {
-        if(isPlatformBrowser(this.platformId))
-        {
-            this.trackEvent("PageView", pageName);
-        }
+        this.trackEvent("PageView", pageName);
     }
 
     public trackEvent(eventCategory: string, eventAction: string, eventLabel?: string, eventValue?: string)
@@ -24,7 +21,11 @@ export class PixelatedAnalyticsService {
             return;
         }
 
-        var url = `${this.globalConstants.getAnalyticsAPIUrl()}?id=${this.globalConstants.getSessionGUID()}&ec=${eventCategory}&ea=${eventAction}`;
+        // all code after this gets executed only on the browser
+        let href = window.location.href;
+        let isTest = href.indexOf('thepixelatedplanet.com') < 0;
+
+        var url = `${this.globalConstants.getAnalyticsAPIUrl()}?id=${this.globalConstants.getSessionGUID()}&isTest=${isTest}&ec=${eventCategory}&ea=${eventAction}`;
         url += eventLabel && eventLabel !== "" ? `&el=${eventLabel}` : '';
         url += eventValue && eventValue !== "" ? `&ev=${eventValue}` : '';
 
