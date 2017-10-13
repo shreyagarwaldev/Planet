@@ -87,6 +87,19 @@
     margin-bottom: 2rem;
 }
 
+.hide {
+    display: none;
+}
+
+.msg-box {
+    margin-top: 1rem;
+}
+
+.alert {
+    border: .5px solid red;
+    margin-bottom: 0;
+}
+
 .social-icons {
     div {
         display: inline-block;

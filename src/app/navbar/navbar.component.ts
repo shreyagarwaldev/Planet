@@ -14,6 +14,8 @@ export class NavComponent {
     hideSubscribe: boolean;
     hideShare: boolean;
     emailId: string;
+    invalidEmail: boolean;
+    submitMessage: string;
     @Output() filtersDropdownToggle = new EventEmitter();
     @Input() showFilters: boolean;
     @Input() showSocialBlock: boolean;
@@ -43,17 +45,29 @@ export class NavComponent {
         this.hideNavbar = true;
         this.hideSubscribe = true;
         this.hideShare = true;
+        this.invalidEmail = false;
+        this.submitMessage = "";
     }
 
     submitEmail() {
+        this.submitMessage = "";
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        this.invalidEmail = !re.test(this.emailId);
+        if(this.invalidEmail) {
+            this.submitMessage = "Invalid email. Please enter again";
+            return;
+        }
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions();
         options.headers = headers;
+        this.submitMessage = "Submitting request ...";
         this.http.post(this.globalConstants.getSubscribeAPIUrl(), `"${this.emailId}"`, options).toPromise().then(e => {
+            this.submitMessage = "Email subscribed!";
             this.toggleSubscribeBlock();
         }).catch(a => {
             // TODO - need to show error here
+            this.submitMessage = "Something went wrong. Please try again later";
             this.toggleSubscribeBlock();
         });
     }
@@ -70,6 +84,10 @@ export class NavComponent {
         if (!this.hideSubscribe) {
             this.hideSubscribe = true;
         }
+    }
+
+    validateEmail() {
+        
     }
 
     toggleSubscribeBlock() {
