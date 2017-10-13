@@ -112,7 +112,7 @@ export class WorkshopDetailsComponent {
                 .replace(new RegExp('@','g'),'%40').replace(new RegExp('&', 'g'),'%26').replace(new RegExp('=', 'g'),'%3D')
                 .replace(new RegExp('[+]','g'),'%2B');
                         
-                let titleStr = `Photography Workshop - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
+                let titleStr = `Photography Workshop Description - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
                 this.title.setTitle(titleStr);
                 this.meta.addTags([
                     { name: 'twitter:title', content: titleStr },
