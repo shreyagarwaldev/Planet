@@ -1,6 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { GlobalConstantsRepository, ILocationTracker } from '../shared/globalConstantsRepository'
+import { GlobalConstantsRepository } from '../shared/globalConstantsRepository'
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
@@ -29,27 +29,17 @@ export class PixelatedAnalyticsService {
         url += eventLabel && eventLabel !== "" ? `&el=${eventLabel}` : '';
         url += eventValue && eventValue !== "" ? `&ev=${eventValue}` : '';
 
-        var trackedLocation = this.globalConstants.getTrackedLocation();
-        if(trackedLocation)
+        var ipAddress = this.globalConstants.getIPAddress();
+        if(ipAddress && ipAddress !== "")
         {
-            this.http.post(url, trackedLocation).toPromise().then().catch();
+            this.http.post(`${url}&ip=${ipAddress}`, '').toPromise().then().catch();
         }
         else
         {
             this.http.get('https://api.ipify.org?format=json').toPromise().then(response => {
-                trackedLocation = <ILocationTracker>{};
-                trackedLocation.ipAddress = response.json()["ip"];
-
-                this.http.get(`https://geoip.nekudo.com/api/${trackedLocation.ipAddress}`).toPromise().then(locResponse => {
-                    trackedLocation.city = locResponse.json()["city"];
-                    trackedLocation.countryCode = locResponse.json()["country"]["code"];
-                    this.http.post(url, trackedLocation).toPromise().then().catch();
-                }).catch(e => {
-                    this.http.post(url, trackedLocation).toPromise().then().catch();
-                });
+                this.http.post(`${url}&ip=${response.json()["ip"]}`, '').toPromise().then().catch();
             }).catch(e => { 
-                trackedLocation = <ILocationTracker>{}
-                this.http.post(url, trackedLocation).toPromise().then().catch();
+                this.http.post(url, '').toPromise().then().catch();
             });
         }
     }

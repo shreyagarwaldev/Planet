@@ -5,14 +5,6 @@ import { Http } from '@angular/http'
 import { UUID } from 'angular2-uuid';
 import { isPlatformBrowser } from '@angular/common';
 
-export interface ILocationTracker {
-    ipAddress: string,
-    countryCode: string,
-    regionCode: string,
-    city: string,
-    zip: string
-}
-
 @Injectable()
 export class GlobalConstantsRepository
 {
@@ -28,7 +20,7 @@ export class GlobalConstantsRepository
     private sessionGUID;
     private workshopTypesUrl;
     private photographersUrl;
-    private trackedLocation;
+    private ipAddress;
     private locations:ILocation[];
     private workshopTypes:string[];
     private photographers:IPhotographer[];
@@ -63,40 +55,20 @@ export class GlobalConstantsRepository
                 this.locations = JSON.parse(localStorage.getItem('locations'));
             }
             
-            if(localStorage.getItem('city') && localStorage.getItem('regionCode') && localStorage.getItem('countryCode')
-                && localStorage.getItem('zip') && localStorage.getItem('ipAddress'))
+            if(localStorage.getItem('ipAddress'))
             {
-                this.trackedLocation = <ILocationTracker>{};
-                this.trackedLocation.city = localStorage.getItem('city');
-                this.trackedLocation.regionCode = localStorage.getItem('regionCode');
-                this.trackedLocation.countryCode = localStorage.getItem('countryCode');
-                this.trackedLocation.zip = localStorage.getItem('zip');
-                this.trackedLocation.ipAddress = localStorage.getItem('ipAddress');
+                this.ipAddress = localStorage.getItem('ipAddress');
             }
         }
         else
         {
             http.get('https://api.ipify.org?format=json').toPromise().then(response => {
-                this.trackedLocation = <ILocationTracker>{};
-                this.trackedLocation.ipAddress = response.json()["ip"];
-
-                http.get(`https://geoip.nekudo.com/api/${this.trackedLocation.ipAddress}`).toPromise().then(locResponse => {
-                    this.trackedLocation.city = locResponse.json()["city"];
-                    this.trackedLocation.countryCode = locResponse.json()["country"]["code"];
-                    
+                    this.ipAddress = response.json()["ip"];
                     if(isPlatformBrowser(this.platformId))
                     {            
-                        localStorage.setItem('city', this.trackedLocation);
-                        localStorage.setItem('regionCode', this.trackedLocation.regionCode);
-                        localStorage.setItem('countryCode', this.trackedLocation.countryCode);
-                        localStorage.setItem('zip', this.trackedLocation.zip);
-                        localStorage.setItem('ipAddress', this.trackedLocation.ipAddress);
+                        localStorage.setItem('ipAddress', this.ipAddress);
                     }
-                }).catch(e => {
-                    this.trackedLocation = <ILocationTracker>{};
-                });
             }).catch(e => {
-                this.trackedLocation = <ILocationTracker>{};
             });
         }
     }
@@ -105,8 +77,8 @@ export class GlobalConstantsRepository
         return this.verifyEmailAPIUrl;
     }
 
-    public getTrackedLocation() : ILocationTracker {
-        return this.trackedLocation;
+    public getIPAddress() : string {
+        return this.ipAddress;
     }
 
     public getSessionGUID() : string {
