@@ -3,7 +3,7 @@ import {ILocation, IPhotographer} from '../workshops/workshopRepository'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Http } from '@angular/http'
 import { UUID } from 'angular2-uuid';
-import { isPlatformBrowser, JsonPipe } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 export interface ILocationTracker {
     ipAddress: string,

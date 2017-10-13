@@ -1,20 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { GlobalConstantsRepository, ILocationTracker } from '../shared/globalConstantsRepository'
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class PixelatedAnalyticsService {
 
-    constructor(public http: Http, public globalConstants: GlobalConstantsRepository) {
+    constructor(@Inject(PLATFORM_ID) public platformId: string, public http: Http, public globalConstants: GlobalConstantsRepository) {
     }
 
     public trackPageView(pageName : string)
     {
-        this.trackEvent("PageView", pageName);
+        if(isPlatformBrowser(this.platformId))
+        {
+            this.trackEvent("PageView", pageName);
+        }
     }
 
     public trackEvent(eventCategory: string, eventAction: string, eventLabel?: string, eventValue?: string)
     {
+        if(!isPlatformBrowser(PLATFORM_ID))
+        {
+            return;
+        }
+
         var url = `${this.globalConstants.getAnalyticsAPIUrl()}?id=${this.globalConstants.getSessionGUID()}&ec=${eventCategory}&ea=${eventAction}`;
         url += eventLabel && eventLabel !== "" ? `&el=${eventLabel}` : '';
         url += eventValue && eventValue !== "" ? `&ev=${eventValue}` : '';
