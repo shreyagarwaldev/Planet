@@ -74,21 +74,25 @@ export class GlobalConstantsRepository
         }
         else
         {
-            http.get('http://ip-api.com/json').toPromise().then(response => {
+            http.get('https://api.ipify.org?format=json').toPromise().then(response => {
                 this.trackedLocation = <ILocationTracker>{};
-                this.trackedLocation.city = response.json()["city"];
-                this.trackedLocation.regionCode = response.json()["region"];
-                this.trackedLocation.countryCode = response.json()["countryCode"];
-                this.trackedLocation.zip = response.json()["zip"];
-                this.trackedLocation.ipAddress = response.json()["query"];
-                if(isPlatformBrowser(this.platformId))
-                {            
-                    localStorage.setItem('city', this.trackedLocation);
-                    localStorage.setItem('regionCode', this.trackedLocation.regionCode);
-                    localStorage.setItem('countryCode', this.trackedLocation.countryCode);
-                    localStorage.setItem('zip', this.trackedLocation.zip);
-                    localStorage.setItem('ipAddress', this.trackedLocation.ipAddress);
-                }
+                this.trackedLocation.ipAddress = response.json()["ip"];
+
+                http.get(`https://geoip.nekudo.com/api/${this.trackedLocation.ipAddress}`).toPromise().then(locResponse => {
+                    this.trackedLocation.city = locResponse.json()["city"];
+                    this.trackedLocation.countryCode = locResponse.json()["country"]["code"];
+                    
+                    if(isPlatformBrowser(this.platformId))
+                    {            
+                        localStorage.setItem('city', this.trackedLocation);
+                        localStorage.setItem('regionCode', this.trackedLocation.regionCode);
+                        localStorage.setItem('countryCode', this.trackedLocation.countryCode);
+                        localStorage.setItem('zip', this.trackedLocation.zip);
+                        localStorage.setItem('ipAddress', this.trackedLocation.ipAddress);
+                    }
+                }).catch(e => {
+                    this.trackedLocation = <ILocationTracker>{};
+                });
             }).catch(e => {
                 this.trackedLocation = <ILocationTracker>{};
             });

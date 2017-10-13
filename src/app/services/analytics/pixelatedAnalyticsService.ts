@@ -35,15 +35,17 @@ export class PixelatedAnalyticsService {
         }
         else
         {
-            this.http.get('http://ip-api.com/json').toPromise().then(response => {
+            this.http.get('https://api.ipify.org?format=json').toPromise().then(response => {
                 trackedLocation = <ILocationTracker>{};
-                trackedLocation.city = response.json()["city"];
-                trackedLocation.regionCode = response.json()["region"];
-                trackedLocation.countryCode = response.json()["countryCode"];
-                trackedLocation.zip = response.json()["zip"];
-                trackedLocation.ipAddress = response.json()["query"];
+                trackedLocation.ipAddress = response.json()["ip"];
 
-                this.http.post(url, trackedLocation).toPromise().then().catch();
+                this.http.get(`https://geoip.nekudo.com/api/${trackedLocation.ipAddress}`).toPromise().then(locResponse => {
+                    trackedLocation.city = locResponse.json()["city"];
+                    trackedLocation.countryCode = locResponse.json()["country"]["code"];
+                    this.http.post(url, trackedLocation).toPromise().then().catch();
+                }).catch(e => {
+                    this.http.post(url, trackedLocation).toPromise().then().catch();
+                });
             }).catch(e => { 
                 trackedLocation = <ILocationTracker>{}
                 this.http.post(url, trackedLocation).toPromise().then().catch();
