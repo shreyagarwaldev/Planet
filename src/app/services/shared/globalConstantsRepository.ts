@@ -106,6 +106,11 @@ export class GlobalConstantsRepository
     }
 
     public getSessionGUID() {
+        if(isPlatformBrowser(this.platformId) && localStorage.getItem('sessionId'))
+        {
+            this.sessionGUID = localStorage.getItem('sessionId');
+        }
+
         return this.sessionGUID;
     }
 
@@ -177,11 +182,21 @@ export class GlobalConstantsRepository
 
     public getLocations()
     {
+        if(isPlatformBrowser(this.platformId) && localStorage.getItem('locations'))
+        {
+            this.locations = JSON.parse(localStorage.getItem('locations'));
+        }
+
         return this.locations;
     }
     
     public getWorkshopTypes()
     {
+        if(isPlatformBrowser(this.platformId) && localStorage.getItem('workshopTypes'))
+        {
+            this.workshopTypes = JSON.parse(localStorage.getItem('workshopTypes'));
+        }
+
         return this.workshopTypes;
     }
 
