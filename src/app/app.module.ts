@@ -22,6 +22,7 @@ import { PrivacyComponent } from './privacy-policy/privacy-policy.component'
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component'
 import { PageRedirectComponent } from './page-redirect/page-redirect.component'
 import { WorkshopDetailsComponent } from './workshop-details/workshop-details.component'
+import { VerifyEmailComponent } from './verify-email/verify-email.component'
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
@@ -51,7 +52,8 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
     PrivacyComponent,
     TermsAndConditionsComponent,
     PageRedirectComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
@@ -62,6 +64,7 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
         { path: 'photography-workshop-details/:title/:id', component: WorkshopDetailsComponent },
         { path: 'contact', component: ContactUsComponent },
         { path: 'page-redirect/:externalUrl', component: PageRedirectComponent, pathMatch: 'full' },
+        { path: 'verify-email', component: VerifyEmailComponent, pathMatch:'full'},
         { path: '404', component: ErrorComponent, pathMatch:'full'},
         { path: 'termsandconditions', component: TermsAndConditionsComponent, pathMatch: 'full'},
         { path: 'privacypolicy', component: PrivacyComponent, pathMatch: 'full'},

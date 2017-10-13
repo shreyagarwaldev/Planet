@@ -5,9 +5,9 @@
                 <div class="inner">
                     <img class="image1" [ngClass]="{'hideImage': imagesLoaded}" src="{{data.cardImageDefaultLink}}" alt="{{data.name}}"/>
                     <img class="image" [ngClass]="{'hideImage': !imagesLoaded}" (load)="imageLoaded(data.workshopId)" src="{{data.cardImageCDNLink}}" alt="{{data.name}}"/>
-                    <h1 class="name truncate" title="{{ data.name }}">
+                    <h4 class="name truncate" title="{{ data.name }}">
                         {{ data.name }}
-                    </h1>
+                    </h4>
                     <hr>
                     <div class="location">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>

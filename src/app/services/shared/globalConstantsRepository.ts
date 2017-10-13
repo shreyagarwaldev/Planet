@@ -21,6 +21,7 @@ export class GlobalConstantsRepository
     private pixelatedPlanetAPIUrl;
     private contactAPIUrl;
     private analyticsAPIUrl;
+    private verifyEmailAPIUrl;
     private subscribeAPIUrl;
     private feedbackAPIUrl;
     private locationsUrl;
@@ -38,6 +39,7 @@ export class GlobalConstantsRepository
         this.serviceBaseUrl = `https://pixelatedplanetservice.azurewebsites.net`;
         this.pixelatedPlanetAPIUrl = `${this.serviceBaseUrl}/api/Pixelated`;
         this.analyticsAPIUrl = `${this.pixelatedPlanetAPIUrl}/analytics`;
+        this.verifyEmailAPIUrl = `${this.pixelatedPlanetAPIUrl}/verifyemail`;
         this.contactAPIUrl = `${this.pixelatedPlanetAPIUrl}/Contact`;
         this.feedbackAPIUrl = `${this.pixelatedPlanetAPIUrl}/feedback`;
         this.subscribeAPIUrl = `${this.pixelatedPlanetAPIUrl}/addemail`;
@@ -97,6 +99,10 @@ export class GlobalConstantsRepository
                 this.trackedLocation = <ILocationTracker>{};
             });
         }
+    }
+
+    public getVerifyEmailAPIUrl() : string {
+        return this.verifyEmailAPIUrl;
     }
 
     public getTrackedLocation() : ILocationTracker {
