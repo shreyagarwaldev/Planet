@@ -82,7 +82,7 @@
             <span class="close cursor" (click)="closeModal()">&times;</span>
             <div class="image-modal-content">
                 <div *ngFor="let image of imagesLink;" class="slides" [ngClass]="{'hideImage': image.hideImage}">
-                    <img [src]="image.imageLink" class="modal-image">
+                    <img [src]="image.imageLink" alt="workshop details image gallery" class="modal-image">
                 </div>
             </div>
 
