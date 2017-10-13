@@ -74,12 +74,6 @@ export class GlobalConstantsRepository
         }
         else
         {
-            this.sessionGUID = UUID.UUID();
-            if(isPlatformBrowser(this.platformId))
-            {
-                localStorage.setItem('sessionId', this.sessionGUID);
-            }
-
             http.get('http://ip-api.com/json').toPromise().then(response => {
                 this.trackedLocation = <ILocationTracker>{};
                 this.trackedLocation.city = response.json()["city"];
@@ -101,42 +95,51 @@ export class GlobalConstantsRepository
         }
     }
 
-    public getTrackedLocation() {
+    public getTrackedLocation() : ILocationTracker {
         return this.trackedLocation;
     }
 
-    public getSessionGUID() {
+    public getSessionGUID() : string {
         if(isPlatformBrowser(this.platformId) && localStorage.getItem('sessionId'))
         {
             this.sessionGUID = localStorage.getItem('sessionId');
         }
 
+        if(!this.sessionGUID)
+        {
+            this.sessionGUID = UUID.UUID();
+            if(isPlatformBrowser(this.platformId))
+            {
+                localStorage.setItem('sessionId', this.sessionGUID);
+            }
+        }
+
         return this.sessionGUID;
     }
 
-    public getAnalyticsAPIUrl() {
+    public getAnalyticsAPIUrl() : string {
         return this.analyticsAPIUrl;
     }
 
-    public getFeedbackAPIUrl() {
+    public getFeedbackAPIUrl() : string {
         return this.feedbackAPIUrl;
     }
 
-    public getSubscribeAPIUrl() {
+    public getSubscribeAPIUrl() : string {
         return this.subscribeAPIUrl;
     }
 
-    public getContactAPIUrl()
+    public getContactAPIUrl() : string
     {
         return this.contactAPIUrl;
     }
 
-    public getPixelatedPlanetAPIUrl()
+    public getPixelatedPlanetAPIUrl() : string
     {
         return this.pixelatedPlanetAPIUrl;
     }
 
-    public getLocationsUrl()
+    public getLocationsUrl() : string
     {
         return this.locationsUrl;
     }
@@ -145,7 +148,7 @@ export class GlobalConstantsRepository
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
-    public createWorkshopsUrl(page:number, startDate:string, endDate:string, minPrice:number, maxPrice:number, location: number, categories: string) {
+    public createWorkshopsUrl(page:number, startDate:string, endDate:string, minPrice:number, maxPrice:number, location: number, categories: string) : string {
         let url = `/photography-workshops/${page}?startDate=${startDate}&endDate=${endDate}`;
         url += minPrice ? `&minPrice=${minPrice}` : ``;
         url += maxPrice ? `&maxPrice=${maxPrice}` : ``;
@@ -155,32 +158,32 @@ export class GlobalConstantsRepository
         return url;
     }
 
-    public getDefaultStartDate() {
+    public getDefaultStartDate() : string {
         var today = new Date();
         return `${today.getFullYear().toString()}/${(today.getMonth()+1).toString()}/${today.getDate().toString()}`;
     }
 
-    public getDefaultEndDate() {
+    public getDefaultEndDate() : string {
         var today = new Date();
         return `${(today.getFullYear()+3).toString()}/12/31`;
     }
 
-    public getWorkshopTypesUrl()
+    public getWorkshopTypesUrl() : string
     {
         return this.workshopTypesUrl;
     }
 
-    public resolveImageUrl(path:string)
+    public resolveImageUrl(path:string) : string
     {
         return this.cdnBaseUrl + path;
     }
 
-    public resolveLocalImageUrl(path:string)
+    public resolveLocalImageUrl(path:string) : string
     {
         return ("/assets" + path);
     }
 
-    public getLocations()
+    public getLocations() : ILocation[]
     {
         if(isPlatformBrowser(this.platformId) && localStorage.getItem('locations'))
         {
@@ -190,7 +193,7 @@ export class GlobalConstantsRepository
         return this.locations;
     }
     
-    public getWorkshopTypes()
+    public getWorkshopTypes() : string[]
     {
         if(isPlatformBrowser(this.platformId) && localStorage.getItem('workshopTypes'))
         {
