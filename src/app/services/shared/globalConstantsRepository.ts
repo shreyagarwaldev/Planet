@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Injectable, PLATFORM_ID} from '@angular/core';
 import {ILocation, IPhotographer} from '../workshops/workshopRepository'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Http } from '@angular/http'
 import { UUID } from 'angular2-uuid';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 export interface ILocationTracker {
     ipAddress: string,
@@ -10,6 +11,10 @@ export interface ILocationTracker {
     regionCode: string,
     city: string,
     zip: string
+}
+
+interface LocationListWrapper {
+    locationList:ILocation[];
 }
 
 @Injectable()
@@ -35,7 +40,6 @@ export class GlobalConstantsRepository
 
     constructor(private sanitizer:DomSanitizer, private http: Http)
     {
-        console.log("c");
         this.cdnBaseUrl = `https://pixelatedplanetcdn.azureedge.net`;
         this.serviceBaseUrl = `https://pixelatedplanetservice.azurewebsites.net`;
         this.pixelatedPlanetAPIUrl = `${this.serviceBaseUrl}/api/Pixelated`;
@@ -45,15 +49,35 @@ export class GlobalConstantsRepository
         this.subscribeAPIUrl = `${this.pixelatedPlanetAPIUrl}/addemail`;
         this.locationsUrl = `${this.pixelatedPlanetAPIUrl}/Locations`;
         this.workshopTypesUrl = `${this.pixelatedPlanetAPIUrl}/WorkshopTypes`;
-        this.sessionGUID = UUID.UUID();
-        http.get('http://ip-api.com/json').toPromise().then(response => {
-            this.trackedLocation = <ILocationTracker>{};
-            this.trackedLocation.city = response.json()["city"];
-            this.trackedLocation.regionCode = response.json()["region"];
-            this.trackedLocation.countryCode = response.json()["countryCode"];
-            this.trackedLocation.zip = response.json()["zip"];
-            this.trackedLocation.ipAddress = response.json()["query"];
-        }).catch(e => { this.trackedLocation = <ILocationTracker>{} });
+        console.log(isPlatformBrowser(PLATFORM_ID));
+        console.log(isPlatformServer(PLATFORM_ID));
+        if(isPlatformBrowser(PLATFORM_ID) && localStorage.getItem('sessionId') && localStorage.getItem('locationTracker'))
+        {
+            console.log("Found locally");
+            this.sessionGUID = localStorage.getItem('sessionId');
+            this.trackedLocation = localStorage.getItem('locationTracker');
+        }
+        else
+        {
+            this.sessionGUID = UUID.UUID();
+            if(isPlatformBrowser(PLATFORM_ID))
+            {
+                console.log("setting sessionId");
+                localStorage.setItem('sessionId', this.sessionGUID);
+            }
+
+            http.get('http://ip-api.com/json').toPromise().then(response => {
+                this.trackedLocation = <ILocationTracker>{};
+                this.trackedLocation.city = response.json()["city"];
+                this.trackedLocation.regionCode = response.json()["region"];
+                this.trackedLocation.countryCode = response.json()["countryCode"];
+                this.trackedLocation.zip = response.json()["zip"];
+                this.trackedLocation.ipAddress = response.json()["query"];
+            }).catch(e => {
+                this.trackedLocation = <ILocationTracker>{};
+                localStorage.setItem('locationTracker', this.trackedLocation);
+            });
+        }
     }
 
     public getTrackedLocation() {
@@ -149,6 +173,12 @@ export class GlobalConstantsRepository
         }
 
         this.locations = locations;
+        // if(isPlatformBrowser(PLATFORM_ID))
+        // {
+        //     let locationListObj = <LocationListWrapper>{};
+        //     locationListObj.locationList = this.locations;
+        //     localStorage.setItem('locations', locationListObj);
+        // }
     }
 
     public setWorkshopTypes(workshopTypes:string[])
