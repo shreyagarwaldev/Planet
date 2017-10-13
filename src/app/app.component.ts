@@ -7,7 +7,4 @@ import { Meta, Title } from '@angular/platform-browser';
   styles: []
 })
 export class AppComponent {
-    constructor() {
-        console.log("c");
-    }
 }
