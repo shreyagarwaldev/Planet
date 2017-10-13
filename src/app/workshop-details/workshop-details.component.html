@@ -1,96 +1,97 @@
 <navi-bar [showName]="true"></navi-bar>
-
-<div class="header-img">
-    <img class="detail-img" src="{{coverImageCDNLink}}" alt="{{workshopDetails.name}}"/>
-</div>
-
-<h1 class="wsd-name" itemprop="name">{{workshopDetails.name}}</h1>
-
-<div class="details-container" itemscope itemtype="http://schema.org/Event">
-    <div>
-        <div class="detail-tabs">
-
-            <!--Tab headings-->
-            <div class="tab">
-                <button class="tablinks" *ngFor="let tab of tabs; let i=index;" [ngClass]="{'active': tab.showTab}" (click)="openTabs(i)">{{tab.label}}</button>
-            </div>
-
-            <!--Description tab-->
-            <div id="{{tabs[0].label}}" [hidden]="!tabs[0].showTab" class="tabcontent">
-                <p itemprop="description" [innerHTML]="workshopDetails.description"></p>
-            </div>
-
-            <!--Gallery tab-->
-            <div id="{{tabs[1].label}}" [hidden]="!tabs[1].showTab" class="tabcontent">
-                <img class="gallery-image hover-shadow cursor" *ngFor="let image of imagesLink;let i = index" [src]="image.imageLink" alt="workshop image"
-                    (click)="openModal(i+1)" />
-            </div>
-
-            <!--Photographer tab-->
-            <div id="{{tabs[2].label}}" [hidden]="!tabs[2].showTab" class="tabcontent">
-                <div class="photographer-information" *ngFor="let photographer of workshopDetails.photographers;">
-                    <div class="profile-photo">
-                        <img class="profile-img" src="{{photographer.profilePhotoCDNLink}}" alt="{{photographer.firstName}}"/>
-                    </div>
-                    <h4>
-                        <span>{{photographer.firstName}}</span>
-                        <span>{{photographer.lastName}}</span>
-                    </h4>
-                    <div class="detail-location" *ngIf="photographer.locationName !== null && photographer.locationName !== ''">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        <span>{{photographer.locationName}}</span>
-                    </div>
-                    <div class="website-link">
-                        <a title="{{photographer.firstName}} {{photographer.lastName}}'s website" href="{{photographer.externalWebsiteLink}}" (click)="onPhotographerWebsiteClick(photographer.id)"><i class="fa fa-external-link"></i> Website</a>
-                    </div>
-                    <p [innerHTML]="photographer.moreInfo"></p>
-                </div>
-            </div>
-        </div>
-
-        <!--Workshop highlights-->
-        <div class="highlights">
-            <div class="wsd-location">
-                <h2 class="highlight-headings">Location</h2>
-                <i class="fa fa-map-marker"></i>
-                <span itemprop="location" itemscope itemtype="http://schema.org/Place">{{workshopDetails.locationName}}</span>
-            </div>
-            <div class="wsd-price">
-                <h2 class="highlight-headings">Price</h2>
-                <i class="fa fa-usd"></i><span itemprop="price" *ngIf="workshopDetails.minCost !== workshopDetails.maxCost">{{workshopDetails.minCost}} - </span><span>{{workshopDetails.maxCost}}</span>
-            </div>
-            <div class="wsd-dates">
-                <h2 class="highlight-headings">Workshop Link(s)</h2>
-                <div class="dates-wrapper">
-                    <div class="dates-information" *ngFor="let detail of workshopDetails.multiWorkshopDetails;">
-                        <a itemprop="url" title="Details for workshop starting on {{detail.startDateStr}}" href="{{detail.externalLink}}" (click)="clickExternalLink(detail.link)">
-                            <i class="fa fa-calendar"></i>
-                            <span>{{detail.startDateStr}} - {{detail.endDateStr}}</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="wsd-share">
-                <h2 class="highlight-headings">Spread the word!</h2>
-                <div [attr.data-href]="currentUrl" data-layout="button" data-size="small" data-mobile-iframe="true"><a title="Share on Facebook" class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{currentUrl}}&amp;src=sdkpreparse"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></div>
-                <a itemprop="url" title="Share on twitter" href="https://twitter.com/intent/tweet?text=Best%20Photography%20Workshops&url={{currentUrl}}"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-            </div>
-        </div>
-
-        <!--Image gallery modal-->
-        <div id="myModal" [ngClass]="{'hide-modal': hideModal}" class="image-modal">
-            <span class="close cursor" (click)="closeModal()">&times;</span>
-            <div class="image-modal-content">
-                <div *ngFor="let image of imagesLink;" class="slides" [ngClass]="{'hideImage': image.hideImage}">
-                    <img [src]="image.imageLink" alt="workshop details image gallery" class="modal-image">
-                </div>
-            </div>
-
-            <a title="Go to previous image" class="prev" (click)="plusSlides(-1)">&#10094;</a>
-            <a title="Go to next image" class="next" (click)="plusSlides(1)">&#10095;</a>
-        </div>
+<div itemscope itemtype="http://schema.org/Event">
+    <div class="header-img">
+        <img class="detail-img" itemprop="image" src="{{coverImageCDNLink}}" alt="{{workshopDetails.name}}" />
     </div>
 
+    <h1 class="wsd-name" itemprop="name">{{workshopDetails.name}}</h1>
+
+    <div class="details-container">
+        <div>
+            <div class="detail-tabs">
+
+                <!--Tab headings-->
+                <div class="tab">
+                    <button class="tablinks" *ngFor="let tab of tabs; let i=index;" [ngClass]="{'active': tab.showTab}" (click)="openTabs(i)">{{tab.label}}</button>
+                </div>
+
+                <!--Description tab-->
+                <div id="{{tabs[0].label}}" [hidden]="!tabs[0].showTab" class="tabcontent">
+                    <p itemprop="description" [innerHTML]="workshopDetails.description"></p>
+                </div>
+
+                <!--Gallery tab-->
+                <div id="{{tabs[1].label}}" [hidden]="!tabs[1].showTab" class="tabcontent">
+                    <img class="gallery-image hover-shadow cursor" *ngFor="let image of imagesLink;let i = index" [src]="image.imageLink" alt="workshop image"
+                        (click)="openModal(i+1)" />
+                </div>
+
+                <!--Photographer tab-->
+                <div id="{{tabs[2].label}}" [hidden]="!tabs[2].showTab" class="tabcontent">
+                    <div class="photographer-information" *ngFor="let photographer of workshopDetails.photographers;">
+                        <div class="profile-photo">
+                            <img class="profile-img" src="{{photographer.profilePhotoCDNLink}}" alt="{{photographer.firstName}}" />
+                        </div>
+                        <h4>
+                            <span>{{photographer.firstName}}</span>
+                            <span>{{photographer.lastName}}</span>
+                        </h4>
+                        <div class="detail-location" *ngIf="photographer.locationName !== null && photographer.locationName !== ''">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <span>{{photographer.locationName}}</span>
+                        </div>
+                        <div class="website-link">
+                            <a title="{{photographer.firstName}} {{photographer.lastName}}'s website" href="{{photographer.externalWebsiteLink}}" (click)="onPhotographerWebsiteClick(photographer.id)"><i class="fa fa-external-link"></i> Website</a>
+                        </div>
+                        <p [innerHTML]="photographer.moreInfo"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Workshop highlights-->
+            <div class="highlights">
+                <div class="wsd-location">
+                    <h2 class="highlight-headings">Location</h2>
+                    <i class="fa fa-map-marker"></i>
+                    <span itemprop="location" itemscope itemtype="http://schema.org/Place">{{workshopDetails.locationName}}</span>
+                </div>
+                <div class="wsd-price">
+                    <h2 class="highlight-headings">Price</h2>
+                    <i class="fa fa-usd"></i><span itemprop="price" *ngIf="workshopDetails.minCost !== workshopDetails.maxCost">{{workshopDetails.minCost}} - </span><span>{{workshopDetails.maxCost}}</span>
+                </div>
+                <div class="wsd-dates">
+                    <h2 class="highlight-headings">Workshop Link(s)</h2>
+                    <div class="dates-wrapper">
+                        <div class="dates-information" *ngFor="let detail of workshopDetails.multiWorkshopDetails;">
+                            <a itemprop="url" title="Details for workshop starting on {{detail.startDateStr}}" href="{{detail.externalLink}}" (click)="clickExternalLink(detail.link)">
+                            <i class="fa fa-calendar"></i>
+                            <span itemprop="date">{{detail.startDateStr}} - {{detail.endDateStr}}</span>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="wsd-share">
+                    <h2 class="highlight-headings">Spread the word!</h2>
+                    <div [attr.data-href]="currentUrl" data-layout="button" data-size="small" data-mobile-iframe="true"><a title="Share on Facebook" class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{currentUrl}}&amp;src=sdkpreparse"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></div>
+                    <a itemprop="url" title="Share on twitter" href="https://twitter.com/intent/tweet?text=Best%20Photography%20Workshops&url={{currentUrl}}"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <!--Image gallery modal-->
+            <div id="myModal" [ngClass]="{'hide-modal': hideModal}" class="image-modal">
+                <span class="close cursor" (click)="closeModal()">&times;</span>
+                <div class="image-modal-content">
+                    <div *ngFor="let image of imagesLink;" class="slides" [ngClass]="{'hideImage': image.hideImage}">
+                        <img [src]="image.imageLink" alt="workshop details image gallery" class="modal-image">
+                    </div>
+                </div>
+
+                <a title="Go to previous image" class="prev" (click)="plusSlides(-1)">&#10094;</a>
+                <a title="Go to next image" class="next" (click)="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>
+
+    </div>
 </div>
 <div>
     <div class="footer">
