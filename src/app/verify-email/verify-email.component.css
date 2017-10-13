@@ -1,0 +1,12 @@
+.ws-container nav.navbar.navbar-default {
+    background-color: white;
+    border: none;
+}
+
+.ws-container .navbar-default .navbar-nav .active a {
+    background-color: transparent;
+}
+
+.list {
+    margin-left: 10rem;
+}

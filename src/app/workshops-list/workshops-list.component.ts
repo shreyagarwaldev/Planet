@@ -118,7 +118,7 @@ export class WorkshopsListComponent {
     }
 
     onSelectWorkshop(workshopId: number) {
-        this.gaService.trackEvent('WorkshopInstance','Click','',`${workshopId}`);
+        this.gaService.trackEvent('WorkshopInstance','Click',`${workshopId}`);
     }
     
     getCardImageCDNLink(workshopId: number) {

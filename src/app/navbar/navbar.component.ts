@@ -86,10 +86,6 @@ export class NavComponent {
         }
     }
 
-    validateEmail() {
-        
-    }
-
     toggleSubscribeBlock() {
         this.hideSubscribe = !this.hideSubscribe;
         if (!this.hideNavbar) {
