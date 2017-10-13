@@ -25,7 +25,8 @@
 
 <div class="flyout-blocks" *ngIf="!hideSubscribe">
   <div class="flyout-description">Subscribe to our newsletter and upcoming workshops</div>
-  <input type="text" placeholder="Enter email id" class="email-textbox" [(ngModel)]="emailId">
+  <input [class.alert]="invalidEmail" type="text" placeholder="Enter email id" class="email-textbox" [(ngModel)]="emailId">
+  <div class="msg-box">{{submitMessage}}</div>
   <button type="button" class="subscribe-btn btn" (click)="submitEmail()">Subscribe</button>
 </div>
 <div class="flyout-blocks social" *ngIf="!hideShare">
