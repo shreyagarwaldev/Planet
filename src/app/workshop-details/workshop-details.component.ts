@@ -115,14 +115,14 @@ export class WorkshopDetailsComponent {
                 let titleStr = `Photography Workshop - ${this.workshopDetails.name} @ ${this.workshopDetails.locationName}`;
                 this.title.setTitle(titleStr);
                 this.meta.addTags([
-                    { name: 'twitter:title', content: titleStr.replace(new RegExp('?![A-Za-z0-9,\'!:/\. -]','g'), '') },
-                    { property: 'og:title', content: titleStr.replace(new RegExp('?![A-Za-z0-9,\'!:/\. -]','g'), '') },
+                    { name: 'twitter:title', content: titleStr },
+                    { property: 'og:title', content: titleStr },
                     { property: 'og:type', content: 'article'},
                     { property: 'og:site_name', content: 'The Pixelated Planet'},
                     { property: 'fb:app_id', content: '132676104124561'},
-                    { name: 'description', content: this.workshopDetails.description.replace(new RegExp('?![A-Za-z0-9,\'!:/\. -]','g'), '') },
-                    { property: 'og:description', content: this.workshopDetails.description.replace(new RegExp('?![A-Za-z0-9,\'!:/\. -]','g'), '') },
-                    { name: 'twitter:description', content: this.workshopDetails.description.replace(new RegExp('?![A-Za-z0-9,\'!:/\. -]','g'), '') },
+                    { name: 'description', content: this.workshopDetails.description },
+                    { property: 'og:description', content: this.workshopDetails.description },
+                    { name: 'twitter:description', content: this.workshopDetails.description },
                     { property: 'og:image', content: 'http:/www.piplanet-dev.herokuapp.com/assets/img/yosemite.jpg' },
                     { name: 'twitter:image', content: 'http:/www.piplanet-dev.herokuapp.com/assets/img/yosemite.jpg' },
                     { property: 'og:url', content: `https:/www.piplanet-dev.herokuapp.com${this.router.url}` },
