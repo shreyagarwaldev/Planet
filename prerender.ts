@@ -28,4 +28,4 @@ renderModuleFactory(AppServerModuleNgFactory, {
     provideModuleMap(LAZY_MODULE_MAP)
   ]
 })
-.then(html => writeFileSync(join('browser', 'index.html'), html));
+.then(html => writeFileSync(join('browser', 'index.html'), html.replace(new RegExp('<meta name="[a-z]+:[a-z_]+" content="[A-Za-z0-9 ,\'!:/\. -]+">', 'g'), '').replace(new RegExp('<meta property="[a-z]+:[a-z_]+" content="[A-Za-z0-9,\'!:/\. -]+">', 'g'), '').replace(new RegExp('<meta name="[a-z]+" content="[A-Za-z0-9,\'!:/\. -]+">', 'g'), '')));

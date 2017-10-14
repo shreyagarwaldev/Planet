@@ -22,8 +22,8 @@ export class ErrorComponent {
             { name: 'description', content: 'You tried accessing a page that does not exist.' },
             { property: 'og:description', content: 'You tried accessing a page that does not exist.' },
             { name: 'twitter:description', content: 'You tried accessing a page that does not exist.' },
-            { property: 'og:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-            { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
+            { property: 'og:image', content: 'https://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
+            { name: 'twitter:image', content: 'https://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
             { property: 'og:url', content: 'https://www.thepixelatedplanet.com/404' },
             { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/404' },
           ]);
