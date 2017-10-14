@@ -107,7 +107,7 @@ export class WorkshopDetailsComponent {
                    d.endDateStr = this.formatDate(d.endDate);
                 });
 
-                this.currentUrl = (`https:/www.piplanet-dev.herokuapp.com${this.router.url}`).replace(new RegExp('/', 'g'), '%2F').replace(new RegExp(':', 'g'),'%3A')
+                this.currentUrl = (`https:/www.thepixelatedplanet.com${this.router.url}`).replace(new RegExp('/', 'g'), '%2F').replace(new RegExp(':', 'g'),'%3A')
                 .replace(new RegExp('[?]', 'g'),'%3F').replace(new RegExp(';','g'),'%3B').replace(new RegExp(',', 'g'),'%2C')
                 .replace(new RegExp('@','g'),'%40').replace(new RegExp('&', 'g'),'%26').replace(new RegExp('=', 'g'),'%3D')
                 .replace(new RegExp('[+]','g'),'%2B');
@@ -125,8 +125,8 @@ export class WorkshopDetailsComponent {
                     { name: 'twitter:description', content: this.workshopDetails.description },
                     { property: 'og:image', content: `https://pixelatedplanetcdn.azureedge.net/img/Tiles/${workshopId}.jpg` },
                     { name: 'twitter:image', content: `https://pixelatedplanetcdn.azureedge.net/img/Tiles/${workshopId}.jpg` },
-                    { property: 'og:url', content: `https:/www.piplanet-dev.herokuapp.com${this.router.url}` },
-                    { name: 'twitter:site', content: `https:/www.piplanet-dev.herokuapp.com${this.router.url}` },
+                    { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
+                    { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
                 ]);
             });
     }

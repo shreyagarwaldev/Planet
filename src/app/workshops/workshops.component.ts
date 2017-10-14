@@ -49,10 +49,10 @@ export class WorkshopsComponent {
             { name: 'description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
             { property: 'og:description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
             { name: 'twitter:description', content: 'Photography workshops list which can be filtered on by Location, Category, Dates and Price' },
-            { property: 'og:image', content: 'http:/www.piplanet-dev.herokuapp.com/assets/img/yosemite.jpg' },
-            { name: 'twitter:image', content: 'http:/www.piplanet-dev.herokuapp.com/assets/img/yosemite.jpg' },
-            { property: 'og:url', content: `https:/www.piplanet-dev.herokuapp.com${this.router.url}` },
-            { name: 'twitter:site', content: `https:/www.piplanet-dev.herokuapp.com${this.router.url}` },
+            { property: 'og:image', content: 'https://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
+            { name: 'twitter:image', content: 'https://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
+            { property: 'og:url', content: `https://www.thepixelatedplanet.com${this.router.url}` },
+            { name: 'twitter:site', content: `https://www.thepixelatedplanet.com${this.router.url}` },
         ]);
 
         router.events.subscribe(event => {
