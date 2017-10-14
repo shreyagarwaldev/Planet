@@ -64,10 +64,10 @@ export class ContactUsComponent {
         { name: 'description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
         { property: 'og:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
         { name: 'twitter:description', content: 'Contact us at Pixelated Planet with any questions, feedback or requests!' },
-        { property: 'og:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-        { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-        { property: 'og:url', content: 'https://www.thepixelatedplanet.com/contact' },
-        { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/contact' },
+        { property: 'og:image', content: 'http:/www.piplanet-dev.herokuapp.com/assets/img/yosemite.jpg' },
+        { name: 'twitter:image', content: 'http:/www.piplanet-dev.herokuapp.com/assets/img/yosemite.jpg' },
+        { property: 'og:url', content: 'https:/www.piplanet-dev.herokuapp.com/contact' },
+        { name: 'twitter:site', content: 'https:/www.piplanet-dev.herokuapp.com/contact' },
       ]);
 
     this.submitMessage = "Message submitted successfully";

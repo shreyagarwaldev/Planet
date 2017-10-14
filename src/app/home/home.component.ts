@@ -31,10 +31,10 @@ export class HomeComponent implements OnInit {
         { name: 'description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
         { property: 'og:description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
         { name: 'twitter:description', content: `Enabling aspiring photographers to find workshops in travel, nature, wildlife, street, portrait, etc photography while providing a platform for photographers' workshops` },
-        { property: 'og:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-        { name: 'twitter:image', content: 'http://www.thepixelatedplanet.com/assets/img/yosemite.jpg' },
-        { property: 'og:url', content: 'https://www.thepixelatedplanet.com/' },
-        { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/' },
+        { property: 'og:image', content: 'http:/www.piplanet-dev.herokuapp.com/assets/img/yosemite.jpg' },
+        { name: 'twitter:image', content: 'http:/www.piplanet-dev.herokuapp.com/assets/img/yosemite.jpg' },
+        { property: 'og:url', content: 'https:/www.piplanet-dev.herokuapp.com/' },
+        { name: 'twitter:site', content: 'https:/www.piplanet-dev.herokuapp.com/' },
       ]);
   }
 
