@@ -107,7 +107,7 @@ export class WorkshopDetailsComponent {
                    d.endDateStr = this.formatDate(d.endDate);
                 });
 
-                this.currentUrl = (`https:/www.thepixelatedplanet.com${this.router.url}`).replace(new RegExp('/', 'g'), '%2F').replace(new RegExp(':', 'g'),'%3A')
+                this.currentUrl = (`https://www.thepixelatedplanet.com${this.router.url}`).replace(new RegExp('/', 'g'), '%2F').replace(new RegExp(':', 'g'),'%3A')
                 .replace(new RegExp('[?]', 'g'),'%3F').replace(new RegExp(';','g'),'%3B').replace(new RegExp(',', 'g'),'%2C')
                 .replace(new RegExp('@','g'),'%40').replace(new RegExp('&', 'g'),'%26').replace(new RegExp('=', 'g'),'%3D')
                 .replace(new RegExp('[+]','g'),'%2B');
