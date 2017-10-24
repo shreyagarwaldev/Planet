@@ -1,0 +1,27 @@
+<navi-bar [showName]="true" [showSocialBlock]="true"></navi-bar>
+<div>
+    <div class="wrapper">
+        <div class="blog-container">
+            <section class="blog" *ngFor="let blog of allBlogs">
+                <div class="img-box">
+                    <img class="image1" src="{{blog.image}}" alt="{{blog.heading}}" />
+                </div>
+                <div class="text">
+                    <h3>{{blog.heading}}</h3>
+                    <div>{{blog.content}}</div>
+                    <a title="{{blog.heading}}" href="{{blog.url}}">Read more</a>
+                </div>
+            </section>
+            <h2 class="back-link">
+                <a title="Go to workshop list" href="/photography-workshops" class="view-all"><i class="fa fa-arrow-circle-left"></i> <span>Back to photography workshops</span></a>
+            </h2>
+        </div>
+        <div class="workshops">
+            <h2>Upcoming photography workshops</h2>
+            <workshops-list [itemLimit]="numberOfWorkshopsToShow"></workshops-list>
+        </div>
+    </div>
+    <div class="footer">
+        <footer></footer>
+    </div>
+</div>

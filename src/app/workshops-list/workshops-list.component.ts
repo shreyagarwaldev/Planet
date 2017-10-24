@@ -15,6 +15,7 @@ import { GoogleAnalyticsService } from '../services/analytics/googleAnalyticsSer
 export class WorkshopsListComponent {
 
     @Input() activePage: number;
+    @Input() itemLimit: number;
 
     queryPath: string;
     itemsPerPage: number;

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './navbar/navbar.component'
+import { BlogsOverviewComponent } from './blogs-overview/blogs-overview.component'
 import { AutocompleteComponent } from './autocomplete/autocomplete.component'
 import { DatePickerComponent } from './date-picker/date-picker.component'
 import { DropdownComponent } from './dropdown-menu/dropdown-menu.component'
@@ -28,6 +29,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 
 import { GlobalConstantsRepository } from './services/shared/globalConstantsRepository'
+import { BlogRepository } from './services/blogs/blogRepository'
 import { WorkshopRepository } from './services/workshops/workshopRepository'
 import { GoogleAnalyticsService } from './services/analytics/googleAnalyticsService'
 import { PixelatedAnalyticsService } from './services/analytics/pixelatedAnalyticsService'
@@ -38,6 +40,7 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
     AppComponent,
     HomeComponent,
     NavComponent,
+    BlogsOverviewComponent,
     AboutComponent,
     ErrorComponent,
     ContactUsComponent,
@@ -69,6 +72,7 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
         { path: 'termsandconditions', component: TermsAndConditionsComponent, pathMatch: 'full'},
         { path: 'privacypolicy', component: PrivacyComponent, pathMatch: 'full'},
         { path: 'feedback', component: FeedbackComponent, pathMatch: 'full'},
+        { path: 'blogs', component: BlogsOverviewComponent, pathMatch: 'full'},
         { path: 'photography-workshops', redirectTo: '/photography-workshops/1' },
         { path: '**', redirectTo: '/404' }
       ]),
@@ -79,6 +83,7 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
   ],
   providers: [
       WorkshopRepository,
+      BlogRepository,
       GlobalConstantsRepository,
       GoogleAnalyticsService,
       PixelatedAnalyticsService,

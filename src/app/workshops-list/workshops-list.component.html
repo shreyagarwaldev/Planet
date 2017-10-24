@@ -23,7 +23,7 @@
                 </div>
             </a>
         </article>
-        <div *ngIf="itemsPerPage > 4" class="ws-pages">
+        <div *ngIf="itemsPerPage > itemLimit" class="ws-pages">
             <a title="Go to previous page" class="page-numbers" *ngIf="pageNumbers" [ngClass]="{'disabled': activePage <=1 }" [href]="createPageLink(activePage-1)">
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
             <i class="fa fa-chevron-left" aria-hidden="true"></i><span>Previous</span></a>
