@@ -10,6 +10,11 @@ export interface IBlogOverview {
     image: string;
 }
 
+export interface IBlogDetail {
+    title: string;
+    image: string;
+}
+
 @Injectable()
 export class BlogRepository {
 
@@ -33,7 +38,7 @@ export class BlogRepository {
             atis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
              enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
               sed quia consequuntur magni dolores eos qui`,
-            "url": "https://www.thepixelatedplanet.com",
+            "url": "/blog/iso/1",
             "image": "./assets/img/header.jpg"
         },
         {
@@ -48,7 +53,7 @@ export class BlogRepository {
               esciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, 
               consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt 
               ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima`,
-            "url": "https://www.thepixelatedplanet.com",
+            "url": "/blog/seattle/2",
             "image": "./assets/img/header.jpg"
         },
         {
@@ -63,7 +68,7 @@ export class BlogRepository {
               esciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, 
               consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt 
               ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima.`,
-            "url": "https://www.thepixelatedplanet.com",
+            "url": "/blog/iso/3",
             "image": "./assets/img/header.jpg"
         },
         {
@@ -78,9 +83,16 @@ export class BlogRepository {
               esciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, 
               consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt 
               ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima`,
-            "url": "https://www.thepixelatedplanet.com",
+            "url": "/blog/iso/4",
             "image": "./assets/img/header.jpg"
         }];
+    }
+
+    public getBlogDetails(id: string): IBlogDetail {
+        return {
+            title: "ISO Sensitivity",
+            image: "./assets/img/header.jpg"
+        }
     }
 
 }

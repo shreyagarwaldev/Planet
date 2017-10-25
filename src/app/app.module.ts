@@ -14,6 +14,7 @@ import { DropdownComponent } from './dropdown-menu/dropdown-menu.component'
 import { WorkshopFilterComponent } from './workshop-filter/workshop-filter.component'
 import { WorkshopsListComponent } from './workshops-list/workshops-list.component'
 import { WorkshopsComponent } from './workshops/workshops.component'
+import { BlogComponent } from './blog/blog.component';
 import { AboutComponent } from './about/about.component'
 import { FeedbackComponent } from './feedback/feedback.component'
 import { FooterComponent } from './footer/footer.component'
@@ -56,7 +57,8 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
     TermsAndConditionsComponent,
     PageRedirectComponent,
     FeedbackComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
@@ -72,7 +74,8 @@ import { GlobalErrorHandler } from './services/shared/globalErrorHandler'
         { path: 'termsandconditions', component: TermsAndConditionsComponent, pathMatch: 'full'},
         { path: 'privacypolicy', component: PrivacyComponent, pathMatch: 'full'},
         { path: 'feedback', component: FeedbackComponent, pathMatch: 'full'},
-        { path: 'blogs', component: BlogsOverviewComponent, pathMatch: 'full'},
+        { path: 'photography-blogs', component: BlogsOverviewComponent, pathMatch: 'full'},
+        { path: 'blog/:title/:id', component: BlogComponent, pathMatch: 'full'},
         { path: 'photography-workshops', redirectTo: '/photography-workshops/1' },
         { path: '**', redirectTo: '/404' }
       ]),
