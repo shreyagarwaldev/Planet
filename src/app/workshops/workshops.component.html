@@ -5,7 +5,7 @@
             (locationFilterChanged)="setLocationIdList($event)" (categoryFilterChanged)="setCategoryList($event)" (applyFilters)="toggleFilterDropdown($event)"></workshop-filter>
     </div>
     <div class="list">
-        <workshops-list [activePage]="pageNumber" [itemLimit]="0"></workshops-list>
+        <workshops-list [activePage]="pageNumber"></workshops-list>
         <div class="footer">
             <footer></footer>
         </div>

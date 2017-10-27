@@ -45,6 +45,7 @@ export class WorkshopsListComponent {
     }
 
     ngOnInit() {
+        this.itemLimit = this.itemLimit || 0;
     }
 
     formatDate(date) {

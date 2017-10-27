@@ -14,34 +14,32 @@ import { WorkshopsListComponent } from '../workshops-list/workshops-list.compone
 export class BlogComponent {
 
     blogId: string;
-    // @ViewChild(WorkshopsListComponent) workshopsListChildComp:WorkshopsListComponent;
-
     blog: IBlogDetail;
 
     constructor(private blogRepository: BlogRepository,
         private globalConstantsRepository: GlobalConstantsRepository,
         private route: ActivatedRoute,
-        gaService: GoogleAnalyticsService,
-        title: Title,
-        meta: Meta) {
-        gaService.trackPageView('blogs');
-        title.setTitle('Photography blogs - Pixelated Planet')
-        meta.addTags([
-            { name: 'twitter:title', content: 'Photography blogs - Pixelated Planet' },
-            { property: 'og:title', content: 'Photography blogs - Pixelated Planet' },
+        private gaService: GoogleAnalyticsService,
+        private title: Title,
+        private meta: Meta) {
+    }
+
+    ngOnInit() {
+        this.blogId = this.route.snapshot.params['id'];
+        this.blog = this.blogRepository.getBlogDetails(this.blogId);
+        this.gaService.trackPageView('blog');
+        this.title.setTitle(this.blog.title + ' - Pixelated Planet')
+        this.meta.addTags([
+            { name: 'twitter:title', content: this.blog.title + ' - Pixelated Planet' },
+            { property: 'og:title', content: this.blog.title + ' - Pixelated Planet' },
             { property: 'og:type', content: 'website' },
             { property: 'og:site_name', content: 'The Pixelated Planet' },
             { property: 'fb:app_id', content: '132676104124561' },
             { name: 'description', content: 'Find out more about photography.' },
             { property: 'og:description', content: 'Find out more about photography.' },
             { name: 'twitter:description', content: 'Find out more about photography.' },
-            { property: 'og:url', content: 'https://www.thepixelatedplanet.com/photography-blogs' },
-            { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/photography-blogs' },
+            { property: 'og:url', content: 'https://www.thepixelatedplanet.com/blog/' + this.blog.title + '/' + this.blogId },
+            { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/blog/' + this.blog.title + '/' + this.blogId },
         ]);
-    }
-
-    ngOnInit() {
-        this.blogId = this.route.snapshot.params['id'];
-        this.blog = this.blogRepository.getBlogDetails(this.blogId);
     }
 }

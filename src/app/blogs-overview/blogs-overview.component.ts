@@ -22,19 +22,19 @@ export class BlogsOverviewComponent {
         gaService: GoogleAnalyticsService,
         title: Title,
         meta: Meta) {
-        gaService.trackPageView('blogs');
-        title.setTitle('Photography blogs - Pixelated Planet')
+        gaService.trackPageView('blog-overview');
+        title.setTitle('Blog - Pixelated Planet')
         meta.addTags([
-            { name: 'twitter:title', content: 'Photography blogs - Pixelated Planet' },
-            { property: 'og:title', content: 'Photography blogs - Pixelated Planet' },
+            { name: 'twitter:title', content: 'Blog - Pixelated Planet' },
+            { property: 'og:title', content: 'Blog - Pixelated Planet' },
             { property: 'og:type', content: 'website' },
             { property: 'og:site_name', content: 'The Pixelated Planet' },
             { property: 'fb:app_id', content: '132676104124561' },
             { name: 'description', content: 'Find out more about photography.' },
             { property: 'og:description', content: 'Find out more about photography.' },
             { name: 'twitter:description', content: 'Find out more about photography.' },
-            { property: 'og:url', content: 'https://www.thepixelatedplanet.com/blogs' },
-            { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/blogs' },
+            { property: 'og:url', content: 'https://www.thepixelatedplanet.com/blog/' },
+            { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/blog/' },
         ]);
 
         this.allBlogs = [];
