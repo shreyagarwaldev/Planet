@@ -41,11 +41,22 @@ export class BlogsOverviewComponent {
     }
 
     ngOnInit() {
-        this.allBlogs = this.blogRepository.getAllBlogs();
+        this.blogRepository.getAllBlogs().then( blogs =>
+            {
+                this.allBlogs = blogs;
+                this.allBlogs.forEach(blog => {
+                    blog.url = `blog/${blog.heading}/${blog.id}`;
+                    blog.image = this.getBlogImageCDNLink(blog.id);
+                });
+            });
         var today = new Date();
         let startDate = `${today.getFullYear().toString()}/${(today.getMonth() + 1).toString()}/${today.getDate().toString()}`;
         let endDate = `${(today.getFullYear() + 10).toString()}/${(today.getMonth() + 1).toString()}/${today.getDate().toString()}`;
         let query = `${this.globalConstantsRepository.getPixelatedPlanetAPIUrl()}/Workshops?startDateFilter=${startDate}&endDateFilter=${endDate}`;
         this.workshopsListChildComp.getWorkshopsData(query, 1, this.numberOfWorkshopsToShow);
+    }
+
+    getBlogImageCDNLink(blogId: number) {
+        return this.blogRepository.globalConstants.resolveImageUrl(`/img/Blogs/Tile_${blogId}.jpg`);
     }
 }

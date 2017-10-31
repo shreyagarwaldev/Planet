@@ -18,6 +18,8 @@ export class GlobalConstantsRepository
     private feedbackAPIUrl;
     private locationsUrl;
     private sessionGUID;
+    private blogsUrl;
+    private blogDetailsUrl;
     private workshopTypesUrl;
     private photographersUrl;
     private ipAddress;
@@ -36,6 +38,8 @@ export class GlobalConstantsRepository
         this.feedbackAPIUrl = `${this.pixelatedPlanetAPIUrl}/feedback`;
         this.subscribeAPIUrl = `${this.pixelatedPlanetAPIUrl}/addemail`;
         this.locationsUrl = `${this.pixelatedPlanetAPIUrl}/Locations`;
+        this.blogsUrl = `${this.pixelatedPlanetAPIUrl}/blogs`;
+        this.blogDetailsUrl = `${this.pixelatedPlanetAPIUrl}/blog?blogId=`;
         this.workshopTypesUrl = `${this.pixelatedPlanetAPIUrl}/WorkshopTypes`;
 
         if(isPlatformBrowser(this.platformId))
@@ -71,6 +75,14 @@ export class GlobalConstantsRepository
             }).catch(e => {
             });
         }
+    }
+
+    public getBlogDetailsUrl(id: string) : string {
+        return `${this.blogDetailsUrl}${id}`;
+    }
+
+    public getBlogsUrl() : string {
+        return this.blogsUrl;
     }
 
     public getVerifyEmailAPIUrl() : string {

@@ -26,7 +26,10 @@ export class BlogComponent {
 
     ngOnInit() {
         this.blogId = this.route.snapshot.params['id'];
-        this.blog = this.blogRepository.getBlogDetails(this.blogId);
+        this.blogRepository.getBlogDetails(this.blogId).then( blogDetail => {
+            this.blog = blogDetail;
+            this.blog.image = this.getBlogCoverImageCDNLink(this.blogId);
+        });
         this.gaService.trackPageView('blog');
         this.title.setTitle(this.blog.title + ' - Pixelated Planet')
         this.meta.addTags([
@@ -41,5 +44,9 @@ export class BlogComponent {
             { property: 'og:url', content: 'https://www.thepixelatedplanet.com/blog/' + this.blog.title + '/' + this.blogId },
             { name: 'twitter:site', content: 'https://www.thepixelatedplanet.com/blog/' + this.blog.title + '/' + this.blogId },
         ]);
+    }
+
+    getBlogCoverImageCDNLink(blogId: string) {
+        return this.blogRepository.globalConstants.resolveImageUrl(`/img/Blogs/Cover_${blogId}.jpg`);
     }
 }
